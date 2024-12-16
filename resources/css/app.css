@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* html {
+    font-family: Roboto, sans-serif !important;
+    font-feature-settings: normal !important;
+    font-variation-settings: normal !important;
+} */
+
+@media only screen and (min-width: 767px) {
+     body {
+          max-width: 767px !important;
+          margin: 0 auto !important;
+          font-family: system-ui;
+     }
+}
+
+/* Button */
+.btn-green {
+     @apply
+     rounded-md py-2 px-4 text-center text-sm 
+     text-white bg-green-700 border border-transparent shadow-sm
+     hover:bg-green-600 hover:shadow-lg 
+     focus:bg-green-700 focus:shadow-none
+     active:bg-green-600 active:shadow-lg active:scale-90 transition-transform 
+     disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none;
+}
+
+/* Menu */
+.img-menu {
+     @apply
+     flex items-center justify-center aspect-square
+     rounded-lg m-2 text-center text-3xl 
+     text-green-700 bg-slate-100 border border-green-700 shadow-sm 
+     hover:text-white hover:bg-green-700 hover:shadow-lg 
+     focus:text-green-700 focus:bg-transparent focus:shadow-none
+     active:text-white active:bg-green-700 active:shadow-lg active:scale-90 transition-transform 
+     disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none;
+}
+
+.img-menu img {
+     @apply
+     rounded-lg
+}
+
+.title-menu-container {
+     @apply
+     text-center mt-1
+}
+
+.title-menu {
+     @apply
+     line-clamp-2 font-medium text-xs leading-tight
+}
+
+::-webkit-scrollbar {
+     height: 4px;
+     width: 4px;
+ }
+   
+/* Track */
+::-webkit-scrollbar-track {
+     box-shadow: inset 0 0 5px grey; 
+     border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+     background: green; 
+     border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+     background: green; 
+}
+
+/* Hide Arrows From Input Number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.select2-container--default .select2-selection--single {
+     @apply !h-[37.6px] !leading-[37.6px] !bg-white !border !border-slate-200 !rounded-md !cursor-pointer focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+     @apply !leading-[37.6px] placeholder:!text-slate-400 !text-sm !text-slate-700
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+     @apply !h-[37.6px] !top-0
+}
+.select2-container--default .select2-selection--single .select2-selection__clear {
+     @apply !h-[37.6px] !top-1/2
+}
+.select2-container--default .select2-search--dropdown .select2-search__field {
+     @apply rounded-md text-sm p-2 focus:ring-0 focus:ring-opacity-0 focus:border-slate-600
+}
+.select2-selection__clear {
+     @apply flex items-baseline
+}
+.select2-selection__clear span {
+     @apply leading-[2.1]
+}
+.select2-dropdown {
+     @apply !border !border-slate-200
+}
+.select2-search--dropdown{
+     @apply !border !border-slate-200 !rounded-t-md
+}
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+     @apply !bg-green-700 text-white
+}
+
+input:disabled {
+     @apply !bg-slate-200 !border-slate-200 !text-slate-700 !cursor-default
+}
+
+select:disabled {
+     @apply !bg-slate-200 !border-slate-200 !text-slate-700 !cursor-default
+}
+
+.select2-container--disabled .select2-selection--single {
+     @apply !bg-slate-200 !border-slate-200 !text-slate-700 !cursor-default
+}
+
+.select2-container--disabled .select2-selection--single:focus {
+     @apply !border-none !ring-0 !shadow-sm
+}
