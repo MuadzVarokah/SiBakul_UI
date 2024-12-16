@@ -23,14 +23,14 @@ class Dashboard extends Component
 
         //Membuat menu cepat
         $listMenu = collect([
-            ["title" => "PKG YIA", "type" => "icon", "icon" => "<i class='fa-solid fa-shop'></i>"],
-            ["title" => "Pasar Ekspor", "type" => "icon", "icon" => "<i class='fa-solid fa-globe'></i>"],
-            ["title" => "QUAT BPD", "type" => "img", "icon" => "<img class='rounded-lg' src='".asset('qris2.png')."' alt='QUAT_BPD'>"],
-            ["title" => "SIKP", "type" => "icon", "icon" => "<i class='fa-solid fa-money-check-dollar'></i>"],
-            ["title" => "Pelatihan", "type" => "icon", "icon" => "<i class='fa-solid fa-person-chalkboard'></i>"],
-            ["title" => "Foto Produk", "type" => "icon", "icon" => "<i class='fa-solid fa-camera'></i>"],
-            ["title" => "Toko Saya", "type" => "icon", "icon" => "<i class='fa-solid fa-store'></i>"],
-            // ["title" => "lorem ipsum", "type" => "img", "icon" => "<img src='https://sibakuljogja.jogjaprov.go.id/files/berkasweb/60.png' alt='Markethub'>"],
+            ["title" => "PKG YIA", "type" => "icon", "icon" => "<i class='fa-solid fa-shop'></i>", "url" => "#"],
+            ["title" => "Pasar Ekspor", "type" => "icon", "icon" => "<i class='fa-solid fa-globe'></i>", "url" => "#"],
+            ["title" => "QUAT BPD", "type" => "img", "icon" => "<img class='rounded-lg' src='".asset('qris2.png')."' alt='QUAT_BPD'>", "url" => "#"],
+            ["title" => "SIKP", "type" => "icon", "icon" => "<i class='fa-solid fa-money-check-dollar'></i>", "url" => "#"],
+            ["title" => "Pelatihan", "type" => "icon", "icon" => "<i class='fa-solid fa-person-chalkboard'></i>", "url" => route('pelatihan')],
+            ["title" => "Foto Produk", "type" => "icon", "icon" => "<i class='fa-solid fa-camera'></i>", "url" => "#"],
+            ["title" => "Toko Saya", "type" => "icon", "icon" => "<i class='fa-solid fa-store'></i>", "url" => "#"],
+            // ["title" => "lorem ipsum", "type" => "img", "icon" => "<img src='https://sibakuljogja.jogjaprov.go.id/files/berkasweb/60.png' alt='Markethub'>", "url" => "#"],
         ]);
 
         // Mengubah setiap item aspek menjadi objek stdClass
@@ -50,6 +50,7 @@ class Dashboard extends Component
             $object->title = $item['title'];
             $object->type = $item['type'];
             $object->icon = $item['icon'];
+            $object->url = $item['url'];
             return $object;
         });
 

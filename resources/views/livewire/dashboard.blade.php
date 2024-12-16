@@ -311,7 +311,7 @@
                     <div class="flex overflow-x-scroll pb-2 overflow-y-hidden gap-1">
                         @foreach ($listMenu as $key => $value)
                         <div class="w-16 flex-[0_0_auto]">
-                            <a href="javascript:void(0)">
+                            <a href="{!! $value->url !!}">
                                 <div class="img-menu">
                                     {!! $value->icon !!}
                                 </div>

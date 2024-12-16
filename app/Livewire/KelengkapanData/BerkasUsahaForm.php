@@ -23,9 +23,10 @@ class BerkasUsahaForm extends Component
     public $gambar_awal;
     
     // Method untuk menangani form tambah atau edit
-    public function mount()
+    public function mount($id_berkas)
     {
-        $this->id_berkas = Route::current()->parameter('id_berkas'); // Mendapatkan id dari URL
+        // $this->id_berkas = Route::current()->parameter('id_berkas'); // Mendapatkan id dari URL
+        $this->id_berkas = $id_berkas; // Mendapatkan id dari URL
 
         if ($this->id_berkas) {
 
