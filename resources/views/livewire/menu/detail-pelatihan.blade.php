@@ -2,23 +2,43 @@
     <x-sub-navbar href="javascript:history.back()">Detail Pelatihan</x-sub-navbar>
 
     <!-- Konten -->
-    <div class="w-full max-w-screen-sm mt-14 pb-8 min-h-[calc(100vh-3.5rem)] bg-slate-300">
+    <div class="w-full max-w-screen-sm mt-14 min-h-[calc(100vh-3.5rem)] bg-slate-100">
         <div class="relative w-full h-full">
             <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg" class="w-auto h-auto max-w-full max-h-full" alt="...">
         </div>
 
         <!-- Section utama -->
-        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-slate-100">
+        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
             <p class="text-2xl font-semibold text-green-600 leading-none">Nama Pelatihan - Lorem ipsum dolor sit amet.</p>
             {{-- <p class="w-full font-normal text-justify text-lg line-clamp-2 leading-normal">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p> --}}
+
             <hr class="mt-2" style="border-top: 2px solid #cbd5e1">
+
             <div class="w-full flex flex-wrap justify-between items-center">
-                <p class="w-full font-semibold text-justify text-lg">Waktu Pelatihan</p>
-                <p class="w-fit font-normal text-justify text-base text-slate-600">
-                    13 April 2024 - 15 April 2024
-                    <br>
-                    08:00 - 15:00
-                </p>
+                <p class="w-fit font-semibold text-justify text-lg">Status</p>
+                @switch($id_pelatihan)
+                    @case(1)
+                        <span class="w-fit inline-flex items-center bg-gray-100 text-gray-800 text-sm font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-gray-900 dark:text-gray-300">
+                            <span class="w-2 h-2 me-1 bg-gray-500 rounded-full"></span>
+                            Belum Diikuti
+                        </span>
+                        @break
+
+                    @case(3)
+                        <span class="w-fit inline-flex items-center bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-green-900 dark:text-green-300">
+                            <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                            Telah Diikuti
+                        </span>
+                        @break
+
+                    @default
+                    <span class="w-fit inline-flex items-center bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-blue-900 dark:text-blue-300">
+                        <span class="w-2 h-2 me-1 bg-blue-500 rounded-full"></span>
+                        Diikuti
+                    </span>
+                    
+                @endswitch
+                
             </div>
         </div>
 
@@ -26,7 +46,25 @@
         <div class="w-full h-4 bg-transparent"></div>
 
         <!-- Section Pemateri -->
-        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-slate-100">
+        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
+            <div class="w-full flex flex-wrap justify-between items-center">
+                <p class="w-fit font-semibold text-justify text-lg">Tanggal</p>
+                <p class="w-fit font-normal text-justify text-base text-slate-600">13 Apr 2024 - 15 Apr 2024</p>
+            </div>
+
+            <hr style="border-top: 2px solid #cbd5e1">
+
+            <div class="w-full flex flex-wrap justify-between items-center">
+                <p class="w-fit font-semibold text-justify text-lg">Waktu</p>
+                <p class="w-fit font-normal text-justify text-base text-slate-600">08:00 - 15:00</p>
+            </div>
+        </div>
+
+        <!-- divider -->
+        <div class="w-full h-4 bg-transparent"></div>
+
+        <!-- Section Pemateri -->
+        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
             <div class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Pemateri</p>
                 <p class="w-fit font-normal text-justify text-base text-slate-600">Nama Pemateri</p>
@@ -35,16 +73,12 @@
             <hr style="border-top: 2px solid #cbd5e1">
 
             <div class="w-full flex flex-wrap justify-between items-center">
-                <p class="w-fit font-semibold text-justify text-lg">Kontak Pemateri</p>
-                <p class="w-fit font-normal text-justify text-base text-slate-600">+6281234567890 (WA)</p>
+                <p class="w-fit font-semibold text-justify text-lg">Kontak Pemateri (WA)</p>
+                <p class="w-fit font-normal text-justify text-base text-slate-600">+6281234567890</p>
             </div>
-        </div>
 
-        <!-- divider -->
-        <div class="w-full h-4 bg-transparent"></div>
+            <hr style="border-top: 2px solid #cbd5e1">
 
-        <!-- Section Materi -->
-        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-slate-100">
             <div class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Materi Pelatihan</p>
                 <p class="w-fit font-normal text-justify text-base text-slate-600 content-text">
@@ -58,7 +92,7 @@
         <div class="w-full h-4 bg-transparent"></div>
 
         <!-- Section Materi -->
-        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-slate-100">
+        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
             <div class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Syarat Pelatihan</p>
                 <p class="w-fit font-normal text-justify text-base text-slate-600 content-text">
@@ -66,6 +100,37 @@
                 </p>
                 <p class="w-fit font-semibold text-justify text-base text-green-600 cursor-pointer toggle-text">Lihat Selengkapnya</p> 
             </div>
+
+            @switch($id_pelatihan)
+                @case(1)
+                    <div class="flex items-center mt-4">
+                        <div class="flex items-center h-5">
+                            <input id="ready" type="checkbox" value="" onchange="document.getElementById('ikutPelatihan').disabled = !this.checked;"
+                                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-green-500 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                        </div>
+                        <label for="ready" class="ms-2 font-medium text-gray-900 dark:text-gray-300">Saya siap mengikuti syarat pelatihan</label>
+                    </div>
+        
+                    <div class="relative mt-2">
+                        <button id="ikutPelatihan" type="button" disabled
+                            class="w-full rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                            Ikut Pelatihan
+                        </button>
+                    </div>
+                    @break
+
+                @case(3)
+                    <div class="relative mt-4">
+                        <button type="button"
+                            class="w-full rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                            Cetak Sertifikat
+                        </button>
+                    </div>
+                    @break
+
+                @default
+
+            @endswitch
         </div>
 
         <script>

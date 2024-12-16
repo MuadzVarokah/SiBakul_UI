@@ -63,7 +63,7 @@
                     <div class="w-full px-4">
                         <!-- Daftar Pelatihan -->
                         @for ($i = 0; $i < 10; $i++)
-                            <a wire:navigate:hover href="javascript:void(0)"
+                            <a wire:navigate:hover href="{{ route('detailPelatihan', ['id_pelatihan' => 1]) }}"
                                 class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
     
                                 <div class="w-full flex flex-wrap">
@@ -130,7 +130,7 @@
                     <div class="w-full px-4">
                         <!-- Daftar Pelatihan -->
                         @for ($j = 0; $j < 10; $j++)
-                            <a wire:navigate:hover href="javascript:void(0)"
+                            <a wire:navigate:hover href="{{ route('detailPelatihan', ['id_pelatihan' => 2]) }}"
                                 class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
     
                                 <div class="w-full flex flex-wrap">
@@ -197,7 +197,7 @@
                     <div class="w-full px-4">
                         <!-- Daftar Pelatihan -->
                         @for ($j = 0; $j < 10; $j++)
-                            <a wire:navigate:hover href="javascript:void(0)"
+                            <a wire:navigate:hover href="{{ route('detailPelatihan', ['id_pelatihan' => 3]) }}"
                                 class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
     
                                 <div class="w-full flex flex-wrap">
