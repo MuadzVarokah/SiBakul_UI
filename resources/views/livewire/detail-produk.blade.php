@@ -2,7 +2,7 @@
     <x-sub-navbar href="{{ route('markethub') }}">Detail Produk</x-sub-navbar>
 
     <!-- Konten -->
-    <div class="w-full max-w-screen-sm mt-14 pb-8 min-h-[calc(100vh-3.5rem)] bg-slate-300">
+    <div class="w-full max-w-screen-sm mt-14 min-h-[calc(100vh-3.5rem)] bg-slate-100">
         <!-- carousel -->
         <div id="carousel" class="relative w-full max-w-screen-md z-0" data-carousel="static" data-carousel-interval="5000">
             <!-- Carousel wrapper -->
@@ -75,7 +75,7 @@
         </script>
 
         <!-- Section utama -->
-        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-slate-100">
+        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
             <p class="text-2xl font-semibold text-green-600 leading-none"><span class="text-lg">Rp. </span>100.000</p>
             <p class="w-full font-normal text-justify text-lg line-clamp-2 leading-normal">Nama Produk Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
         </div>
@@ -84,7 +84,7 @@
         <div class="w-full h-4 bg-transparent"></div>
 
         <!-- Section Penjelasan -->
-        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-slate-100">
+        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
             <div class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Jenis Produk</p>
                 <p class="w-fit font-normal text-justify text-base text-slate-600">{{ $data->jenis_produk }}</p>
