@@ -114,7 +114,7 @@
                     <div class="relative mt-2">
                         <button id="ikutPelatihan" type="button" disabled
                             class="w-full rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                            Ikut Pelatihan
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;Ikut Pelatihan
                         </button>
                     </div>
                     @break
@@ -123,7 +123,7 @@
                     <div class="relative mt-4">
                         <button type="button"
                             class="w-full rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-                            Cetak Sertifikat
+                            <i class="fa-solid fa-print"></i>&nbsp;&nbsp;Cetak Sertifikat
                         </button>
                     </div>
                     @break

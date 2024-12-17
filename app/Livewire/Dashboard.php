@@ -28,7 +28,7 @@ class Dashboard extends Component
             ["title" => "QUAT BPD", "type" => "img", "icon" => "<img class='rounded-lg' src='".asset('qris2.png')."' alt='QUAT_BPD'>", "url" => "#"],
             ["title" => "SIKP", "type" => "icon", "icon" => "<i class='fa-solid fa-money-check-dollar'></i>", "url" => "#"],
             ["title" => "Pelatihan", "type" => "icon", "icon" => "<i class='fa-solid fa-person-chalkboard'></i>", "url" => route('pelatihan')],
-            ["title" => "Foto Produk", "type" => "icon", "icon" => "<i class='fa-solid fa-camera'></i>", "url" => "#"],
+            ["title" => "Foto Produk", "type" => "icon", "icon" => "<i class='fa-solid fa-camera'></i>", "url" => route('fotoProduk')],
             ["title" => "Toko Saya", "type" => "icon", "icon" => "<i class='fa-solid fa-store'></i>", "url" => "#"],
             // ["title" => "lorem ipsum", "type" => "img", "icon" => "<img src='https://sibakuljogja.jogjaprov.go.id/files/berkasweb/60.png' alt='Markethub'>", "url" => "#"],
         ]);

@@ -259,9 +259,9 @@
                         </div>
 
                         <div class="relative">
-                            <label class="block mb-1 text-sm text-slate-600 required" for="produk">Produk yang Dihasilkan</label>
+                            <label class="block mb-1 text-sm text-slate-600 required" for="produk">Produk</label>
                             <div class="flex flex-wrap justify-between w-full">
-                                <input type="text" name="produk" placeholder="cth. Tempe" autocomplete="on" required
+                                <input type="text" name="produk" placeholder="cth. Baju Batik" autocomplete="on" required
                                     class="block w-[calc(100%-2.75rem)] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                                 <button type="button" id="tambah-produk"
                                     class="w-9 px-2.5 py-2 ms-2 text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-600 active:scale-90 transition-transform dark:bg-green-600 dark:hover:bg-green-700">
@@ -269,20 +269,7 @@
                                 </button>
                             </div>
 
-                            <div class="flex flex-wrap w-full" id="container-produk">
-                                @foreach($tambahan_produk as $index => $produk)
-                                    <div class="flex flex-wrap justify-between w-full mt-1 tambahan-produk">
-                                        <input type="text" wire:model="tambahan_produk.{{ $index }}" name="tambahan_produk.{{ $index }}" placeholder="cth. Tempe" autocomplete="on" required
-                                            class="block w-[calc(100%-2.75rem)] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                        <button type="button" wire:click="removeProduk({{ $index }})"
-                                            class="w-9 px-2.5 py-2 ms-2 text-sm font-medium text-white bg-red-700 rounded-lg border border-red-700 hover:bg-red-600 active:scale-90 transition-transform dark:bg-red-600 dark:hover:bg-red-700">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </button>
-                                    </div>
-                                @endforeach
-                            </div>
-                            
-                            @error('nama_usaha')
+                            @error('produk')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
                                         <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
@@ -290,6 +277,28 @@
                                     {{ $message }}
                                 </p>
                             @enderror
+
+                            <div class="flex flex-wrap w-full" id="container-produk">
+                                @foreach($tambahan_produk as $index => $produk)
+                                    <div class="flex flex-wrap justify-between w-full mt-1 tambahan-produk">
+                                        <input type="text" wire:model="tambahan_produk.{{ $index }}" name="tambahan_produk.{{ $index }}" placeholder="cth. Baju Batik" autocomplete="on" required
+                                            class="block w-[calc(100%-2.75rem)] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                        <button type="button" wire:click="removeProduk({{ $index }})"
+                                            class="w-9 px-2.5 py-2 ms-2 text-sm font-medium text-white bg-red-700 rounded-lg border border-red-700 hover:bg-red-600 active:scale-90 transition-transform dark:bg-red-600 dark:hover:bg-red-700">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </div>
+
+                                    @error('tambahan_produk.{{ $index }}')
+                                        <p class="flex items-center mt-2 text-xs text-[red]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
+                                                <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+                                            </svg>
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                @endforeach
+                            </div>
 
                             <script type="text/javascript">
                                 $("#tambah-produk").click(function() {

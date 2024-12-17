@@ -102,13 +102,8 @@
                         </div>
                         
                         <script type="text/javascript">
-                            var index = 1;
-                            var maxFiles = 2;
-                        
                             $("#tambah-foto_produk").click(function() {
-                                if (@this.tambah_foto_produk.length < maxFiles) {
-                                    @this.call('addFoto');
-                                }
+                                @this.call('addFoto');
                             });
                         </script>
 

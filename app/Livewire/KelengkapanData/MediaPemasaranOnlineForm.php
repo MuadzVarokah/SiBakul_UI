@@ -20,7 +20,7 @@ class MediaPemasaranOnlineForm extends Component
     public $nama;
     public $url;
     
-    public function mount($id_media)
+    public function mount()
     {
         //Membuat list jenis media pemasaran
         $listJenis = collect([
@@ -40,8 +40,8 @@ class MediaPemasaranOnlineForm extends Component
         $this->listJenis = $listJenis; 
 
         // Method untuk menangani form tambah atau edit
-        // $this->id_media = Route::current()->parameter('id_media'); // Mendapatkan id dari URL
-        $this->id_media = $id_media; // Mendapatkan id dari URL
+        $this->id_media = Route::current()->parameter('id_media'); // Mendapatkan id dari URL
+        // $this->id_media = $id_media; // Mendapatkan id dari URL
         $this->chekForm($this->id_media);
     }
 

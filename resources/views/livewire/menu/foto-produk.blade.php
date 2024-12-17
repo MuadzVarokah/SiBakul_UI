@@ -1,5 +1,5 @@
 <div>
-    <x-sub-navbar href="javascript:history.back()">Pelatihan</x-sub-navbar>
+    <x-sub-navbar href="javascript:history.back()">Foto Produk</x-sub-navbar>
 
     <!-- Konten -->
     <div class="relative w-full max-w-screen-md mt-14 h-[calc(100vh-3.5rem)] bg-slate-100">
@@ -12,8 +12,8 @@
             </li>
             <li class="z-20 flex-auto text-center">
                 <a class="z-20 flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-green-600 font-semibold bg-inherit"
-                    data-tab-target="" role="tab" aria-selected="false" aria-controls="sedangDiikuti">
-                    Sedang Diikuti
+                    data-tab-target="" role="tab" aria-selected="false" aria-controls="terdaftar">
+                    Terdaftar
                 </a>
             </li>
             <li class="z-20 flex-auto text-center">
@@ -27,62 +27,57 @@
         <div data-tab-content="">
             <div id="tersedia" role="tabpanel">
                 <div class="relative w-full">
-                    <!-- Search & Filter -->
+                    <!-- Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
-                        <div class="flex items-center max-w-screen-md mx-auto">
-                            <!-- Search form -->
-                            <form class="flex w-full">
-                                <div class="relative w-full">
-                                    <input type="search" id="search_tersedia" class="block px-2.5 py-2 w-full text-sm z-10 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-green-500"
-                                        placeholder="Cari..." required />
-                                    <button type="submit" class="absolute top-0 end-0 h-full px-2.5 py-2 text-sm font-medium text-white bg-green-700 rounded-e-lg border border-green-700 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                        </svg>
-                                        <span class="sr-only">Search</span>
-                                    </button>
-                                </div>
-                            </form>
-                            <!-- Filter Button -->
-                            <button type="button" data-collapse-target="filter_tersedia"
-                                class="px-2.5 py-2 ms-2 text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-600 active:scale-90 transition-transform dark:bg-green-600 dark:hover:bg-green-700">
-                                <i class="fa-solid fa-filter"></i>
-                            </button>
-                        </div>
-                        
-                        <div data-collapse="filter_tersedia" class="block h-0 w-full basis-full overflow-hidden transition-all duration-300 ease-in-out">
-                            <div class="flex flex-wrap justify-between mt-2">
-                                <input type="date" name="tanggal_mulai_tersedia" id="tanggal_mulai_tersedia" autocomplete="on" class="block w-[45%] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                <span class="w-fit content-center"><i class="fa-solid fa-minus"></i></span>
-                                <input type="date" name="tanggal_selesai_tersedia" id="tanggal_selesai_tersedia" autocomplete="on" class="block w-[45%] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                        <!-- Filter section -->
+                        <div class="grid grid-cols-5 gap-1">
+                            <div class="col-span-2">
+                                <input type="date" name="tanggal_tersedia" id="tanggal_tersedia" autocomplete="on"
+                                    class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                            </div>
+                            
+                            <div class="col-span-3">
+                                <select id="waktu_tersedia" name="waktu_tersedia" class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                    <option value="">Pilih Waktu Foto</option>
+                                    <option value="1">Pagi (09:00 - 12:00)</option>
+                                    <option value="2">Siang (13:00 - 15:00)</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="w-full px-4">
-                        <!-- Daftar Pelatihan -->
+                        <!-- Daftar Foto -->
                         @for ($i = 0; $i < 10; $i++)
-                            <a wire:navigate:hover href="{{ route('detailPelatihan', ['id_pelatihan' => 1]) }}"
-                                class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
+                            <a wire:navigate:hover href="{{ route('detailFotoProduk', ['id_foto' => 1]) }}"
+                                class="flex flex-wrap items-center justify-center w-full p-2 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
     
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
-                                        {{-- <img src="https://via.placeholder.com/80" alt="" class="w-16 h-16 rounded-md"> --}}
-                                        <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
-                                            <i class="fa-solid fa-book-bookmark"></i>
+                                        {{-- <img src="https://via.placeholder.com/80" alt="" class="w-14 h-14 rounded-md"> --}}
+                                        <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                            <i class="fa-solid fa-icons"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
                                         <p class="w-full font-bold text-justify line-clamp-2 leading-none">
-                                            Nama Pelatihan - Lorem ipsum dolor sit.
+                                            Foto Produk
                                         </p>
-    
-                                        <div class="w-full flex flex-wrap items-end">
-                                            <p class="w-fit text-xs text-slate-600 font-semibold">
-                                                08:00 - 15:00
-                                                <br>
-                                                13 Apr 2024 - 15 Apr 2024
-                                            </p>
+                                        
+                                        <div class="w-full flex flex-wrap items-end justify-between">
+                                            <div class="grid grid-cols-1">
+                                                <p class="w-fit text-xs text-slate-600 font-semibold">
+                                                    Pagi (09:00 - 12:00)
+                                                </p>
+
+                                                <p class="w-fit text-xs text-slate-600 font-semibold">
+                                                    20 Des 2024
+                                                </p>
+                                            </div>
+                                            <span class="w-fit inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-green-900 dark:text-green-300">
+                                                <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                                                &nbsp;0 / 5
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -91,64 +86,59 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden opacity-0" id="sedangDiikuti" role="tabpanel">
+            <div class="hidden opacity-0" id="terdaftar" role="tabpanel">
                 <div class="relative w-full">
-                    <!-- Search & Filter -->
+                    <!-- Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
-                        <div class="flex items-center max-w-screen-md mx-auto">
-                            <!-- Search form -->
-                            <form class="flex w-full">
-                                <div class="relative w-full">
-                                    <input type="search" id="search_sedangDiikuti" class="block px-2.5 py-2 w-full text-sm z-10 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-green-500"
-                                        placeholder="Cari..." required />
-                                    <button type="submit" class="absolute top-0 end-0 h-full px-2.5 py-2 text-sm font-medium text-white bg-green-700 rounded-e-lg border border-green-700 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                        </svg>
-                                        <span class="sr-only">Search</span>
-                                    </button>
-                                </div>
-                            </form>
-                            <!-- Filter Button -->
-                            <button type="button" data-collapse-target="filter_sedangDiikuti"
-                                class="px-2.5 py-2 ms-2 text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-600 active:scale-90 transition-transform dark:bg-green-600 dark:hover:bg-green-700">
-                                <i class="fa-solid fa-filter"></i>
-                            </button>
-                        </div>
-                        
-                        <div data-collapse="filter_sedangDiikuti" class="block h-0 w-full basis-full overflow-hidden transition-all duration-300 ease-in-out">
-                            <div class="flex flex-wrap justify-between mt-2">
-                                <input type="date" name="tanggal_mulai_sedangDiikuti" id="tanggal_mulai_sedangDiikuti" autocomplete="on" class="block w-[45%] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                <span class="w-fit content-center"><i class="fa-solid fa-minus"></i></span>
-                                <input type="date" name="tanggal_selesai_sedangDiikuti" id="tanggal_selesai_sedangDiikuti" autocomplete="on" class="block w-[45%] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                        <!-- Filter section -->
+                        <div class="grid grid-cols-5 gap-1">
+                            <div class="col-span-2">
+                                <input type="date" name="tanggal_terdaftar" id="tanggal_terdaftar" autocomplete="on"
+                                    class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                            </div>
+                            
+                            <div class="col-span-3">
+                                <select id="waktu_terdaftar" name="waktu_terdaftar" class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                    <option value="">Pilih Waktu Foto</option>
+                                    <option value="1">Pagi (09:00 - 12:00)</option>
+                                    <option value="2">Siang (13:00 - 15:00)</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="w-full px-4">
-                        <!-- Daftar Pelatihan -->
+                        <!-- Daftar Foto -->
                         @for ($j = 0; $j < 10; $j++)
-                            <a wire:navigate:hover href="{{ route('detailPelatihan', ['id_pelatihan' => 2]) }}"
-                                class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
+                            <a wire:navigate:hover href="{{ route('detailFotoProduk', ['id_foto' => 2]) }}"
+                                class="flex flex-wrap items-center justify-center w-full p-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
     
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
-                                        <img src="https://via.placeholder.com/80" alt="" class="w-16 h-16 rounded-md">
-                                        {{-- <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
-                                            <i class="fa-solid fa-book-bookmark"></i>
+                                        <img src="https://via.placeholder.com/80" alt="" class="w-14 h-14 rounded-md">
+                                        {{-- <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                            <i class="fa-solid fa-icons"></i>
                                         </div> --}}
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
                                         <p class="w-full font-bold text-justify line-clamp-2 leading-none">
-                                            Nama Pelatihan
+                                            Foto Produk
                                         </p>
-    
-                                        <div class="w-full flex flex-wrap items-end">
-                                            <p class="w-fit text-xs text-slate-600 font-semibold">
-                                                08:00 - 15:00
-                                                <br>
-                                                13 Apr 2024 - 15 Apr 2024
-                                            </p>
+                                        
+                                        <div class="w-full flex flex-wrap items-end justify-between">
+                                            <div class="grid grid-cols-1">
+                                                <p class="w-fit text-xs text-slate-600 font-semibold">
+                                                    Pagi (09:00 - 12:00)
+                                                </p>
+
+                                                <p class="w-fit text-xs text-slate-600 font-semibold">
+                                                    20 Des 2024
+                                                </p>
+                                            </div>
+                                            <span class="w-fit inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                                <span class="w-2 h-2 me-1 bg-yellow-500 rounded-full"></span>
+                                                &nbsp;1 / 5
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -159,62 +149,57 @@
             </div>
             <div class="hidden opacity-0" id="riwayat" role="tabpanel">
                 <div class="relative w-full">
-                    <!-- Search & Filter -->
+                    <!-- Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
-                        <div class="flex items-center max-w-screen-md mx-auto">
-                            <!-- Search form -->
-                            <form class="flex w-full">
-                                <div class="relative w-full">
-                                    <input type="search" id="search_riwayat" class="block px-2.5 py-2 w-full text-sm z-10 text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-green-500"
-                                        placeholder="Cari..." required />
-                                    <button type="submit" class="absolute top-0 end-0 h-full px-2.5 py-2 text-sm font-medium text-white bg-green-700 rounded-e-lg border border-green-700 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                        </svg>
-                                        <span class="sr-only">Search</span>
-                                    </button>
-                                </div>
-                            </form>
-                            <!-- Filter Button -->
-                            <button type="button" data-collapse-target="filter_riwayat"
-                                class="px-2.5 py-2 ms-2 text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-600 active:scale-90 transition-transform dark:bg-green-600 dark:hover:bg-green-700">
-                                <i class="fa-solid fa-filter"></i>
-                            </button>
-                        </div>
-                        
-                        <div data-collapse="filter_riwayat" class="block h-0 w-full basis-full overflow-hidden transition-all duration-300 ease-in-out">
-                            <div class="flex flex-wrap justify-between mt-2">
-                                <input type="date" name="tanggal_mulai_riwayat" id="tanggal_mulai_riwayat" autocomplete="on" class="block w-[45%] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                <span class="w-fit content-center"><i class="fa-solid fa-minus"></i></span>
-                                <input type="date" name="tanggal_selesai_riwayat" id="tanggal_selesai_riwayat" autocomplete="on" class="block w-[45%] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                        <!-- Filter section -->
+                        <div class="grid grid-cols-5 gap-1">
+                            <div class="col-span-2">
+                                <input type="date" name="tanggal_riwayat" id="tanggal_riwayat" autocomplete="on"
+                                    class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                            </div>
+                            
+                            <div class="col-span-3">
+                                <select id="waktu_riwayat" name="waktu_riwayat" class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                    <option value="">Pilih Waktu Foto</option>
+                                    <option value="1">Pagi (09:00 - 12:00)</option>
+                                    <option value="2">Siang (13:00 - 15:00)</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="w-full px-4">
-                        <!-- Daftar Pelatihan -->
+                        <!-- Daftar Foto -->
                         @for ($j = 0; $j < 10; $j++)
-                            <a wire:navigate:hover href="{{ route('detailPelatihan', ['id_pelatihan' => 3]) }}"
-                                class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
-    
+                            <a wire:navigate:hover href="{{ route('detailFotoProduk', ['id_foto' => 3]) }}"
+                                class="flex flex-wrap items-center justify-center w-full p-2 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
+
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
-                                        {{-- <img src="https://via.placeholder.com/80" alt="" class="w-16 h-16 rounded-md"> --}}
-                                        <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
-                                            <i class="fa-solid fa-book-bookmark"></i>
+                                        {{-- <img src="https://via.placeholder.com/80" alt="" class="w-14 h-14 rounded-md"> --}}
+                                        <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                            <i class="fa-solid fa-icons"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
                                         <p class="w-full font-bold text-justify line-clamp-2 leading-none">
-                                            Nama Pelatihan - Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut, totam?
+                                            Foto Produk
                                         </p>
-    
-                                        <div class="w-full flex flex-wrap items-end">
-                                            <p class="w-fit text-xs text-slate-600 font-semibold">
-                                                08:00 - 15:00
-                                                <br>
-                                                13 Apr 2024 - 15 Apr 2024
-                                            </p>
+                                        
+                                        <div class="w-full flex flex-wrap items-end justify-between">
+                                            <div class="grid grid-cols-1">
+                                                <p class="w-fit text-xs text-slate-600 font-semibold">
+                                                    Pagi (09:00 - 12:00)
+                                                </p>
+
+                                                <p class="w-fit text-xs text-slate-600 font-semibold">
+                                                    16 Des 2024
+                                                </p>
+                                            </div>
+                                            <span class="w-fit inline-flex items-center bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-red-900 dark:text-red-300">
+                                                <span class="w-2 h-2 me-1 bg-red-500 rounded-full"></span>
+                                                &nbsp;5 / 5
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
