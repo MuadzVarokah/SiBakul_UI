@@ -6,26 +6,26 @@
         <ul class="sticky top-14 flex flex-wrap p-4 pb-1.5 bg-slate-100 z-20" data-tabs="tabs" role="list">
             <li class="z-20 flex-auto text-center">
                 <a class="z-20 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-md cursor-pointer text-green-600 font-semibold bg-inherit"
-                    data-tab-target="" role="tab" aria-selected="true" aria-controls="tersedia">
+                    data-tab-target="" role="tab" aria-selected="{{ $activeTab === 'tersedia' ? 'true' : 'false' }}" aria-controls="tersedia">
                     Tersedia
                 </a>
             </li>
             <li class="z-20 flex-auto text-center">
                 <a class="z-20 flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-green-600 font-semibold bg-inherit"
-                    data-tab-target="" role="tab" aria-selected="false" aria-controls="terdaftar">
+                    data-tab-target="" role="tab" aria-selected="{{ $activeTab === 'terdaftar' ? 'true' : 'false' }}" aria-controls="terdaftar">
                     Terdaftar
                 </a>
             </li>
             <li class="z-20 flex-auto text-center">
                 <a class="z-20 flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-green-600 font-semibold bg-inherit"
-                    data-tab-target="" role="tab" aria-selected="false" aria-controls="riwayat">
+                    data-tab-target="" role="tab" aria-selected="{{ $activeTab === 'riwayat' ? 'true' : 'false' }}" aria-controls="riwayat">
                     Riwayat
                 </a>
             </li>
         </ul>
 
         <div data-tab-content="">
-            <div id="tersedia" role="tabpanel">
+            <div class="{{ $activeTab === 'tersedia' ? '' : 'hidden opacity-0' }}" id="tersedia" role="tabpanel">
                 <div class="relative w-full">
                     <!-- Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden opacity-0" id="terdaftar" role="tabpanel">
+            <div class="{{ $activeTab === 'terdaftar' ? '' : 'hidden opacity-0' }}" id="terdaftar" role="tabpanel">
                 <div class="relative w-full">
                     <!-- Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
@@ -147,7 +147,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden opacity-0" id="riwayat" role="tabpanel">
+            <div class="{{ $activeTab === 'riwayat' ? '' : 'hidden opacity-0' }}" id="riwayat" role="tabpanel">
                 <div class="relative w-full">
                     <!-- Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
@@ -209,9 +209,9 @@
                 </div>
             </div>
         </div>
-        <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
         {{-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script> --}}
         <script>
+            //Tabs
             (function() {
                 var total = document.querySelectorAll("[data-tabs]");
                 var getEventTarget = function getEventTarget(e) {
@@ -226,8 +226,7 @@
                     tab.classList.remove("bg-inherit", "text-slate-700");
                     tab.classList.add("bg-white", "text-white");
                     tab.style.animation = ".2s ease";
-                    moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg", "bg-inherit",
-                        "flex-auto", "text-center", "bg-none", "border-0", "block", "shadow");
+                    moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg", "bg-inherit", "flex-auto", "text-center", "bg-none", "border-0", "block", "shadow");
                     moving_div.setAttribute("moving-tab", "");
                     moving_div.setAttribute("data-tab-target", "");
                     moving_div.appendChild(tab);
@@ -237,6 +236,23 @@
                     moving_div.style.width = item.querySelector("li:nth-child(1)").offsetWidth + "px";
                     moving_div.style.transform = "translate3d(0px, 0px, 0px)";
                     moving_div.style.transition = ".5s ease";
+
+                    // Set initial position based on active tab
+                    function updateTabPosition() {
+                        var activeTab = item.querySelector("li [aria-selected='true']");
+                        var nodes = Array.from(item.querySelectorAll("li"));
+                        var index = nodes.indexOf(activeTab.closest('li'));
+                        var sum = 0;
+                        nodes.slice(0, index).forEach(function(li) {
+                            sum += li.offsetWidth;
+                        });
+                        moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
+                        moving_div.style.width = item.querySelector("li:nth-child(" + (index + 1) + ")").offsetWidth + "px";
+                    }
+
+                    // Call updateTabPosition to align moving_div with the active tab
+                    updateTabPosition();
+
                     item.onmouseover = function(event) {
                         var target = getEventTarget(event);
                         var li = target.closest("li");
@@ -247,8 +263,7 @@
                                 function() {
                                     item.querySelectorAll("li").forEach(function(list_item) {
                                         list_item.firstElementChild.removeAttribute("active");
-                                        list_item.firstElementChild.setAttribute("aria-selected",
-                                            "false")
+                                        list_item.firstElementChild.setAttribute("aria-selected", "false")
                                     });
                                     li.firstElementChild.setAttribute("active", "");
                                     li.firstElementChild.setAttribute("aria-selected", "true");
@@ -259,15 +274,13 @@
                                             sum += item.querySelector("li:nth-child(" + j + ")").offsetHeight
                                         }
                                         moving_div.style.transform = "translate3d(0px," + sum + "px, 0px)";
-                                        moving_div.style.height = item.querySelector("li:nth-child(" + j + ")")
-                                            .offsetHeight
+                                        moving_div.style.height = item.querySelector("li:nth-child(" + j + ")").offsetHeight
                                     } else {
                                         for (var j = 1; j <= nodes.indexOf(li); j++) {
                                             sum += item.querySelector("li:nth-child(" + j + ")").offsetWidth
                                         }
                                         moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
-                                        moving_div.style.width = item.querySelector("li:nth-child(" + index +
-                                            ")").offsetWidth + "px"
+                                        moving_div.style.width = item.querySelector("li:nth-child(" + index + ")").offsetWidth + "px"
                                     }
                                 }
                         }
@@ -293,7 +306,7 @@
                         moving_div.style.padding = "0px";
                         moving_div.style.transition = ".5s ease";
                         var li = item.querySelector("[data-tab-target][aria-selected='true']")
-                        .parentElement;
+                            .parentElement;
                         if (li) {
                             var nodes = Array.from(li.closest("ul").children);
                             var index = nodes.indexOf(li) + 1;

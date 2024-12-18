@@ -12,7 +12,8 @@
                     <!-- Item 1 (Image) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="...">
                     </div>
                     <!-- Item 2 (Video) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item id="video-slide-2">
@@ -25,7 +26,8 @@
                     <!-- Item 3 (Image) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="...">
                     </div>
                     <!-- Item 4 (Video) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item id="video-slide-4">
@@ -38,7 +40,8 @@
                     <!-- Item 5 (Image) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="https://flowbite.com/docs/images/carousel/carousel-5.svg"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="...">
                     </div>
                 </div>
 
@@ -237,13 +240,15 @@
                                     data-tabs="tabs" role="list">
                                     <li class="z-20 flex-auto text-center">
                                         <a class="z-20 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-md cursor-pointer text-green-600 font-semibold bg-inherit"
-                                            data-tab-target="" role="tab" aria-selected="true" aria-controls="grafik">
+                                            data-tab-target="" role="tab" aria-selected="true"
+                                            aria-controls="grafik">
                                             Grafik
                                         </a>
                                     </li>
                                     <li class="z-20 flex-auto text-center">
                                         <a class="z-20 flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-green-600 font-semibold bg-inherit"
-                                            data-tab-target="" role="tab" aria-selected="false" aria-controls="skor">
+                                            data-tab-target="" role="tab" aria-selected="false"
+                                            aria-controls="skor">
                                             Skor
                                         </a>
                                     </li>
@@ -260,18 +265,18 @@
                                             <table class="w-full text-left table-auto">
                                                 <tbody>
                                                     @foreach ($listAspek as $keyAspek => $valueAspek)
-                                                    <tr>
-                                                        <td class="px-4 py-2 border-b">
-                                                            <p
-                                                                class="block text-sm antialiased font-normal leading-normal">
-                                                                {{ $valueAspek->aspek }}</p>
-                                                        </td>
-                                                        <td class="px-4 py-2 border-b">
-                                                            <p
-                                                                class="block text-sm antialiased font-medium leading-normal text-right font-mono">
-                                                                {{ $valueAspek->skor }}</p>
-                                                        </td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td class="px-4 py-2 border-b">
+                                                                <p
+                                                                    class="block text-sm antialiased font-normal leading-normal">
+                                                                    {{ $valueAspek->aspek }}</p>
+                                                            </td>
+                                                            <td class="px-4 py-2 border-b">
+                                                                <p
+                                                                    class="block text-sm antialiased font-medium leading-normal text-right font-mono">
+                                                                    {{ $valueAspek->skor }}</p>
+                                                            </td>
+                                                        </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
@@ -306,20 +311,21 @@
 
             <!-- card data -->
             <div class="w-full max-w-screen-md justify-items-center mt-4">
-                <div class="flex flex-wrap justify-center w-11/12 py-2 px-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div
+                    class="flex flex-wrap justify-center w-11/12 py-2 px-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <p class="w-full text-green-700 font-bold text-center mb-2">Daftar Menu</p>
                     <div class="flex overflow-x-scroll pb-2 overflow-y-hidden gap-1">
                         @foreach ($listMenu as $key => $value)
-                        <div class="w-16 flex-[0_0_auto]">
-                            <a href="{!! $value->url !!}">
-                                <div class="img-menu">
-                                    {!! $value->icon !!}
-                                </div>
-                                <div class="title-menu-container">
-                                    <span class="title-menu">{{ $value->title }}</span>
-                                </div>
-                            </a>
-                        </div>
+                            <div class="w-16 flex-[0_0_auto]">
+                                <a href="{!! $value->url !!}">
+                                    <div class="img-menu">
+                                        {!! $value->icon !!}
+                                    </div>
+                                    <div class="title-menu-container">
+                                        <span class="title-menu">{{ $value->title }}</span>
+                                    </div>
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -327,8 +333,8 @@
         </div>
 
         <div class="w-full px-4 py-2">
-            <p class="w-full text-green-700 font-bold">Riwayat Aktivitas</p>
-            <p class="w-full text-slate-400 text-xs mb-2">Berisi riwayat terakhir dari tiap aktivitas</p>
+            <p class="w-full text-green-700 font-bold">Riwayat Aktivitas Pembinaan</p>
+            <p class="w-full text-slate-400 text-xs mb-2">Berisi riwayat terakhir dari tiap aktivitas pembinaan</p>
             <div class="w-full">
                 <div class="relative right-0">
                     <ul class="relative flex flex-wrap px-1.5 py-1.5 rounded-t-md bg-slate-100" data-tabs="tabs"
@@ -341,8 +347,8 @@
                         </li>
                         <li class="z-20 flex-auto text-center">
                             <a class="z-20 flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-green-600 font-semibold bg-inherit"
-                                data-tab-target="" role="tab" aria-selected="false" aria-controls="pembinaan">
-                                Pembinaan
+                                data-tab-target="" role="tab" aria-selected="false" aria-controls="fasilitasi">
+                                Fasilitasi
                             </a>
                         </li>
                         <li class="z-20 flex-auto text-center">
@@ -367,8 +373,231 @@
                                     Selengkapnya</p>
                             </a>
                         </div>
-                        <div class="hidden opacity-0" id="pembinaan" role="tabpanel">
-                            <div
+                        <div class="hidden opacity-0" id="fasilitasi" role="tabpanel">
+                            <!-- Accordion Item 1 -->
+                            <div class="border-b border-slate-200">
+                                <button onclick="toggleAccordion(1)" class="w-full flex justify-between items-center p-2 text-slate-800">
+                                    <span class="text-sm font-semibold">Pelatihan</span>
+                                    <span id="icon-1" class="text-slate-800 transition-transform duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                            <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="content-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <div class="pb-2">
+                                        <a wire:navigate:hover href="{{ route('detailPelatihan', ['id_pelatihan' => 1]) }}"
+                                            class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 text-sm border-0 rounded-md bg-white shadow">
+                                            <div class="w-full flex flex-wrap">
+                                                <div class="w-fit mr-2">
+                                                    <div
+                                                        class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                                        <i class="fa-solid fa-book-bookmark"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
+                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                                        Nama Pelatihan - Lorem ipsum dolor sit.
+                                                    </p>
+        
+                                                    <div class="w-full flex flex-wrap items-end">
+                                                        <p class="w-fit text-xs text-slate-600 font-semibold">
+                                                            08:00 - 15:00
+                                                            <br>
+                                                            13 Apr 2024 - 15 Apr 2024
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <a wire:navigate:hover href="{{ route('pelatihan', ['tab' => 'riwayat']) }}">
+                                        <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 2 -->
+                            <div class="border-b border-slate-200">
+                                <button onclick="toggleAccordion(2)" class="w-full flex justify-between items-center p-2 text-slate-800">
+                                    <span class="text-sm font-semibold">Pameran</span>
+                                    <span id="icon-2" class="text-slate-800 transition-transform duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                            <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="content-2" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <div class="pb-2">
+                                        <a wire:navigate:hover href="{{ route('detailPameran', ['id_pameran' => 3]) }}"
+                                            class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 text-sm border-0 rounded-md bg-white shadow">
+                
+                                            <div class="w-full flex flex-wrap">
+                                                <div class="w-fit mr-2">
+                                                    <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                                        <i class="fa-regular fa-image"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
+                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                                        Nama Pameran - Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut, totam?
+                                                    </p>
+                
+                                                    <div class="w-full flex flex-wrap items-end">
+                                                        <p class="w-full text-xs text-slate-600 font-semibold">08:00 - 15:00</p>
+                                                        <p class="w-full text-xs text-slate-600 font-semibold">13 Apr 2024 - 15 Apr 2024</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a wire:navigate:hover href="{{ route('pameran', ['tab' => 'riwayat']) }}">
+                                            <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 3 -->
+                            <div class="border-b border-slate-200">
+                                <button onclick="toggleAccordion(3)" class="w-full flex justify-between items-center p-2 text-slate-800">
+                                    <span class="text-sm font-semibold">Sertifikasi Usaha</span>
+                                    <span id="icon-3" class="text-slate-800 transition-transform duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                            <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="content-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <div class="pb-2">
+                                        Content
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 4 -->
+                            <div class="border-b border-slate-200">
+                                <button onclick="toggleAccordion(4)" class="w-full flex justify-between items-center p-2 text-slate-800">
+                                    <span class="text-sm font-semibold">Sertifikasi Produk</span>
+                                    <span id="icon-4" class="text-slate-800 transition-transform duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                            <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="content-4" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <div class="pb-2">
+                                        Content
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 5 -->
+                            <div class="border-b border-slate-200">
+                                <button onclick="toggleAccordion(5)" class="w-full flex justify-between items-center p-2 text-slate-800">
+                                    <span class="text-sm font-semibold">Foto Produk</span>
+                                    <span id="icon-5" class="text-slate-800 transition-transform duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                            <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="content-5" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <div class="pb-2">
+                                        <a wire:navigate:hover href="{{ route('detailFotoProduk', ['id_foto' => 1]) }}"
+                                            class="flex flex-wrap items-center justify-center w-full p-2 py-2 text-sm border-0 rounded-md bg-white shadow">
+                                            <div class="w-full flex flex-wrap">
+                                                <div class="w-fit mr-2">
+                                                    <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                                        <i class="fa-solid fa-icons"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
+                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-none">Foto Produk</p>
+                                                    <div class="w-full flex flex-wrap items-end justify-between">
+                                                        <div class="grid grid-cols-1">
+                                                            <p class="w-fit text-xs text-slate-600 font-semibold">Pagi (09:00 - 12:00)</p>
+                                                            <p class="w-fit text-xs text-slate-600 font-semibold">20 Des 2024</p>
+                                                        </div>
+                                                        <span class="w-fit inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-green-900 dark:text-green-300">
+                                                            <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                                                            &nbsp;0 / 5
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <a wire:navigate:hover href="{{ route('fotoProduk', ['tab' => 'riwayat']) }}">
+                                        <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 6 -->
+                            <div class="border-b border-slate-200">
+                                <button onclick="toggleAccordion(6)" class="w-full flex justify-between items-center p-2 text-slate-800">
+                                    <span class="text-sm font-semibold">Akses Pemodalan</span>
+                                    <span id="icon-6" class="text-slate-800 transition-transform duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                            <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="content-6" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <div class="pb-2">
+                                        Content
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accordion Item 7 -->
+                            <div class="border-none border-slate-200">
+                                <button onclick="toggleAccordion(7)" class="w-full flex justify-between items-center p-2 text-slate-800">
+                                    <span class="text-sm font-semibold">Bantuan Alat</span>
+                                    <span id="icon-7" class="text-slate-800 transition-transform duration-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                            <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="content-7" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                                    <div class="pb-2">
+                                        Content
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                function toggleAccordion(index) {
+                                    const content = document.getElementById(`content-${index}`);
+                                    const icon = document.getElementById(`icon-${index}`);
+
+                                    // SVG for Down icon
+                                    const downSVG = `
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                        <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    `;
+
+                                    // SVG for Up icon
+                                    const upSVG = `
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4">
+                                        <path fill-rule="evenodd" d="M11.78 9.78a.75.75 0 0 1-1.06 0L8 7.06 5.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    `;
+
+                                    // Toggle the content's max-height for smooth opening and closing
+                                    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                                        content.style.maxHeight = '0';
+                                        icon.innerHTML = upSVG;
+                                    } else {
+                                        content.style.maxHeight = content.scrollHeight + 'px';
+                                        icon.innerHTML = downSVG;
+                                    }
+                                }
+                            </script>
+
+                            {{-- <div
                                 class="z-20 flex flex-wrap items-center justify-center w-full px-4 py-2 mb-1.5 text-sm border-0 rounded-md bg-white shadow">
                                 <p class="w-full text-xs text-slate-600 font-semibold mb-2">13 Nov 2024 - 14 Nov 2024
                                 </p>
@@ -379,7 +608,7 @@
                             <a href="javascript:void(0)">
                                 <p class="w-full text-center text-sm text-green-600 font-bold pt-0.5 pb-2">Lihat
                                     Selengkapnya</p>
-                            </a>
+                            </a> --}}
                         </div>
                         <div class="hidden opacity-0" id="transaksi" role="tabpanel">
                             <div

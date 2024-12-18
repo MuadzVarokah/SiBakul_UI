@@ -9,6 +9,14 @@ use Livewire\Component;
 
 class FotoProduk extends Component
 {
+    public $activeTab = 'tersedia';
+
+    // Menginisialisasi tab aktif berdasarkan URL hash
+    public function mount()
+    {
+        $this->activeTab = request()->has('tab') ? request()->query('tab') : 'tersedia';
+    }
+    
     public function render()
     {
         return view('livewire.menu.foto-produk');

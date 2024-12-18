@@ -45,7 +45,7 @@
         <!-- divider -->
         <div class="w-full h-4 bg-transparent"></div>
 
-        <!-- Section Pemateri -->
+        <!-- Section Latar -->
         <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
             <div class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Tanggal</p>
@@ -57,6 +57,20 @@
             <div class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Waktu</p>
                 <p class="w-fit font-normal text-justify text-base text-slate-600">08:00 - 15:00</p>
+            </div>
+            
+            <hr style="border-top: 2px solid #cbd5e1">
+
+            <div class="w-full flex flex-wrap justify-between items-center">
+                <div class="w-full flex flex-wrap justify-between items-center">
+                    <p class="w-fit font-semibold text-justify text-lg">Tempat</p>
+                    <a wire:navigate:hover href="javascript:void(0)">
+                        <p class="w-fit font-semibold text-justify text-base text-green-600">Lihat <i class="fa-solid fa-chevron-right"></i></p>
+                    </a>
+                </div>
+                <p class="w-fit font-normal text-justify text-base text-slate-600">
+                    Gedung Lorem - Jalan Ipsum No.69, Dolor, Sit Amet, Consectetur, Adipisicing.
+                </p>
             </div>
         </div>
 
@@ -79,12 +93,12 @@
 
             <hr style="border-top: 2px solid #cbd5e1">
 
-            <div class="w-full flex flex-wrap justify-between items-center">
+            <div wire:ignore class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Materi Pelatihan</p>
                 <p class="w-fit font-normal text-justify text-base text-slate-600 content-text">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, earum maxime ad animi maiores quae?
                 </p>
-                <p class="w-fit font-semibold text-justify text-base text-green-600 cursor-pointer toggle-text">Lihat Selengkapnya</p> 
+                <p class="w-fit font-semibold text-justify text-base text-green-600 cursor-pointer toggle-text hidden">Lihat Selengkapnya</p> 
             </div>
         </div>
 
@@ -93,22 +107,22 @@
 
         <!-- Section Materi -->
         <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
-            <div class="w-full flex flex-wrap justify-between items-center">
+            <div wire:ignore class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Syarat Pelatihan</p>
                 <p class="w-fit font-normal text-justify text-base text-slate-600 content-text">
                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores blanditiis dolor, officiis ad consequatur, labore nulla, nisi quos libero alias nihil. Maxime ipsa assumenda temporibus vel quo facere ut est id qui quam numquam error nihil ducimus dolor facilis placeat distinctio aut, magni vero velit, repellat iusto. Consequuntur, amet libero?
                 </p>
-                <p class="w-fit font-semibold text-justify text-base text-green-600 cursor-pointer toggle-text">Lihat Selengkapnya</p> 
+                <p class="w-fit font-semibold text-justify text-base text-green-600 cursor-pointer toggle-text hidden">Lihat Selengkapnya</p> 
             </div>
 
             @switch($id_pelatihan)
                 @case(1)
                     <div class="flex items-center mt-4">
                         <div class="flex items-center h-5">
-                            <input id="ready" type="checkbox" value="" onchange="document.getElementById('ikutPelatihan').disabled = !this.checked;"
+                            <input id="agree" type="checkbox" value="" onchange="document.getElementById('ikutPelatihan').disabled = !this.checked;"
                                 class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-green-500 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                         </div>
-                        <label for="ready" class="ms-2 font-medium text-gray-900 dark:text-gray-300">Saya siap mengikuti syarat pelatihan</label>
+                        <label for="agree" class="ms-2 font-medium text-gray-900 dark:text-gray-300">Saya siap mengikuti syarat pelatihan</label>
                     </div>
         
                     <div class="relative mt-2">

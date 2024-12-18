@@ -6,26 +6,26 @@
         <ul class="sticky top-14 flex flex-wrap p-4 pb-1.5 bg-slate-100 z-20" data-tabs="tabs" role="list">
             <li class="z-20 flex-auto text-center">
                 <a class="z-20 flex items-center justify-center w-full px-0 py-2 text-sm mb-0 transition-all ease-in-out border-0 rounded-md cursor-pointer text-green-600 font-semibold bg-inherit"
-                    data-tab-target="" role="tab" aria-selected="true" aria-controls="tersedia">
+                    data-tab-target="" role="tab" aria-selected="{{ $activeTab === 'tersedia' ? 'true' : 'false' }}" aria-controls="tersedia">
                     Tersedia
                 </a>
             </li>
             <li class="z-20 flex-auto text-center">
                 <a class="z-20 flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-green-600 font-semibold bg-inherit"
-                    data-tab-target="" role="tab" aria-selected="false" aria-controls="sedangDiikuti">
+                    data-tab-target="" role="tab" aria-selected="{{ $activeTab === 'sedangDiikuti' ? 'true' : 'false' }}" aria-controls="sedangDiikuti">
                     Sedang Diikuti
                 </a>
             </li>
             <li class="z-20 flex-auto text-center">
                 <a class="z-20 flex items-center justify-center w-full px-0 py-2 mb-0 text-sm transition-all ease-in-out border-0 rounded-lg cursor-pointer text-green-600 font-semibold bg-inherit"
-                    data-tab-target="" role="tab" aria-selected="false" aria-controls="riwayat">
+                    data-tab-target="" role="tab" aria-selected="{{ $activeTab === 'riwayat' ? 'true' : 'false' }}" aria-controls="riwayat">
                     Riwayat
                 </a>
             </li>
         </ul>
 
         <div data-tab-content="">
-            <div id="tersedia" role="tabpanel">
+            <div class="{{ $activeTab === 'tersedia' ? '' : 'hidden opacity-0' }}" id="tersedia" role="tabpanel">
                 <div class="relative w-full">
                     <!-- Search & Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
@@ -78,11 +78,8 @@
                                         </p>
     
                                         <div class="w-full flex flex-wrap items-end">
-                                            <p class="w-fit text-xs text-slate-600 font-semibold">
-                                                08:00 - 15:00
-                                                <br>
-                                                13 Apr 2024 - 15 Apr 2024
-                                            </p>
+                                            <p class="w-full text-xs text-slate-600 font-semibold">08:00 - 15:00</p>
+                                            <p class="w-full text-xs text-slate-600 font-semibold">13 Apr 2024 - 15 Apr 2024</p>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden opacity-0" id="sedangDiikuti" role="tabpanel">
+            <div class="{{ $activeTab === 'sedangDiikuti' ? '' : 'hidden opacity-0' }}" id="sedangDiikuti" role="tabpanel">
                 <div class="relative w-full">
                     <!-- Search & Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
@@ -144,11 +141,8 @@
                                         </p>
     
                                         <div class="w-full flex flex-wrap items-end">
-                                            <p class="w-fit text-xs text-slate-600 font-semibold">
-                                                08:00 - 15:00
-                                                <br>
-                                                13 Apr 2024 - 15 Apr 2024
-                                            </p>
+                                            <p class="w-full text-xs text-slate-600 font-semibold">08:00 - 15:00</p>
+                                            <p class="w-full text-xs text-slate-600 font-semibold">13 Apr 2024 - 15 Apr 2024</p>
                                         </div>
                                     </div>
                                 </div>
@@ -157,7 +151,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden opacity-0" id="riwayat" role="tabpanel">
+            <div class="{{ $activeTab === 'riwayat' ? '' : 'hidden opacity-0' }}" id="riwayat" role="tabpanel">
                 <div class="relative w-full">
                     <!-- Search & Filter -->
                     <div class="sticky top-[calc(3.5rem+58px)] w-full pb-4 pt-1.5 px-4 bg-slate-100">
@@ -210,11 +204,8 @@
                                         </p>
     
                                         <div class="w-full flex flex-wrap items-end">
-                                            <p class="w-fit text-xs text-slate-600 font-semibold">
-                                                08:00 - 15:00
-                                                <br>
-                                                13 Apr 2024 - 15 Apr 2024
-                                            </p>
+                                            <p class="w-full text-xs text-slate-600 font-semibold">08:00 - 15:00</p>
+                                            <p class="w-full text-xs text-slate-600 font-semibold">13 Apr 2024 - 15 Apr 2024</p>
                                         </div>
                                     </div>
                                 </div>
@@ -224,9 +215,36 @@
                 </div>
             </div>
         </div>
-        <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
+        {{-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script> --}}
         {{-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script> --}}
         <script>
+            //Collapse
+            (function() {
+                var triggers = document.querySelectorAll("[data-collapse-target]");
+                var collapses = document.querySelectorAll("[data-collapse]");
+                if (triggers && collapses) {
+                    Array.from(triggers).forEach(function(trigger) {
+                        return Array.from(collapses).forEach(function(collapse) {
+                            if (trigger.dataset.collapseTarget === collapse.dataset.collapse) {
+                                trigger.addEventListener("click", function() {
+                                    if (collapse.style.height && collapse.style.height !== "0px") {
+                                        collapse.style.height = 0;
+                                        collapse.style.overflow = "hidden";
+                                        trigger.removeAttribute("open")
+                                    } else {
+                                        collapse.style.height = "".concat(collapse.children[0]
+                                            .clientHeight, "px");
+                                        collapse.style.overflow = "visible";
+                                        trigger.setAttribute("open", "")
+                                    }
+                                })
+                            }
+                        })
+                    })
+                }
+            })();
+
+            //Tabs
             (function() {
                 var total = document.querySelectorAll("[data-tabs]");
                 var getEventTarget = function getEventTarget(e) {
@@ -252,6 +270,23 @@
                     moving_div.style.width = item.querySelector("li:nth-child(1)").offsetWidth + "px";
                     moving_div.style.transform = "translate3d(0px, 0px, 0px)";
                     moving_div.style.transition = ".5s ease";
+                    
+                    // Set initial position based on active tab
+                    function updateTabPosition() {
+                        var activeTab = item.querySelector("li [aria-selected='true']");
+                        var nodes = Array.from(item.querySelectorAll("li"));
+                        var index = nodes.indexOf(activeTab.closest('li'));
+                        var sum = 0;
+                        nodes.slice(0, index).forEach(function(li) {
+                            sum += li.offsetWidth;
+                        });
+                        moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
+                        moving_div.style.width = item.querySelector("li:nth-child(" + (index + 1) + ")").offsetWidth + "px";
+                    }
+
+                    // Call updateTabPosition to align moving_div with the active tab
+                    updateTabPosition();
+
                     item.onmouseover = function(event) {
                         var target = getEventTarget(event);
                         var li = target.closest("li");
