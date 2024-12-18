@@ -205,6 +205,7 @@
                     </a>
                 </div>
             </div>
+
             <!-- Main modal -->
             <div data-dialog-backdrop="dialog" data-dialog-backdrop-close="true"
                 class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
@@ -267,14 +268,10 @@
                                                     @foreach ($listAspek as $keyAspek => $valueAspek)
                                                         <tr>
                                                             <td class="px-4 py-2 border-b">
-                                                                <p
-                                                                    class="block text-sm antialiased font-normal leading-normal">
-                                                                    {{ $valueAspek->aspek }}</p>
+                                                                <p class="block text-sm antialiased font-normal leading-normal">{{ $valueAspek->aspek }}</p>
                                                             </td>
                                                             <td class="px-4 py-2 border-b">
-                                                                <p
-                                                                    class="block text-sm antialiased font-medium leading-normal text-right font-mono">
-                                                                    {{ $valueAspek->skor }}</p>
+                                                                <p class="block text-sm antialiased font-medium leading-normal text-right font-mono">{{ $valueAspek->skor }}</p>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -282,14 +279,10 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th class="px-4 py-2 border-t-4">
-                                                            <p
-                                                                class="block text-sm antialiased font-medium leading-normal">
-                                                                Total</p>
+                                                            <p class="block text-sm antialiased font-medium leading-normal">Total</p>
                                                         </th>
                                                         <th class="px-4 py-2 border-t-4">
-                                                            <p
-                                                                class="block text-sm antialiased font-semibold leading-normal text-right font-mono">
-                                                                {{ $totalSkorAspek }}</p>
+                                                            <p class="block text-sm antialiased font-semibold leading-normal text-right font-mono">{{ $totalSkorAspek }}</p>
                                                         </th>
                                                     </tr>
                                                 </tfoot>
@@ -311,8 +304,7 @@
 
             <!-- card data -->
             <div class="w-full max-w-screen-md justify-items-center mt-4">
-                <div
-                    class="flex flex-wrap justify-center w-11/12 py-2 px-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex flex-wrap justify-center w-11/12 py-2 px-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <p class="w-full text-green-700 font-bold text-center mb-2">Daftar Menu</p>
                     <div class="flex overflow-x-scroll pb-2 overflow-y-hidden gap-1">
                         @foreach ($listMenu as $key => $value)
