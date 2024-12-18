@@ -23,6 +23,9 @@ Route::get('/', \App\Livewire\Login::class)->name('login');
 /* Dashboard */
 Route::get('/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
 
+/* Menu - Pameran */
+Route::get('/pameran', \App\Livewire\menu\Pameran::class)->name('pameran');
+Route::get('/pameran/{id_pameran}', \App\Livewire\menu\DetailPameran::class)->name('detailPameran');
 /* Menu - Pelatihan */
 Route::get('/pelatihan', \App\Livewire\menu\Pelatihan::class)->name('pelatihan');
 Route::get('/pelatihan/{id_pelatihan}', \App\Livewire\menu\DetailPelatihan::class)->name('detailPelatihan');
