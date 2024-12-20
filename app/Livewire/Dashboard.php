@@ -24,6 +24,7 @@ class Dashboard extends Component
         //Membuat menu cepat
         $listMenu = collect([
             ["title" => "Pameran", "type" => "icon", "icon" => "<i class='fa-solid fa-image'></i>", "url" => route('pameran')],
+            ["title" => "Sertifikasi", "type" => "icon", "icon" => "<i class='fa-solid fa-file-contract'></i>", "url" => route('sertifikasi')],
             ["title" => "PKG YIA", "type" => "icon", "icon" => "<i class='fa-solid fa-shop'></i>", "url" => "#"],
             ["title" => "Pasar Ekspor", "type" => "icon", "icon" => "<i class='fa-solid fa-globe'></i>", "url" => "#"],
             ["title" => "QUAT BPD", "type" => "img", "icon" => "<img class='rounded-lg' src='".asset('qris2.png')."' alt='QUAT_BPD'>", "url" => "#"],

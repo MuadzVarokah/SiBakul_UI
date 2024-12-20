@@ -72,7 +72,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full px-4">
+                    <div class="w-full px-4 inline-block">
                         <!-- Daftar Pameran -->
                         @for ($i = 0; $i < 10; $i++)
                             <a wire:navigate:hover href="{{ route('detailPameran', ['id_pameran' => 1]) }}"
@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full px-4">
+                    <div class="w-full px-4 inline-block">
                         <!-- Daftar Pameran -->
                         @for ($j = 0; $j < 10; $j++)
                             <a wire:navigate:hover href="{{ route('detailPameran', ['id_pameran' => 2]) }}"
@@ -220,7 +220,7 @@
                         </div>
                     </div>
 
-                    <div class="w-full px-4">
+                    <div class="w-full px-4 inline-block">
                         <!-- Daftar Pameran -->
                         @for ($j = 0; $j < 10; $j++)
                             <a wire:navigate:hover href="{{ route('detailPameran', ['id_pameran' => 3]) }}"

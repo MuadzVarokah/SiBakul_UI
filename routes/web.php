@@ -26,6 +26,11 @@ Route::get('/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
 /* Menu - Pameran */
 Route::get('/pameran', \App\Livewire\menu\Pameran::class)->name('pameran');
 Route::get('/pameran/{id_pameran}', \App\Livewire\menu\DetailPameran::class)->name('detailPameran');
+/* Menu - Sertifikasi */
+Route::get('/sertifikasi', \App\Livewire\menu\Sertifikasi::class)->name('sertifikasi');
+Route::get('/sertifikasi-usaha/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiUsaha::class)->name('detailSertifikasiUsaha');
+// Route::get('/sertifikasi-produk/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiProduk::class)->name('detailSertifikasiProduk');
+Route::get('/sertifikasi-kompetensi/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiKompetensi::class)->name('detailSertifikasiKompetensi');
 /* Menu - Pelatihan */
 Route::get('/pelatihan', \App\Livewire\menu\Pelatihan::class)->name('pelatihan');
 Route::get('/pelatihan/{id_pelatihan}', \App\Livewire\menu\DetailPelatihan::class)->name('detailPelatihan');
