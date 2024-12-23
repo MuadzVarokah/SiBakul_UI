@@ -383,12 +383,12 @@
                                             <div class="w-full flex flex-wrap">
                                                 <div class="w-fit mr-2">
                                                     <div
-                                                        class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                                        class="w-16 h-full min-h-16 max-h-[4.25rem] rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                                         <i class="fa-solid fa-book-bookmark"></i>
                                                     </div>
                                                 </div>
                                                 <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                                         Nama Pelatihan - Lorem ipsum dolor sit.
                                                     </p>
         
@@ -426,12 +426,12 @@
                 
                                             <div class="w-full flex flex-wrap">
                                                 <div class="w-fit mr-2">
-                                                    <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                                    <div class="w-16 h-full min-h-16 max-h-[4.25rem] rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                                         <i class="fa-regular fa-image"></i>
                                                     </div>
                                                 </div>
                                                 <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                                         Nama Pameran - Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut, totam?
                                                     </p>
                 
@@ -442,10 +442,10 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <a wire:navigate:hover href="{{ route('pameran', ['tab' => 'riwayat']) }}">
-                                            <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
-                                        </a>
                                     </div>
+                                    <a wire:navigate:hover href="{{ route('pameran', ['tab' => 'riwayat']) }}">
+                                        <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
+                                    </a>
                                 </div>
                             </div>
 
@@ -470,12 +470,12 @@
             
                                             <div class="w-full flex flex-wrap">
                                                 <div class="w-fit mr-2">
-                                                    <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                                    <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                                         <i class="fa-solid fa-file-contract"></i>
                                                     </div>
                                                 </div>
                                                 <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                                         Sosialisasi dan Pembuatan NIB untuk UMKM
                                                     </p>
                 
@@ -504,8 +504,34 @@
                                 </button>
                                 <div id="content-4" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                                     <div class="pb-2">
-                                        Content
+                                        <a wire:navigate:hover href="{{ route('detailSertifikasiProduk', ['id_sertifikasi' => 1]) }}"
+                                            class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 text-sm border-0 rounded-md bg-white shadow">
+                                            <div class="w-full flex flex-wrap justify-between items-start">
+                                                <p class="w-fit text-xs text-slate-600 font-semibold mb-2">17 Jan 2024</p>
+                                                <p class="w-fit text-xs text-slate-600 font-semibold mb-2">09:00 - 13:00</p>
+                                            </div>
+            
+                                            <div class="w-full flex flex-wrap">
+                                                <div class="w-fit mr-2">
+                                                    <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                                        <i class="fa-solid fa-file-contract"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
+                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
+                                                        Sertifikasi Halal Produk
+                                                    </p>
+                
+                                                    <div class="w-full flex flex-wrap items-end justify-between">
+                                                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Halal</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
+                                    <a wire:navigate:hover href="{{ route('sertifikasi', ['tab' => 'produk']) }}">
+                                        <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
+                                    </a>
                                 </div>
                             </div>
 
@@ -525,12 +551,12 @@
                                             class="flex flex-wrap items-center justify-center w-full p-2 py-2 text-sm border-0 rounded-md bg-white shadow">
                                             <div class="w-full flex flex-wrap">
                                                 <div class="w-fit mr-2">
-                                                    <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                                    <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                                         <i class="fa-solid fa-icons"></i>
                                                     </div>
                                                 </div>
                                                 <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-none">Foto Produk</p>
+                                                    <p class="w-full font-bold text-justify line-clamp-2 leading-tight">Foto Produk</p>
                                                     <div class="w-full flex flex-wrap items-end justify-between">
                                                         <div class="grid grid-cols-1">
                                                             <p class="w-fit text-xs text-slate-600 font-semibold">Pagi (09:00 - 12:00)</p>

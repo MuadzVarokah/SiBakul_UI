@@ -54,13 +54,13 @@
     
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
-                                        {{-- <img src="https://via.placeholder.com/80" alt="" class="w-14 h-14 rounded-md"> --}}
-                                        <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                        {{-- <img src="https://via.placeholder.com/80" alt="" class="w-16 h-16 rounded-md"> --}}
+                                        <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                             <i class="fa-solid fa-icons"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                        <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                             Foto Produk
                                         </p>
                                         
@@ -115,13 +115,13 @@
     
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
-                                        <img src="https://via.placeholder.com/80" alt="" class="w-14 h-14 rounded-md">
-                                        {{-- <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                        <img src="https://via.placeholder.com/80" alt="" class="w-16 h-16 rounded-md">
+                                        {{-- <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                             <i class="fa-solid fa-icons"></i>
                                         </div> --}}
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                        <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                             Foto Produk
                                         </p>
                                         
@@ -176,13 +176,13 @@
 
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
-                                        {{-- <img src="https://via.placeholder.com/80" alt="" class="w-14 h-14 rounded-md"> --}}
-                                        <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                        {{-- <img src="https://via.placeholder.com/80" alt="" class="w-16 h-16 rounded-md"> --}}
+                                        <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                             <i class="fa-solid fa-icons"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                        <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                             Foto Produk
                                         </p>
                                         

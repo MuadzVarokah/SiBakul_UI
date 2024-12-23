@@ -1,5 +1,5 @@
 <div>
-    <x-sub-navbar href="javascript:history.back()">Detail Sertifikasi Kompetensi</x-sub-navbar>
+    <x-sub-navbar href="javascript:history.back()">Detail Sertifikasi Produk</x-sub-navbar>
 
     <!-- Konten -->
     <div class="w-full max-w-screen-sm mt-14 min-h-[calc(100vh-3.5rem)] bg-slate-100">
@@ -9,14 +9,14 @@
 
         <!-- Section utama -->
         <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
-            <p class="text-2xl font-semibold text-green-600 leading-none">Sertifikasi Kompetensi Digital Marketing</p>
+            <p class="text-2xl font-semibold text-green-600 leading-none">Sertifikasi Halal Produk</p>
             {{-- <p class="w-full font-normal text-justify text-lg line-clamp-2 leading-normal">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p> --}}
 
             <hr class="mt-2" style="border-top: 2px solid #cbd5e1">
 
             <div class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Jenis Sertifikasi</p>
-                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Digital Marketing</span>
+                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Halal</span>
             </div>
 
             <hr class="mt-2" style="border-top: 2px solid #cbd5e1">

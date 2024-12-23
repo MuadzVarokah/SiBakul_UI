@@ -58,12 +58,12 @@
 
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
-                                        <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                        <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                             <i class="fa-solid fa-file-contract"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                        <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                             Sosialisasi dan Pembuatan NIB untuk UMKM
                                         </p>
     
@@ -106,7 +106,38 @@
 
                     <div class="w-full px-4 inline-block">
                         <!-- Daftar Sertifikasi -->
-                        
+                        @for ($i = 0; $i < 3; $i++)
+                            <a wire:navigate:hover href="{{ route('detailSertifikasiProduk', ['id_sertifikasi' => 1]) }}"
+                                class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
+                                <div class="w-full flex flex-wrap justify-between items-start">
+                                    <p class="w-fit text-xs text-slate-600 font-semibold mb-2">17 Jan 2024</p>
+                                    <p class="w-fit text-xs text-slate-600 font-semibold mb-2">09:00 - 13:00</p>
+                                </div>
+
+                                <div class="w-full flex flex-wrap">
+                                    <div class="w-fit mr-2">
+                                        <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                            <i class="fa-solid fa-file-contract"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
+                                            Sertifikasi Halal Produk
+                                        </p>
+    
+                                        <div class="w-full flex flex-wrap items-end justify-between">
+                                            <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Halal</span>
+                                            @if ($i == 0)
+                                                <span class="w-fit inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-blue-900 dark:text-blue-300">
+                                                    <span class="w-2 h-2 me-1 bg-blue-500 rounded-full"></span>
+                                                    Terdaftar
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endfor
                     </div>
                 </div>
             </div>
@@ -133,7 +164,7 @@
 
                     <div class="w-full px-4 inline-block">
                         <!-- Daftar Sertifikasi -->
-                        @for ($j = 0; $j < 3; $j++)
+                        @for ($i = 0; $i < 3; $i++)
                             <a wire:navigate:hover href="{{ route('detailSertifikasiKompetensi', ['id_sertifikasi' => 1]) }}"
                                 class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 mb-4 text-sm border-0 rounded-md bg-white shadow">
                                 <div class="w-full flex flex-wrap justify-between items-start">
@@ -143,18 +174,18 @@
 
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
-                                        <div class="w-14 h-14 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                        <div class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                             <i class="fa-solid fa-file-contract"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                        <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                             Sertifikasi Kompetensi Digital Marketing
                                         </p>
     
                                         <div class="w-full flex flex-wrap items-end justify-between">
                                             <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Digital Marketing</span>
-                                            @if ($j == 0)
+                                            @if ($i == 0)
                                                 <span class="w-fit inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-blue-900 dark:text-blue-300">
                                                     <span class="w-2 h-2 me-1 bg-blue-500 rounded-full"></span>
                                                     Terdaftar

@@ -81,12 +81,12 @@
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
                                         <div
-                                            class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                            class="w-16 h-full min-h-16 max-h-[4.25rem] rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                             <i class="fa-regular fa-image"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                        <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                             Nama Pameran - Lorem ipsum dolor sit.
                                         </p>
 
@@ -155,12 +155,12 @@
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
                                         <div
-                                            class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                            class="w-16 h-full min-h-16 max-h-[4.25rem] rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                             <i class="fa-regular fa-image"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                        <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                             Nama Pameran
                                         </p>
 
@@ -229,12 +229,12 @@
                                 <div class="w-full flex flex-wrap">
                                     <div class="w-fit mr-2">
                                         <div
-                                            class="w-16 h-16 rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
+                                            class="w-16 h-full min-h-16 max-h-[4.25rem] rounded-md text-4xl text-green-700 border border-green-700 text-center content-center">
                                             <i class="fa-regular fa-image"></i>
                                         </div>
                                     </div>
                                     <div class="w-[calc(100%-4.5rem)] flex flex-col justify-between">
-                                        <p class="w-full font-bold text-justify line-clamp-2 leading-none">
+                                        <p class="w-full font-bold text-justify line-clamp-2 leading-tight">
                                             Nama Pameran - Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                                             Aut, totam?
                                         </p>

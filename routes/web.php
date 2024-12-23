@@ -29,7 +29,7 @@ Route::get('/pameran/{id_pameran}', \App\Livewire\menu\DetailPameran::class)->na
 /* Menu - Sertifikasi */
 Route::get('/sertifikasi', \App\Livewire\menu\Sertifikasi::class)->name('sertifikasi');
 Route::get('/sertifikasi-usaha/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiUsaha::class)->name('detailSertifikasiUsaha');
-// Route::get('/sertifikasi-produk/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiProduk::class)->name('detailSertifikasiProduk');
+Route::get('/sertifikasi-produk/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiProduk::class)->name('detailSertifikasiProduk');
 Route::get('/sertifikasi-kompetensi/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiKompetensi::class)->name('detailSertifikasiKompetensi');
 /* Menu - Pelatihan */
 Route::get('/pelatihan', \App\Livewire\menu\Pelatihan::class)->name('pelatihan');
@@ -66,6 +66,12 @@ Route::get('/kelengkapan-data/media-pemasaran-online-form/{id_media}', \App\Live
 Route::get('/kelengkapan-data/qris-dinamis-bpd', \App\Livewire\KelengkapanData\QrisDinamisBpd::class)->name('qrisDinamisBpd');
 Route::get('/kelengkapan-data/qris-dinamis-bpd-form', \App\Livewire\KelengkapanData\QrisDinamisBpdForm::class)->name('form-qrisDinamisBpd');
 
+/* Kelengkapan Data (Data Perkembangan) - Aspek Kelembagaan */
+Route::get('/kelengkapan-data/aspek-kelembagaan', \App\Livewire\KelengkapanData\AspekKelembagaan::class)->name('aspekKelembagaan');
+Route::get('/kelengkapan-data/aspek-kelembagaan-form', \App\Livewire\KelengkapanData\AspekKelembagaanForm::class)->name('form-aspekKelembagaan');
+/* Kelengkapan Data (Data Perkembangan) - Aspek Keuangan */
+Route::get('/kelengkapan-data/aspek-keuangan', \App\Livewire\KelengkapanData\AspekKeuangan::class)->name('aspekKeuangan');
+Route::get('/kelengkapan-data/aspek-keuangan-form', \App\Livewire\KelengkapanData\AspekKeuanganForm::class)->name('form-aspekKeuangan');
 
 
 /* Markethub */
