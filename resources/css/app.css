@@ -8,6 +8,10 @@
     font-variation-settings: normal !important;
 } */
 
+html {
+    scroll-padding-top: 80px;
+}
+
 @media only screen and (min-width: 767px) {
      body {
           max-width: 767px !important;
@@ -155,6 +159,9 @@ input[type=number] {
 }
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
      @apply !bg-green-700 text-white
+}
+.select2-results__option--highlighted > div{
+     @apply !text-white
 }
 
 input:disabled {

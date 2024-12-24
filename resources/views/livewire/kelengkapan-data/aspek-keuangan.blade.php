@@ -7,7 +7,7 @@
             <div class="w-full grid grid-cols-1 gap-4 py-2 px-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div class="w-full flex flex-wrap justify-between items-center">
                     <p class="w-full font-semibold text-justify text-sm">Melakukan Pembukuan</p>
-                    <p class="w-full font-normal text-justify text-base text-slate-600">Ya</p>
+                    <p class="w-full font-normal text-justify text-base text-slate-600">Iya</p>
                 </div>
                 
                 <div class="w-full flex flex-wrap justify-between items-center">
@@ -34,17 +34,17 @@
                 
                 <div class="w-full flex flex-wrap justify-between items-center">
                     <p class="w-full font-semibold text-justify text-sm">Dokumentasi Nota</p>
-                    <p class="w-full font-normal text-justify text-base text-slate-600">Ada tidak ditata Rapi</p>
+                    <p class="w-full font-normal text-justify text-base text-slate-600">Ada - Tidak Tertata Rapi</p>
                 </div>
                 
                 <div class="w-full flex flex-wrap justify-between items-center">
                     <p class="w-full font-semibold text-justify text-sm">Catatan Transaksi</p>
-                    <p class="w-full font-normal text-justify text-base text-slate-600">Ada Manual</p>
+                    <p class="w-full font-normal text-justify text-base text-slate-600">Ada - Manual</p>
                 </div>
                 
                 <div class="w-full flex flex-wrap justify-between items-center">
                     <p class="w-full font-semibold text-justify text-sm">Laporan Keuangan</p>
-                    <p class="w-full font-normal text-justify text-base text-slate-600">Bisa Manual</p>
+                    <p class="w-full font-normal text-justify text-base text-slate-600">Ada - Manual</p>
                 </div>
                 
                 <div class="w-full flex flex-wrap justify-between items-center">
@@ -54,7 +54,7 @@
                 
                 <div class="w-full flex flex-wrap justify-between items-center">
                     <p class="w-full font-semibold text-justify text-sm">Pencatatan Aset</p>
-                    <p class="w-full font-normal text-justify text-base text-slate-600">Tidak</p>
+                    <p class="w-full font-normal text-justify text-base text-slate-600">Tidak Ada</p>
                 </div>
                 
                 <div class="w-full flex flex-wrap justify-between items-center">

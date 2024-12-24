@@ -6,12 +6,12 @@
      <div class="flex flex-wrap gap-2">
           <div class="flex flex-wrap items-center w-full">
                <input wire:model="pengawet_buatan" id="pengawet_buatan-1" type="radio" value="iya" name="pengawet_buatan"
-                    class="w-4 h-4 !text-slate-600 bg-white border-gray-300 focus:!ring-slate-500 dark:focus:ring-slate-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 !text-slate-600 bg-white border-gray-300 focus:!ring-green-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                <label for="pengawet_buatan-1" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Iya</label>
           </div>
           <div class="flex flex-wrap items-center w-full">
                <input  wire:model="pengawet_buatan" id="pengawet_buatan-2" type="radio" value="tidak" name="pengawet_buatan"
-                    class="w-4 h-4 !text-slate-600 bg-white border-gray-300 focus:!ring-slate-500 dark:focus:ring-slate-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    class="w-4 h-4 !text-slate-600 bg-white border-gray-300 focus:!ring-green-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                <label for="pengawet_buatan-2" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Tidak</label>
           </div>
      </div>

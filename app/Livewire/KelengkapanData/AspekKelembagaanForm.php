@@ -22,4 +22,18 @@ class AspekKelembagaanForm extends Component
     {
         return view('livewire.kelengkapan-data.aspek-kelembagaan-form');
     }
+
+    public function simpan()
+    {
+        $validatedData = $this->validate([
+            'badan_usaha'           => 'required|numeric',
+            'izin_usaha'            => 'required|numeric',
+            'memiliki_npwp'         => 'required|numeric',
+            'struktur_organisasi'   => 'required|numeric',
+            'jobdesk'               => 'required|numeric',
+            'iso'                   => 'required|numeric',
+        ]);
+
+        dd($validatedData);
+    }
 }
