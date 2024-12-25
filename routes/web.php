@@ -72,9 +72,18 @@ Route::get('/kelengkapan-data/aspek-kelembagaan-form', \App\Livewire\Kelengkapan
 /* Kelengkapan Data (Data Perkembangan) - Aspek SDM */
 Route::get('/kelengkapan-data/aspek-sdm', \App\Livewire\KelengkapanData\AspekSdm::class)->name('aspekSdm');
 Route::get('/kelengkapan-data/aspek-sdm-form', \App\Livewire\KelengkapanData\AspekSdmForm::class)->name('form-aspekSdm');
+/* Kelengkapan Data (Data Perkembangan) - Aspek Produktivitas */
+Route::get('/kelengkapan-data/aspek-produktivitas', \App\Livewire\KelengkapanData\AspekProduktivitas::class)->name('aspekProduktivitas');
+Route::get('/kelengkapan-data/aspek-produktivitas-form', \App\Livewire\KelengkapanData\AspekProduktivitasForm::class)->name('form-aspekProduktivitas');
 /* Kelengkapan Data (Data Perkembangan) - Aspek Keuangan */
 Route::get('/kelengkapan-data/aspek-keuangan', \App\Livewire\KelengkapanData\AspekKeuangan::class)->name('aspekKeuangan');
 Route::get('/kelengkapan-data/aspek-keuangan-form', \App\Livewire\KelengkapanData\AspekKeuanganForm::class)->name('form-aspekKeuangan');
+/* Kelengkapan Data (Data Perkembangan) - Aspek Branding & Pasar */
+Route::get('/kelengkapan-data/aspek-branding-dan-pasar', \App\Livewire\KelengkapanData\AspekBrandingDanPasar::class)->name('aspekBrandingDanPasar');
+Route::get('/kelengkapan-data/aspek-branding-dan-pasar-form', \App\Livewire\KelengkapanData\AspekBrandingDanPasarForm::class)->name('form-aspekBrandingDanPasar');
+/* Kelengkapan Data (Data Perkembangan) - Aspek Digital Marketing */
+Route::get('/kelengkapan-data/aspek-digital-marketing', \App\Livewire\KelengkapanData\AspekDigitalMarketing::class)->name('aspekDigitalMarketing');
+Route::get('/kelengkapan-data/aspek-digital-marketing-form', \App\Livewire\KelengkapanData\AspekDigitalMarketingForm::class)->name('form-aspekDigitalMarketing');
 
 
 /* Markethub */

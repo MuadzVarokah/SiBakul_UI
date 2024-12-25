@@ -36,10 +36,10 @@ class KelengkapanData extends Component
             ["menu" => "Jumlah Transaksi", "is_done" => "false", "url" => "#", "icon" => "<i class='fa-solid fa-money-bill-transfer w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
             ["menu" => "Aspek Kelembagaan", "is_done" => "false", "url" => route('aspekKelembagaan'), "icon" => "<i class='fa-solid fa-sitemap w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
             ["menu" => "Aspek SDM", "is_done" => "false", "url" => route('aspekSdm'), "icon" => "<i class='fa-solid fa-person-chalkboard w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
-            ["menu" => "Aspek Produktifitas", "is_done" => "false", "url" => "#", "icon" => "<i class='fa-solid fa-list-check w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
+            ["menu" => "Aspek Produktivitas", "is_done" => "false", "url" => route('aspekProduktivitas'), "icon" => "<i class='fa-solid fa-list-check w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
             ["menu" => "Aspek Keuangan", "is_done" => "false", "url" => route('aspekKeuangan'), "icon" => "<i class='fa-solid fa-money-bill-wave w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
-            ["menu" => "Aspek Pemasaran (Branding)", "is_done" => "false", "url" => "#", "icon" => "<i class='fa-solid fa-cart-flatbed w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
-            ["menu" => "Aspek Pemasaran Online", "is_done" => "false", "url" => "#", "icon" => "<i class='fa-solid fa-truck-ramp-box w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
+            ["menu" => "Aspek Branding & Pasar", "is_done" => "false", "url" => route('aspekBrandingDanPasar'), "icon" => "<i class='fa-solid fa-cart-flatbed w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
+            ["menu" => "Aspek Digital Marketing", "is_done" => "false", "url" => route('aspekDigitalMarketing'), "icon" => "<i class='fa-solid fa-truck-ramp-box w-3.5 h-3.5 text-gray-500 dark:text-gray-400'></i>"],
         ]);
 
         // Mengubah setiap item pada data usaha menjadi objek stdClass
