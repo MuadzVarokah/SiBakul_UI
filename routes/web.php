@@ -90,3 +90,10 @@ Route::get('/kelengkapan-data/aspek-digital-marketing-form', \App\Livewire\Kelen
 Route::get('/markethub', \App\Livewire\Markethub::class)->name('markethub');
 Route::get('/markethub/{id_produk}', \App\Livewire\DetailProduk::class)->name('detailProduk');
 Route::get('/markethub/tambah-produk/{jenis_produk}', \App\Livewire\TambahProduk::class)->name('tambahProduk');
+
+
+
+
+/* admin */
+Route::prefix('admin')->group(__DIR__.'/admin/main.php');
+/* * */

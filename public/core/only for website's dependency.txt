@@ -1,0 +1,3 @@
+Only for website dependencies 
+
+Do NOT fill public core with ANY user-owned files. 
