@@ -89,4 +89,9 @@ class BerkasUsahaForm extends Component
             'listBerkas' => $listBerkas,
         ]);
     }
+
+    public function simpan()
+    {
+        dump($this);
+    }
 }

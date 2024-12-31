@@ -1,16 +1,22 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+    @endsection
 
-    <x-sub-navbar href="javascript:history.back()">Form Data Pemilik Usaha</x-sub-navbar>
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
+
+    <x-sub-navbar href="javascript:history.back()">Form Berkas Usaha</x-sub-navbar>
 
     <!-- Konten -->
     <div class="w-full max-w-screen-md mt-14 min-h-[calc(100vh-3.5rem)] bg-slate-100">
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
-                <form class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
+                <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -19,17 +25,25 @@
                                 color: red;
                                 font-weight: 900;
                             }
+
+                            .select2-hidden-accessible {
+                                height: 37.6px !important;
+                                width: 100% !important;
+                            }
                         </style>
 
-                        <div wire:ignore class="relative">
-                            <label class="block mb-1 text-sm text-slate-600 required" for="jenis_berkas">Jenis Berkas</label>
-                            <select wire:model="jenis_berkas" id="jenis_berkas" name="jenis_berkas"
-                                class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                <option></option>
-                                @foreach ($listBerkas as $keyBerkas => $valueBerkas)
+                        <!-- Input Jenis Berkas -->
+                        <div class="relative">
+                            <div wire:ignore class="relative">
+                                <label class="block mb-1 text-sm text-slate-600 required" for="jenis_berkas">Jenis Berkas</label>
+                                <select wire:model="jenis_berkas" id="jenis_berkas" name="jenis_berkas"
+                                    class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                    <option></option>
+                                    @foreach ($listBerkas as $keyBerkas => $valueBerkas)
                                         <option value="{!! $valueBerkas->id !!}">{!! $valueBerkas->berkas !!}</option>
                                     @endforeach
-                            </select>
+                                </select>
+                            </div>
                             @error('jenis_berkas')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -38,23 +52,11 @@
                                     {{ $message }}
                                 </p>
                             @enderror
-                            @script()
-                            <script>
-                                $(document).ready(function() {
-                                    $("#jenis_berkas").select2({
-                                        placeholder: "Pilih Jenis Berkas",
-                                        //    allowClear: true
-                                    }).on('change', function() {
-                                        let data = $(this).val();
-                                        $wire.jenis_berkas = data;
-                                    });
-                                });
-                            </script>
-                            @endscript
                         </div>
 
+                        <!-- Input Nomor Berkas -->
                         <div class="relative">
-                            <label class="block mb-1 text-sm text-slate-600 required" for="nomor">Nomor</label>
+                            <label class="block mb-1 text-sm text-slate-600 required" for="nomor">Nomor Berkas</label>
                             <input wire:model="nomor" type="number" name="nomor" id="nomor" placeholder="cth. 123XXXXXXXXXXXXX" autocomplete="on" maxlength="16" required
                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
@@ -68,6 +70,7 @@
                             @enderror
                         </div>
 
+                        <!-- Input Keterangan -->
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="keterangan">Keterangan</label>
                             <textarea wire:model="keterangan" name="keterangan" id="keterangan" rows="4" autocomplete="on"
@@ -83,6 +86,7 @@
                             @enderror
                        </div>
 
+                       <!-- Input Gambar -->
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="gambar">Gambar</label>
                             @if ($gambar_awal && !$gambar)
@@ -119,7 +123,7 @@
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
@@ -134,4 +138,24 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+        @parent
+        @script()
+        <script>
+            $(document).ready(function() {
+                $("#jenis_berkas").select2({
+                    placeholder: "Pilih Jenis Berkas",
+                    //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('jenis_berkas', e.target.value);
+                });
+
+                if (@this.jenis_berkas) {
+                    $("#jenis_berkas").val(@this.jenis_berkas).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+    @endsection
 </div>

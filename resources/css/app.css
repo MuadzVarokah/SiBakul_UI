@@ -20,6 +20,10 @@ html {
      }
 }
 
+:root {
+    --livewire-progress-bar-color: #15803d !important;
+}
+
 /* Button */
 .btn-green {
      @apply

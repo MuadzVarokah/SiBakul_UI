@@ -22,4 +22,9 @@ class LokasiGpsForm extends Component
     {
         return view('livewire.kelengkapan-data.lokasi-gps-form');
     }
+
+    public function simpan()
+    {
+        dump($this);
+    }
 }

@@ -5,8 +5,7 @@
     <div class="w-full max-w-screen-md mt-14 min-h-[calc(100vh-3.5rem)] bg-slate-100">
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
-                <form class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
+                <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -17,6 +16,7 @@
                             }
                         </style>
 
+                        <!-- Input Gambar QRIS -->
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="gambar_qris">Gambar QRIS</label>
                             @if ($gambar_qris)
@@ -47,9 +47,10 @@
                             @enderror        
                         </div>
 
-                       <div class="relative">
+                        <!-- Input Nama QRIS/Usaha -->
+                        <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="nama_qris">Nama Usaha</label>
-                            <input type="text" name="nama_qris" id="nama_qris" placeholder="cth. KAFE TARIA" autocomplete="on" required
+                            <input wire:model="nama_qris" type="text" name="nama_qris" id="nama_qris" placeholder="cth. KAFE TARIA" autocomplete="on" required
                                 class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                             @error('nama_qris')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
@@ -61,9 +62,10 @@
                             @enderror
                         </div>
 
-                       <div class="relative">
+                        <!-- Input NMID -->
+                        <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="nmid">NMID</label>
-                            <input type="text" name="nmid" id="nmid" placeholder="cth. ID10XXXXXXXXXXX" autocomplete="on" required
+                            <input wire:model="nmid" type="text" name="nmid" id="nmid" placeholder="cth. ID10XXXXXXXXXXX" autocomplete="on" required
                                 class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                             @error('nmid')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
@@ -78,7 +80,7 @@
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>

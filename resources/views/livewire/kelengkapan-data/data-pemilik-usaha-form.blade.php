@@ -1,7 +1,14 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
     
     <x-sub-navbar href="javascript:history.back()">Form Data Pemilik Usaha</x-sub-navbar>
 
@@ -18,6 +25,11 @@
                                 content: "*";
                                 color: red;
                                 font-weight: 900;
+                            }
+
+                            .select2-hidden-accessible {
+                                height: 37.6px !important;
+                                width: 100% !important;
                             }
                         </style>
 
@@ -209,59 +221,6 @@
                                  </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                //Provinsi
-                                $("#provinsi_ktp").select2({
-                                    placeholder: "Pilih Provinsi",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('provinsi_ktp', e.target.value);
-                                });
-
-                                if (@this.provinsi_ktp) {
-                                    $("#provinsi_ktp").val(@this.provinsi_ktp).trigger('change');
-                                }
-
-                                //Kabupaten
-                                $("#kabupaten_ktp").select2({
-                                    placeholder: "Pilih Kabupaten",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('kabupaten_ktp', e.target.value);
-                                });
-
-                                if (@this.kabupaten_ktp) {
-                                    $("#kabupaten_ktp").val(@this.kabupaten_ktp).trigger('change');
-                                }
-
-                                //Kecamatan
-                                $("#kecamatan_ktp").select2({
-                                    placeholder: "Pilih Kecamatan",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('kecamatan_ktp', e.target.value);
-                                });
-
-                                if (@this.kecamatan_ktp) {
-                                    $("#kecamatan_ktp").val(@this.kecamatan_ktp).trigger('change');
-                                }
-
-                                //Kelurahan
-                                $("#kelurahan_ktp").select2({
-                                    placeholder: "Pilih Kelurahan",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('kelurahan_ktp', e.target.value);
-                                });
-
-                                if (@this.kelurahan_ktp) {
-                                    $("#kelurahan_ktp").val(@this.kelurahan_ktp).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Kode POS KTP -->
                         <div class="relative">
@@ -343,59 +302,6 @@
                                  </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                //Provinsi
-                                $("#provinsi_domisili").select2({
-                                    placeholder: "Pilih Provinsi",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('provinsi_domisili', e.target.value);
-                                });
-
-                                if (@this.provinsi_domisili) {
-                                    $("#provinsi_domisili").val(@this.provinsi_domisili).trigger('change');
-                                }
-
-                                //Kabupaten
-                                $("#kabupaten_domisili").select2({
-                                    placeholder: "Pilih Kabupaten",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('kabupaten_domisili', e.target.value);
-                                });
-
-                                if (@this.kabupaten_domisili) {
-                                    $("#kabupaten_domisili").val(@this.kabupaten_domisili).trigger('change');
-                                }
-
-                                //Kecamatan
-                                $("#kecamatan_domisili").select2({
-                                    placeholder: "Pilih Kecamatan",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('kecamatan_domisili', e.target.value);
-                                });
-
-                                if (@this.kecamatan_domisili) {
-                                    $("#kecamatan_domisili").val(@this.kecamatan_domisili).trigger('change');
-                                }
-
-                                //Kelurahan
-                                $("#kelurahan_domisili").select2({
-                                    placeholder: "Pilih Kelurahan",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('kelurahan_domisili', e.target.value);
-                                });
-
-                                if (@this.kelurahan_domisili) {
-                                    $("#kelurahan_domisili").val(@this.kelurahan_domisili).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Kode POS Domisili -->
                         <div class="relative">
@@ -431,22 +337,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#pendidikan").select2({
-                                    placeholder: "Pilih Pendidikan Terakhir",
-                                //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('pendidikan', e.target.value);
-                                });
-
-                                if (@this.pendidikan) {
-                                    $("#pendidikan").val(@this.pendidikan).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Disabilitas -->
                         <div class="relative">
@@ -466,27 +356,11 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#disabilitas").select2({
-                                    placeholder: "Pilih Disabilitas",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('disabilitas', e.target.value);
-                                });
-
-                                if (@this.disabilitas) {
-                                    $("#disabilitas").val(@this.disabilitas).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button" class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                <a href="javascript:history.back()" type="button" class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
                                 <button type="submit" class="rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">
@@ -499,4 +373,153 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+        @parent
+        <!-- Select2 - Alamat KTP -->
+        @script()
+        <script>
+            $(document).ready(function() {
+                //Provinsi
+                $("#provinsi_ktp").select2({
+                    placeholder: "Pilih Provinsi",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('provinsi_ktp', e.target.value);
+                });
+
+                if (@this.provinsi_ktp) {
+                    $("#provinsi_ktp").val(@this.provinsi_ktp).trigger('change');
+                }
+
+                //Kabupaten
+                $("#kabupaten_ktp").select2({
+                    placeholder: "Pilih Kabupaten",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('kabupaten_ktp', e.target.value);
+                });
+
+                if (@this.kabupaten_ktp) {
+                    $("#kabupaten_ktp").val(@this.kabupaten_ktp).trigger('change');
+                }
+
+                //Kecamatan
+                $("#kecamatan_ktp").select2({
+                    placeholder: "Pilih Kecamatan",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('kecamatan_ktp', e.target.value);
+                });
+
+                if (@this.kecamatan_ktp) {
+                    $("#kecamatan_ktp").val(@this.kecamatan_ktp).trigger('change');
+                }
+
+                //Kelurahan
+                $("#kelurahan_ktp").select2({
+                    placeholder: "Pilih Kelurahan",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('kelurahan_ktp', e.target.value);
+                });
+
+                if (@this.kelurahan_ktp) {
+                    $("#kelurahan_ktp").val(@this.kelurahan_ktp).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+
+        <!-- Select2 - Alamat Domisili -->
+        @script()
+        <script>
+            $(document).ready(function() {
+                //Provinsi
+                $("#provinsi_domisili").select2({
+                    placeholder: "Pilih Provinsi",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('provinsi_domisili', e.target.value);
+                });
+
+                if (@this.provinsi_domisili) {
+                    $("#provinsi_domisili").val(@this.provinsi_domisili).trigger('change');
+                }
+
+                //Kabupaten
+                $("#kabupaten_domisili").select2({
+                    placeholder: "Pilih Kabupaten",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('kabupaten_domisili', e.target.value);
+                });
+
+                if (@this.kabupaten_domisili) {
+                    $("#kabupaten_domisili").val(@this.kabupaten_domisili).trigger('change');
+                }
+
+                //Kecamatan
+                $("#kecamatan_domisili").select2({
+                    placeholder: "Pilih Kecamatan",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('kecamatan_domisili', e.target.value);
+                });
+
+                if (@this.kecamatan_domisili) {
+                    $("#kecamatan_domisili").val(@this.kecamatan_domisili).trigger('change');
+                }
+
+                //Kelurahan
+                $("#kelurahan_domisili").select2({
+                    placeholder: "Pilih Kelurahan",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('kelurahan_domisili', e.target.value);
+                });
+
+                if (@this.kelurahan_domisili) {
+                    $("#kelurahan_domisili").val(@this.kelurahan_domisili).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+
+        <!-- Select2 - Pendidikan Terakhir -->
+        @script()
+        <script>
+            $(document).ready(function() {
+                $("#pendidikan").select2({
+                    placeholder: "Pilih Pendidikan Terakhir",
+                //    allowClear: true
+                }).on('change', function(e) {
+                    @this.set('pendidikan', e.target.value);
+                });
+
+                if (@this.pendidikan) {
+                    $("#pendidikan").val(@this.pendidikan).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+
+        <!-- Select2 - Disabilitas -->
+        @script()
+        <script>
+            $(document).ready(function() {
+                $("#disabilitas").select2({
+                    placeholder: "Pilih Disabilitas",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('disabilitas', e.target.value);
+                });
+
+                if (@this.disabilitas) {
+                    $("#disabilitas").val(@this.disabilitas).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+    @endsection
 </div>

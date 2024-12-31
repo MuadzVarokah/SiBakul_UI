@@ -19,7 +19,7 @@
         </div>
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
             <li>
-                <a wire:navigate:hover href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <a wire:navigate href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
                     <i class="fa-solid fa-house w-4 mr-2"></i>
                     Beranda
                 </a>
@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a wire:navigate:hover href="{{ route('kelengkapanData') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <a wire:navigate href="{{ route('kelengkapanData') }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600">
                     <i class="fa-solid fa-file-circle-check w-4 mr-2"></i>
                     Kelengkapan Data
                 </a>

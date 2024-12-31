@@ -1,4 +1,9 @@
 <div class="flex justify-center w-full max-w-screen-md">
+    @section('head-scripts')
+        @parent
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" data-navigate-track></script>
+    @endsection
+
     <x-main-navbar />
 
     <!-- Konten -->
@@ -119,7 +124,7 @@
                     </a>
 
                     <!-- Kelengkapan data -->
-                    <a wire:navigate:hover href="{{ route('kelengkapanData') }}" class="w-auto flex flex-wrap">
+                    <a wire:navigate href="{{ route('kelengkapanData') }}" class="w-auto flex flex-wrap">
                         <div class="w-full">
                             <div class="w-full text-xs font-semibold text-gray-500">Kelengkapan</div>
                             <div class="w-full text-base font-semibold text-green-600">69%</div>
@@ -598,11 +603,6 @@
     </div>
 
     <x-main-footer />
-
-    @section('head-scripts')
-        @parent
-        <script src="https://cdn.jsdelivr.net/npm/chart.js" data-navigate-track></script>
-    @endsection
 
     @section('scripts')
         @parent

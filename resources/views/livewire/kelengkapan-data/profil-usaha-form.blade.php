@@ -1,7 +1,14 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Form Profil Usaha</x-sub-navbar>
 
@@ -9,8 +16,7 @@
     <div class="w-full max-w-screen-md mt-14 min-h-[calc(100vh-3.5rem)] bg-slate-100">
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
-                <form class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
+                <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -19,8 +25,14 @@
                                 color: red;
                                 font-weight: 900;
                             }
+
+                            .select2-hidden-accessible {
+                                height: 37.6px !important;
+                                width: 100% !important;
+                            }
                         </style>
 
+                        <!-- Input Logo Usaha -->
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="logo_usaha">Logo Usaha</label>
                             @if ($logo_usaha)
@@ -51,12 +63,15 @@
                             @enderror        
                         </div>
 
-                        <div wire:ignore class="relative">
-                            <label class="block mb-1 text-sm text-slate-600 required" for="nib">NIB (Nomor Induk Berusaha)</label>
-                            <select id="nib" name="nib"
-                                 class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                 <option></option>
-                            </select>
+                        <!-- Input NIB -->
+                        <div class="relative">
+                            <div wire:ignore class="relative">
+                                <label class="block mb-1 text-sm text-slate-600 required" for="nib">NIB (Nomor Induk Berusaha)</label>
+                                <select wire:model="nib" id="nib" name="nib" required
+                                     class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                     <option></option>
+                                </select>
+                            </div>
                             @error('nib')
                                  <p class="flex items-center mt-2 text-xs text-[red]">
                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -65,24 +80,12 @@
                                       {{ $message }}
                                  </p>
                             @enderror
-                            @script()
-                            <script>
-                                 $(document).ready(function() {
-                                       $("#nib").select2({
-                                           placeholder: "Pilih NIB",
-                                        //    allowClear: true
-                                       }).on('change', function() {
-                                           let data = $(this).val();
-                                           $wire.nib = data;
-                                       });
-                                   });
-                            </script>
-                            @endscript
-                       </div>
+                        </div>
 
-                       <div class="relative">
+                        <!-- Input Nama Usaha -->
+                        <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="nama_usaha">Nama Usaha</label>
-                            <input type="text" name="nama_usaha" id="nama_usaha" placeholder="cth. CV Maju Mundur" autocomplete="on" required
+                            <input wire:model="nama_usaha" type="text" name="nama_usaha" id="nama_usaha" placeholder="cth. CV Maju Mundur" autocomplete="on" required
                                 class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                             @error('nama_usaha')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
@@ -94,9 +97,10 @@
                             @enderror
                         </div>
 
-                       <div class="relative">
+                        <!-- Input Merek Dagang/Brand -->
+                        <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="brand">Merek Dagang/Brand</label>
-                            <input type="text" name="brand" id="brand" placeholder="cth. Mebel Agus" autocomplete="on" required
+                            <input wire:model="brand" type="text" name="brand" id="brand" placeholder="cth. Mebel Agus" autocomplete="on" required
                                 class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                             @error('brand')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
@@ -108,9 +112,10 @@
                             @enderror
                         </div>
 
+                        <!-- Input Mulai Usaha -->
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="mulai_usaha">Mulai Usaha</label>
-                            <input type="date" name="mulai_usaha" id="mulai_usaha" autocomplete="on" required
+                            <input wire:model="mulai_usaha" type="date" name="mulai_usaha" id="mulai_usaha" autocomplete="on" required
                                 class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                             <p class="flex items-center mt-2 text-xs text-slate-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -128,27 +133,30 @@
                             @enderror
                         </div>
 
-                        <div wire:ignore class="relative">
-                            <label class="block mb-1 text-sm text-slate-600 required">Alamat Usaha</label>
-                            <div class="grid grid-cols-1 gap-1">
-                                <select id="provinsi_usaha" name="provinsi_usaha" required
-                                     class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                     <option></option>
-                                </select>
-                                <select id="kabupaten_usaha" name="kabupaten_usaha" required
-                                     class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                     <option></option>
-                                </select>
-                                <select id="kecamatan_usaha" name="kecamatan_usaha" required
-                                     class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                     <option></option>
-                                </select>
-                                <select id="kelurahan_usaha" name="kelurahan_usaha" required
-                                     class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                     <option></option>
-                                </select>
-                                <textarea  name="alamat_usaha" id="alamat_usaha" rows="2" autocomplete="on" placeholder="cth. Kreteg Lor RT 05" required
-                                    class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0"></textarea>
+                        <!-- Input Alamat Usaha -->
+                        <div class="relative">
+                            <div wire:ignore class="relative">
+                                <label class="block mb-1 text-sm text-slate-600 required">Alamat Usaha</label>
+                                <div class="grid grid-cols-1 gap-1">
+                                    <select wire:model="provinsi_usaha" id="provinsi_usaha" name="provinsi_usaha" required
+                                         class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                         <option></option>
+                                    </select>
+                                    <select wire:model="kabupaten_usaha" id="kabupaten_usaha" name="kabupaten_usaha" required
+                                         class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                         <option></option>
+                                    </select>
+                                    <select wire:model="kecamatan_usaha" id="kecamatan_usaha" name="kecamatan_usaha" required
+                                         class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                         <option></option>
+                                    </select>
+                                    <select wire:model="kelurahan_usaha" id="kelurahan_usaha" name="kelurahan_usaha" required
+                                         class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                         <option></option>
+                                    </select>
+                                    <textarea wire:model="alamat_usaha" name="alamat_usaha" id="alamat_usaha" rows="2" autocomplete="on" placeholder="cth. Kreteg Lor RT 05" required
+                                        class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0"></textarea>
+                                </div>
                             </div>
                             @error('provinsi_usaha')
                                  <p class="flex items-center mt-2 text-xs text-[red]">
@@ -190,48 +198,12 @@
                                       {{ $message }}
                                  </p>
                             @enderror
-                            @script()
-                            <script>
-                                 $(document).ready(function() {
-                                       $("#provinsi_usaha").select2({
-                                           placeholder: "Pilih Provinsi",
-                                        //    allowClear: true
-                                       }).on('change', function() {
-                                           let data = $(this).val();
-                                           $wire.provinsi_usaha = data;
-                                       });
+                        </div>
 
-                                       $("#kabupaten_usaha").select2({
-                                           placeholder: "Pilih Kabupaten",
-                                        //    allowClear: true
-                                       }).on('change', function() {
-                                           let data = $(this).val();
-                                           $wire.kabupaten_usaha = data;
-                                       });
-
-                                       $("#kecamatan_usaha").select2({
-                                           placeholder: "Pilih Kecamatan",
-                                        //    allowClear: true
-                                       }).on('change', function() {
-                                           let data = $(this).val();
-                                           $wire.kecamatan_usaha = data;
-                                       });
-
-                                       $("#kelurahan_usaha").select2({
-                                           placeholder: "Pilih Kelurahan",
-                                        //    allowClear: true
-                                       }).on('change', function() {
-                                           let data = $(this).val();
-                                           $wire.kelurahan_usaha = data;
-                                       });
-                                   });
-                            </script>
-                            @endscript
-                       </div>
-
-                       <div class="relative">
+                        <!-- Input Kodepos -->
+                        <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="kodepos_usaha">Kode POS Usaha</label>
-                            <input type="number" name="kodepos_usaha" id="kodepos_usaha" placeholder="cth. 5XXXX" autocomplete="on" maxlength="5" required
+                            <input wire:model="kodepos_usaha" type="number" name="kodepos_usaha" id="kodepos_usaha" placeholder="cth. 5XXXX" autocomplete="on" maxlength="5" required
                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                             @error('kodepos_usaha')
@@ -244,9 +216,10 @@
                             @enderror
                         </div>
 
+                        <!-- Input Kegiatan Usaha -->
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="kegiatan_usaha">Kegiatan Usaha</label>
-                            <textarea name="kegiatan_usaha" id="kegiatan_usaha" rows="4" autocomplete="on" required placeholder="cth. Jualan bakso"
+                            <textarea wire:model="kegiatan_usaha" name="kegiatan_usaha" id="kegiatan_usaha" rows="4" autocomplete="on" required placeholder="cth. Jualan bakso"
                                 class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0"></textarea>
                             @error('kegiatan_usaha')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
@@ -258,17 +231,17 @@
                             @enderror
                         </div>
 
+                        <!-- Input Produk -->
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="produk">Produk</label>
                             <div class="flex flex-wrap justify-between w-full">
-                                <input type="text" name="produk" placeholder="cth. Baju Batik" autocomplete="on" required
+                                <input wire:model="produk" type="text" name="produk" placeholder="cth. Baju Batik" autocomplete="on" required
                                     class="block w-[calc(100%-2.75rem)] !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                                 <button type="button" id="tambah-produk"
                                     class="w-9 px-2.5 py-2 ms-2 text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-600 active:scale-90 transition-transform dark:bg-green-600 dark:hover:bg-green-700">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
                             </div>
-
                             @error('produk')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -278,6 +251,7 @@
                                 </p>
                             @enderror
 
+                            <!-- Input Produk Tambahan -->
                             <div class="flex flex-wrap w-full" id="container-produk">
                                 @foreach($tambahan_produk as $index => $produk)
                                     <div class="flex flex-wrap justify-between w-full mt-1 tambahan-produk">
@@ -288,7 +262,6 @@
                                             <i class="fa-solid fa-xmark"></i>
                                         </button>
                                     </div>
-
                                     @error('tambahan_produk.{{ $index }}')
                                         <p class="flex items-center mt-2 text-xs text-[red]">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -299,20 +272,17 @@
                                     @enderror
                                 @endforeach
                             </div>
-
-                            <script type="text/javascript">
-                                $("#tambah-produk").click(function() {
-                                    @this.call('addProduk');
-                                });
-                            </script>
                         </div>
 
-                        <div wire:ignore class="relative">
-                            <label class="block mb-1 text-sm text-slate-600 required" for="sektor_usaha">Sektor Usaha</label>
-                            <select id="sektor_usaha" name="sektor_usaha"
-                                 class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                 <option></option>
-                            </select>
+                        <!-- Input Sektor Usaha -->
+                        <div class="relative">
+                            <div wire:ignore class="relative">
+                                <label class="block mb-1 text-sm text-slate-600 required" for="sektor_usaha">Sektor Usaha</label>
+                                <select wire:model="sektor_usaha" id="sektor_usaha" name="sektor_usaha" required
+                                     class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                     <option></option>
+                                </select>
+                            </div>
                             @error('sektor_usaha')
                                  <p class="flex items-center mt-2 text-xs text-[red]">
                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -321,27 +291,17 @@
                                       {{ $message }}
                                  </p>
                             @enderror
-                            @script()
-                            <script>
-                                 $(document).ready(function() {
-                                       $("#sektor_usaha").select2({
-                                           placeholder: "Pilih Sektor Usaha",
-                                        //    allowClear: true
-                                       }).on('change', function() {
-                                           let data = $(this).val();
-                                           $wire.sektor_usaha = data;
-                                       });
-                                   });
-                            </script>
-                            @endscript
                         </div>
 
-                        <div wire:ignore class="relative">
-                            <label class="block mb-1 text-sm text-slate-600 required" for="sektor_ekraf">Sektor EKRAF</label>
-                            <select id="sektor_ekraf" name="sektor_ekraf"
-                                 class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-                                 <option></option>
-                            </select>
+                        <!-- Input Sektor EKRAF -->
+                        <div class="relative">
+                            <div wire:ignore class="relative">
+                                <label class="block mb-1 text-sm text-slate-600 required" for="sektor_ekraf">Sektor EKRAF</label>
+                                <select wire:model="sektor_ekraf" id="sektor_ekraf" name="sektor_ekraf" required
+                                     class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+                                     <option></option>
+                                </select>
+                            </div>
                             @error('sektor_ekraf')
                                  <p class="flex items-center mt-2 text-xs text-[red]">
                                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -350,25 +310,12 @@
                                       {{ $message }}
                                  </p>
                             @enderror
-                            @script()
-                            <script>
-                                 $(document).ready(function() {
-                                       $("#sektor_ekraf").select2({
-                                           placeholder: "Pilih Sektor EKRAF",
-                                        //    allowClear: true
-                                       }).on('change', function() {
-                                           let data = $(this).val();
-                                           $wire.sektor_ekraf = data;
-                                       });
-                                   });
-                            </script>
-                            @endscript
                         </div>
 
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
@@ -384,4 +331,119 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+        @parent
+        <!-- Select2 - NIB -->
+        @script()
+        <script>
+            $(document).ready(function() {
+                $("#nib").select2({
+                    placeholder: "Pilih NIB",
+                //    allowClear: true
+                }).on('change', function() {
+                    @this.set('nib', e.target.value);
+                });
+
+                if (@this.nib) {
+                    $("#nib").val(@this.nib).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+
+        <!-- Select2 - Alamat -->
+        @script()
+        <script>
+            $(document).ready(function() {
+                $("#provinsi_usaha").select2({
+                    placeholder: "Pilih Provinsi",
+                //    allowClear: true
+                }).on('change', function() {
+                    @this.set('provinsi_usaha', e.target.value);
+                });
+
+                if (@this.provinsi_usaha) {
+                    $("#provinsi_usaha").val(@this.provinsi_usaha).trigger('change');
+                }
+
+                $("#kabupaten_usaha").select2({
+                    placeholder: "Pilih Kabupaten",
+                //    allowClear: true
+                }).on('change', function() {
+                    @this.set('kabupaten_usaha', e.target.value);
+                });
+
+                if (@this.kabupaten_usaha) {
+                    $("#kabupaten_usaha").val(@this.kabupaten_usaha).trigger('change');
+                }
+
+                $("#kecamatan_usaha").select2({
+                    placeholder: "Pilih Kecamatan",
+                //    allowClear: true
+                }).on('change', function() {
+                    @this.set('kecamatan_usaha', e.target.value);
+                });
+
+                if (@this.kecamatan_usaha) {
+                    $("#kecamatan_usaha").val(@this.kecamatan_usaha).trigger('change');
+                }
+
+                $("#kelurahan_usaha").select2({
+                    placeholder: "Pilih Kelurahan",
+                //    allowClear: true
+                }).on('change', function() {
+                    @this.set('kelurahan_usaha', e.target.value);
+                });
+
+                if (@this.kelurahan_usaha) {
+                    $("#kelurahan_usaha").val(@this.kelurahan_usaha).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+
+        <!-- Tambah Form Produk -->
+        <script type="text/javascript">
+            $("#tambah-produk").on("click", function() {
+                @this.call('addProduk');
+            });
+        </script>
+
+        <!-- Select2 - Sektor Usaha -->
+        @script()
+        <script>
+            $(document).ready(function() {
+                $("#sektor_usaha").select2({
+                    placeholder: "Pilih Sektor Usaha",
+                    //    allowClear: true
+                }).on('change', function() {
+                    @this.set('sektor_usaha', e.target.value);
+                });
+
+                if (@this.sektor_usaha) {
+                    $("#sektor_usaha").val(@this.sektor_usaha).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+
+        <!-- Select2 - Sektor EKRAF -->
+        @script()
+        <script>
+                $(document).ready(function() {
+                    $("#sektor_ekraf").select2({
+                        placeholder: "Pilih Sektor EKRAF",
+                    //    allowClear: true
+                    }).on('change', function() {
+                        @this.set('sektor_ekraf', e.target.value);
+                    });
+
+                    if (@this.sektor_ekraf) {
+                        $("#sektor_ekraf").val(@this.sektor_ekraf).trigger('change');
+                    }
+                });
+        </script>
+        @endscript
+    @endsection
 </div>

@@ -1,7 +1,14 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Form Lokasi GPS</x-sub-navbar>
 
@@ -9,8 +16,7 @@
     <div class="w-full max-w-screen-md mt-14 min-h-[calc(100vh-3.5rem)] bg-slate-100">
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
-                <form class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
+                <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -21,6 +27,7 @@
                             }
                         </style>
 
+                        <!-- Input Latitude & Longitude -->
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required">Peta</label>
                             <div id="map" class="w-full h-[calc(100vh-18.75rem)] z-0 rounded-md shadow"></div>
@@ -47,10 +54,10 @@
                                     <button type="button" id="get-location-btn"
                                         class="w-full px-2.5 py-2 text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-600 active:scale-90 transition-transform dark:bg-green-600 dark:hover:bg-green-700">
                                         <i class="fa-solid fa-map-location-dot"></i>&nbsp;&nbsp;Dapatkan lokasi terkini
-                                </button>
+                                    </button>
                                 </div>
                            </div>
-                           @error('latitude')
+                            @error('latitude')
                                 <p class="flex items-center mt-2 text-xs text-[red]">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
                                     <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
@@ -67,91 +74,11 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                //Setting map
-                                if (@this.latitude && @this.longitude) {
-                                    var map = L.map('map').setView([@this.latitude, @this.longitude], 15);
-                                } else {
-                                    var map = L.map('map').setView([-7.8013966,110.3621892], 12.5);
-                                }
-                                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                    maxZoom: 19,
-                                    // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                                }).addTo(map);
-
-                                //Custom Marker
-                                var iconOptions = {
-                                    iconUrl: "{!! asset('public/images/location-pin.png') !!}",
-                                    iconSize: [38,50],
-                                }
-                                // var customIcon = L.icon(iconOptions);
-                                var markerOptions = {
-                                    // icon: customIcon,
-                                    draggable: true,
-                                };
-
-                                //on Click function
-                                var marker = null
-                                map.on("click", function(e){
-                                    if (marker) {
-                                        map.removeLayer(marker);
-                                    }
-                                    marker = L.marker([e.latlng.lat, e.latlng.lng], markerOptions).addTo(map);
-                                    @this.latitude = e.latlng.lat;
-                                    @this.longitude = e.latlng.lng;
-                                });
-
-                                //if default value lat & lng has set, place marker
-                                if (@this.latitude && @this.longitude) {
-                                    marker = L.marker([@this.latitude, @this.longitude], markerOptions).addTo(map);
-                                }
-
-                                //if value lat & lng set on form, place marker
-                                $('#latitude, #longitude').on('input',function(e){
-                                    if (@this.latitude && @this.longitude) {
-                                        map.panTo(new L.LatLng(@this.latitude, @this.longitude));
-                                        if (marker) {
-                                            map.removeLayer(marker);
-                                        }
-                                        marker = L.marker([@this.latitude, @this.longitude], markerOptions).addTo(map);
-                                    } else if (!@this.latitude || !@this.longitude) {
-                                        if (marker) {
-                                            map.removeLayer(marker);
-                                        }
-                                    }
-                                });
-
-                                // Handle get-location-btn click
-                                $('#get-location-btn').on('click', function() {
-                                    if (navigator.geolocation) {
-                                        navigator.geolocation.getCurrentPosition(function(position) {
-                                            // Get user's latitude and longitude
-                                            @this.latitude = position.coords.latitude;
-                                            @this.longitude = position.coords.longitude;
-
-                                            // Pan the map to the new coordinates and place the marker
-                                            map.setView([@this.latitude, @this.longitude], 15);
-                                            if (marker) {
-                                                map.removeLayer(marker);
-                                            }
-                                            marker = L.marker([@this.latitude, @this.longitude], markerOptions).addTo(map);
-                                        }, function(error) {
-                                            alert('Geolocation error: ' + error.message);
-                                        });
-                                    } else {
-                                        alert("Geolocation is not supported by this browser.");
-                                    }
-                                });
-                            });
-                        </script>
-                        @endscript
 
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
@@ -167,4 +94,89 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+        @parent
+        <!-- Peta -->
+        @script()
+        <script>
+            $(document).ready(function() {
+                //Setting map
+                if (@this.latitude && @this.longitude) {
+                    var map = L.map('map').setView([@this.latitude, @this.longitude], 15);
+                } else {
+                    var map = L.map('map').setView([-7.8013966,110.3621892], 12.5);
+                }
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                }).addTo(map);
+
+                //Custom Marker
+                var iconOptions = {
+                    iconUrl: "{!! asset('public/images/location-pin.png') !!}",
+                    iconSize: [38,50],
+                }
+                // var customIcon = L.icon(iconOptions);
+                var markerOptions = {
+                    // icon: customIcon,
+                    draggable: true,
+                };
+
+                //on Click function
+                var marker = null
+                map.on("click", function(e){
+                    if (marker) {
+                        map.removeLayer(marker);
+                    }
+                    marker = L.marker([e.latlng.lat, e.latlng.lng], markerOptions).addTo(map);
+                    @this.latitude = e.latlng.lat;
+                    @this.longitude = e.latlng.lng;
+                });
+
+                //if default value lat & lng has set, place marker
+                if (@this.latitude && @this.longitude) {
+                    marker = L.marker([@this.latitude, @this.longitude], markerOptions).addTo(map);
+                }
+
+                //if value lat & lng set on form, place marker
+                $('#latitude, #longitude').on('input',function(e){
+                    if (@this.latitude && @this.longitude) {
+                        map.panTo(new L.LatLng(@this.latitude, @this.longitude));
+                        if (marker) {
+                            map.removeLayer(marker);
+                        }
+                        marker = L.marker([@this.latitude, @this.longitude], markerOptions).addTo(map);
+                    } else if (!@this.latitude || !@this.longitude) {
+                        if (marker) {
+                            map.removeLayer(marker);
+                        }
+                    }
+                });
+
+                // Handle get-location-btn click
+                $('#get-location-btn').on('click', function() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function(position) {
+                            // Get user's latitude and longitude
+                            @this.latitude = position.coords.latitude;
+                            @this.longitude = position.coords.longitude;
+
+                            // Pan the map to the new coordinates and place the marker
+                            map.setView([@this.latitude, @this.longitude], 15);
+                            if (marker) {
+                                map.removeLayer(marker);
+                            }
+                            marker = L.marker([@this.latitude, @this.longitude], markerOptions).addTo(map);
+                        }, function(error) {
+                            alert('Geolocation error: ' + error.message);
+                        });
+                    } else {
+                        alert("Geolocation is not supported by this browser.");
+                    }
+                });
+            });
+        </script>
+        @endscript
+    @endsection
 </div>

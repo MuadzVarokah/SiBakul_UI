@@ -14,9 +14,16 @@ class QrisDinamisBpdForm extends Component
 
     //Properti untuk menyimpan nilai form
     public $gambar_qris;
+    public $nama_qris;
+    public $nmid;
 
     public function render()
     {
         return view('livewire.kelengkapan-data.qris-dinamis-bpd-form');
+    }
+
+    public function simpan()
+    {
+        dump($this);
     }
 }

@@ -80,7 +80,7 @@ class MediaPemasaranOnlineForm extends Component
         // $this->media = null;  // Reset media
 
         // Dispatc event to refresh the select2 dropdown
-        $this->dispatch('mediaUpdated');
+        $this->dispatch('mediaUpdated', $this->listMedia);
     }
 
     // public function updatedMedia()
@@ -124,5 +124,10 @@ class MediaPemasaranOnlineForm extends Component
     public function render()
     {
         return view('livewire.kelengkapan-data.media-pemasaran-online-form');
+    }
+
+    public function simpan()
+    {
+        dump($this);
     }
 }

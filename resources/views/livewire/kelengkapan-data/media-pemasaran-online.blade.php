@@ -1,6 +1,13 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.min.css" rel="stylesheet">
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.min.css" rel="stylesheet">
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Media Pemasaran Online</x-sub-navbar>
 
@@ -58,7 +65,7 @@
                                     class="rounded-md bg-red-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     <i class="fa-solid fa-trash"></i>&nbsp;&nbsp;Hapus
                                 </button>
-                                <a wire:navigate:hover href="{{ route('form-mediaPemasaranOnline-edit', ['id_media' => $valueData->id ]) }}" type="button" data-dialog-close="true"
+                                <a wire:navigate href="{{ route('form-mediaPemasaranOnline-edit', ['id_media' => $valueData->id ]) }}" type="button" data-dialog-close="true"
                                     class="rounded-md bg-yellow-300 py-2 px-4 border border-transparent text-center text-sm text-slate-600 transition-all shadow-md hover:shadow-lg focus:bg-yellow-400 focus:shadow-none active:bg-yellow-400 hover:bg-yellow-400 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">
                                     <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Ubah
                                 </a>
@@ -69,42 +76,178 @@
             </div>
 
             <div class="w-full mt-4">
-                <a wire:navigate:hover href="{{ route('form-mediaPemasaranOnline') }}" type="button" class="w-full rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                <a wire:navigate href="{{ route('form-mediaPemasaranOnline') }}" type="button" class="w-full rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                     <i class="fa-solid fa-file-circle-plus"></i>&nbsp;&nbsp;Tambah Media
                 </a>
             </div>
         </div>
     </div>
 
-    @script()
-    <script>
-        Livewire.on('mediaDeleted', () => {
-            Swal.fire({
-                title: 'Dihapus!',
-                text: 'Media telah berhasil dihapus.',
-                icon: 'success'
+    @section('scripts')
+        @parent
+        @script()
+        <script>
+            Livewire.on('mediaDeleted', () => {
+                Swal.fire({
+                    title: 'Dihapus!',
+                    text: 'Media telah berhasil dihapus.',
+                    icon: 'success'
+                });
             });
-        });
 
-        Livewire.on('confirmDelete', id_media => {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Media ini akan dihapus!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#e02424',
-                confirmButtonText: 'Ya, Hapus!',
-                cancelButtonText: 'Batal',
-                // cancelButtonColor: '#d33'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $wire.call('deleteMedia', {id_media: id_media});
+            Livewire.on('confirmDelete', id_media => {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Media ini akan dihapus!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e02424',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal',
+                    // cancelButtonColor: '#d33'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $wire.call('deleteMedia', {id_media: id_media});
+                    }
+                })
+            });
+        </script>
+        @endscript
+
+        <!-- Script sweetalert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.all.min.js"></script>
+
+        <!-- Script component dialog - material tailwind -->
+        {{-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js data-navigate-track"></script> --}}
+        <script>
+            document.addEventListener("livewire:navigated", () => {
+                function _array_like_to_array(arr, len) {
+                    if (len == null || len > arr.length) len = arr.length;
+                    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+                    return arr2
                 }
-            })
-        });
-    </script>
-    @endscript
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.all.min.js"></script>
-    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js"></script>
+                function _array_without_holes(arr) {
+                    if (Array.isArray(arr)) return _array_like_to_array(arr)
+                }
+
+                function _iterable_to_array(iter) {
+                    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
+                        return Array.from(iter)
+                }
+
+                function _non_iterable_spread() {
+                    throw new TypeError(
+                        "Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+                    )
+                }
+
+                function _to_consumable_array(arr) {
+                    return _array_without_holes(arr) || _iterable_to_array(arr) || _unsupported_iterable_to_array(arr) ||
+                        _non_iterable_spread()
+                }
+
+                function _unsupported_iterable_to_array(o, minLen) {
+                    if (!o) return;
+                    if (typeof o === "string") return _array_like_to_array(o, minLen);
+                    var n = Object.prototype.toString.call(o).slice(8, -1);
+                    if (n === "Object" && o.constructor) n = o.constructor.name;
+                    if (n === "Map" || n === "Set") return Array.from(n);
+                    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array(o,
+                        minLen)
+                }(function() {
+                    var triggers = document.querySelectorAll("[data-dialog-target]");
+                    var dialogs = document.querySelectorAll("[data-dialog]");
+                    var backdrops = document.querySelectorAll("[data-dialog-backdrop]");
+                    var closeTriggers = document.querySelectorAll("[data-dialog-close]");
+                    if (triggers && dialogs && backdrops) {
+                        Array.from(triggers).forEach(function(trigger) {
+                            return Array.from(dialogs).forEach(function(dialog) {
+                                return Array.from(backdrops).forEach(function(backdrop) {
+                                    if (trigger.dataset.dialogTarget === dialog.dataset.dialog &&
+                                        backdrop.dataset.dialogBackdrop === dialog.dataset.dialog) {
+                                        var _dialog_classList, _dialog_classList1;
+                                        var mountDialog = function mountDialog() {
+                                            var _dialog_classList, _dialog_classList1;
+                                            isDialogOpen = true;
+                                            backdrop.classList.toggle("pointer-events-none");
+                                            backdrop.classList.toggle("opacity-0");
+                                            (_dialog_classList = dialog.classList).remove.apply(
+                                                _dialog_classList, _to_consumable_array(
+                                                    unmountClasses));
+                                            (_dialog_classList1 = dialog.classList).add.apply(
+                                                _dialog_classList1, _to_consumable_array(
+                                                    mountClasses))
+                                        };
+                                        var unmountDialog = function unmountDialog() {
+                                            var _dialog_classList, _dialog_classList1;
+                                            isDialogOpen = false;
+                                            backdrop.classList.toggle("pointer-events-none");
+                                            backdrop.classList.toggle("opacity-0");
+                                            (_dialog_classList = dialog.classList).remove.apply(
+                                                _dialog_classList, _to_consumable_array(
+                                                    mountClasses));
+                                            (_dialog_classList1 = dialog.classList).add.apply(
+                                                _dialog_classList1, _to_consumable_array(
+                                                    unmountClasses))
+                                        };
+                                        var mountValue = dialog.dataset.dialogMount ||
+                                            "opacity-1 translate-y-0";
+                                        var unmountValue = dialog.dataset.dialogUnmount ||
+                                            "opacity-0 -translate-y-14";
+                                        var transitionValue = dialog.dataset.dialogTransition ||
+                                            "transition-all duration-300";
+                                        var mountClasses = mountValue.split(" ");
+                                        var unmountClasses = unmountValue.split(" ");
+                                        var transitionClasses = transitionValue.split(" ");
+                                        var isDialogOpen = false;
+                                        (_dialog_classList = dialog.classList).add.apply(
+                                            _dialog_classList, _to_consumable_array(unmountClasses));
+                                        if (!backdrop.hasAttribute("tabindex")) backdrop.setAttribute(
+                                            "tabindex", 0);
+                                        if (transitionValue !== "false")(_dialog_classList1 = dialog
+                                            .classList).add.apply(_dialog_classList1,
+                                            _to_consumable_array(transitionClasses));
+                                        if (dialog.className.includes(unmountValue) && !backdrop
+                                            .className.includes("pointer-events-none opacity-0")) {
+                                            backdrop.classList.add("pointer-events-none");
+                                            backdrop.classList.add("opacity-0")
+                                        }
+                                        trigger.addEventListener("click", function() {
+                                            return dialog.className.includes(unmountValue) ?
+                                                mountDialog() : unmountDialog()
+                                        });
+                                        backdrop.addEventListener("click", function(param) {
+                                            var target = param.target;
+                                            var _target_dataset, _target_dataset1;
+                                            if ((target === null || target === void 0 ? void 0 :
+                                                    (_target_dataset = target.dataset) ===
+                                                    null || _target_dataset === void 0 ?
+                                                    void 0 : _target_dataset.dialogBackdrop) &&
+                                                (target === null || target === void 0 ? void 0 :
+                                                    (_target_dataset1 = target.dataset) ===
+                                                    null || _target_dataset1 === void 0 ?
+                                                    void 0 : _target_dataset1
+                                                    .dialogBackdropClose)) unmountDialog()
+                                        });
+                                        document.addEventListener("keyup", function(param) {
+                                            var key = param.key;
+                                            return key === "Escape" && isDialogOpen ?
+                                                unmountDialog() : null
+                                        });
+                                        Array.from(closeTriggers).forEach(function(close) {
+                                            return close.addEventListener("click", function() {
+                                                return isDialogOpen ? unmountDialog() :
+                                                    null
+                                            })
+                                        })
+                                    }
+                                })
+                            })
+                        })
+                    }
+                })();
+            }, { once: true });
+        </script>
+    @endsection
 </div>
