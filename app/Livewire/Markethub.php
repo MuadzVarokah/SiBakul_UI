@@ -126,7 +126,7 @@ class Markethub extends Component
             ->layout('components.layouts.app');
     }
 
-    public function jenisProduk()
+    public function tambahProduk()
     {
         // Validasi jika nilai jenis_produk kosong
         if (!$this->jenis_produk) {
@@ -135,6 +135,6 @@ class Markethub extends Component
         }
 
         // Redirect ke halaman lain dengan parameter nilai jenis_produk
-        return redirect()->route('tambahProduk', ['jenis_produk' => $this->jenis_produk]);
+        return $this->redirect(route('tambahProduk', ['jenis_produk' => $this->jenis_produk]), navigate: true);
     }
 }

@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {return view('welcome');});
+Route::get('/', function () {return view('welcome');});
 
 /* Login */
-Route::get('/', \App\Livewire\Login::class)->name('login');
+Route::get('/login', \App\Livewire\Login::class)->name('login');
 
 
 
@@ -24,21 +24,21 @@ Route::get('/', \App\Livewire\Login::class)->name('login');
 Route::get('/dashboard', \App\Livewire\Dashboard::class)->name('dashboard');
 
 /* Menu - Pameran */
-Route::get('/pameran', \App\Livewire\menu\Pameran::class)->name('pameran');
-Route::get('/pameran/{id_pameran}', \App\Livewire\menu\DetailPameran::class)->name('detailPameran');
+Route::get('/pameran', \App\Livewire\Menu\Pameran::class)->name('pameran');
+Route::get('/pameran/{id_pameran}', \App\Livewire\Menu\DetailPameran::class)->name('detailPameran');
 /* Menu - Sertifikasi */
-Route::get('/sertifikasi', \App\Livewire\menu\Sertifikasi::class)->name('sertifikasi');
-Route::get('/sertifikasi-usaha/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiUsaha::class)->name('detailSertifikasiUsaha');
-Route::get('/sertifikasi-produk/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiProduk::class)->name('detailSertifikasiProduk');
-Route::get('/sertifikasi-kompetensi/{id_sertifikasi}', \App\Livewire\menu\DetailSertifikasiKompetensi::class)->name('detailSertifikasiKompetensi');
+Route::get('/sertifikasi', \App\Livewire\Menu\Sertifikasi::class)->name('sertifikasi');
+Route::get('/sertifikasi-usaha/{id_sertifikasi}', \App\Livewire\Menu\DetailSertifikasiUsaha::class)->name('detailSertifikasiUsaha');
+Route::get('/sertifikasi-produk/{id_sertifikasi}', \App\Livewire\Menu\DetailSertifikasiProduk::class)->name('detailSertifikasiProduk');
+Route::get('/sertifikasi-kompetensi/{id_sertifikasi}', \App\Livewire\Menu\DetailSertifikasiKompetensi::class)->name('detailSertifikasiKompetensi');
 /* Menu - Pelatihan */
-Route::get('/pelatihan', \App\Livewire\menu\Pelatihan::class)->name('pelatihan');
-Route::get('/pelatihan/{id_pelatihan}', \App\Livewire\menu\DetailPelatihan::class)->name('detailPelatihan');
+Route::get('/pelatihan', \App\Livewire\Menu\Pelatihan::class)->name('pelatihan');
+Route::get('/pelatihan/{id_pelatihan}', \App\Livewire\Menu\DetailPelatihan::class)->name('detailPelatihan');
 /* Menu - Foto Produk */
-Route::get('/foto-produk', \App\Livewire\menu\FotoProduk::class)->name('fotoProduk');
-Route::get('/foto-produk/{id_foto}', \App\Livewire\menu\DetailFotoProduk::class)->name('detailFotoProduk');
-Route::get('/foto-produk-form', \App\Livewire\menu\FotoProdukForm::class)->name('form-fotoProduk');
-Route::get('/foto-produk-form/{id_foto}', \App\Livewire\menu\FotoProdukForm::class)->name('form-fotoProduk-edit');
+Route::get('/foto-produk', \App\Livewire\Menu\FotoProduk::class)->name('fotoProduk');
+Route::get('/foto-produk/{id_foto}', \App\Livewire\Menu\DetailFotoProduk::class)->name('detailFotoProduk');
+Route::get('/foto-produk-form', \App\Livewire\Menu\FotoProdukForm::class)->name('form-fotoProduk');
+Route::get('/foto-produk-form/{id_foto}', \App\Livewire\Menu\FotoProdukForm::class)->name('form-fotoProduk-edit');
 
 
 

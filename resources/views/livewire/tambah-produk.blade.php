@@ -16,6 +16,11 @@
                                 color: red;
                                 font-weight: 900;
                             }
+
+                            .select2-hidden-accessible {
+                                height: 37.6px !important;
+                                width: 100% !important;
+                            }
                         </style>
 
                         <div class="relative">

@@ -11,13 +11,13 @@
                 <div class="relative w-full overflow-hidden aspect-video">
                     <!-- Item 1 (Image) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg"
+                        <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg" loading="lazy"
                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="...">
                     </div>
                     <!-- Item 2 (Video) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item id="video-slide-2">
-                        <video class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" loop
+                        <video class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" loop loading="lazy"
                             playsinline id="video-2">
                             <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
                             Your browser does not support the video tag.
@@ -25,13 +25,13 @@
                     </div>
                     <!-- Item 3 (Image) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg"
+                        <img src="https://flowbite.com/docs/images/carousel/carousel-3.svg" loading="lazy"
                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="...">
                     </div>
                     <!-- Item 4 (Video) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item id="video-slide-4">
-                        <video class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" loop
+                        <video class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" loop loading="lazy"
                             playsinline id="video-4">
                             <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
                             Your browser does not support the video tag.
@@ -39,7 +39,7 @@
                     </div>
                     <!-- Item 5 (Image) -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="https://flowbite.com/docs/images/carousel/carousel-5.svg"
+                        <img src="https://flowbite.com/docs/images/carousel/carousel-5.svg" loading="lazy"
                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="...">
                     </div>
@@ -87,84 +87,6 @@
                     </span>
                 </button>
             </div>
-
-            <!-- Script untuk memutar video dan mengontrol perilaku carousel -->
-            <script>
-                const carousel = document.getElementById("carousel");
-                const videos = document.querySelectorAll("video");
-
-                let touchStartX = 0;
-                let touchEndX = 0;
-
-                // Fungsi untuk mendeteksi geseran
-                function handleSwipe() {
-                    if (touchEndX < touchStartX) {
-                        carousel.querySelector('[data-carousel-next]').click(); // Geser ke kanan
-                    }
-                    if (touchEndX > touchStartX) {
-                        carousel.querySelector('[data-carousel-prev]').click(); // Geser ke kiri
-                    }
-                }
-
-                // Mendengar event sentuhan pada carousel
-                carousel.addEventListener("touchstart", (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                });
-
-                carousel.addEventListener("touchend", (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                });
-
-                // Fungsi untuk memulai video pada slide yang aktif
-                function playVideoOnActiveSlide() {
-                    // Cari slide yang aktif
-                    const activeSlide = document.querySelector('[data-carousel-item].active');
-
-                    // Jika ada video pada slide aktif, putar video tersebut
-                    if (activeSlide) {
-                        const video = activeSlide.querySelector('video');
-                        if (video) {
-                            video.play();
-                            // carousel.setAttribute('data-carousel-interval', 'false'); // Hentikan interval otomatis
-                        }
-                    }
-                }
-
-                // Fungsi untuk menghentikan video pada slide sebelumnya
-                function pauseVideoOnInactiveSlide() {
-                    // Cari semua video dan hentikan jika mereka tidak ada di slide aktif
-                    videos.forEach(video => {
-                        if (!video.closest('[data-carousel-item].active')) {
-                            video.pause();
-                            // video.currentTime = 0; // Reset ke awal
-                        }
-                    });
-                    // carousel.setAttribute('data-carousel-interval', '5000'); // Kembalikan interval otomatis
-                }
-
-                // Tambahkan event listener untuk mendeteksi saat slide berubah
-                carousel.addEventListener('slid.bs.carousel', function() {
-                    pauseVideoOnInactiveSlide(); // Hentikan video pada slide yang tidak aktif
-                    playVideoOnActiveSlide(); // Putar video pada slide yang aktif
-                });
-
-                // Tambahkan event listener untuk video click (play/pause)
-                videos.forEach(video => {
-                    video.addEventListener("click", () => {
-                        if (video.paused) {
-                            video.play();
-                        } else {
-                            video.pause();
-                        }
-                    });
-                });
-
-                // Memulai video ketika halaman dimuat jika slide pertama adalah video
-                document.addEventListener("DOMContentLoaded", function() {
-                    playVideoOnActiveSlide();
-                });
-            </script>
 
             <!-- card data -->
             <div class="w-full max-w-screen-md justify-items-center mt-[-0.5rem]">
@@ -324,6 +246,7 @@
             </div>
         </div>
 
+        <!-- section riwayat -->
         <div class="w-full px-4 py-2">
             <p class="w-full text-green-700 font-bold">Riwayat Aktivitas Pembinaan</p>
             <p class="w-full text-slate-400 text-xs mb-2">Berisi riwayat terakhir dari tiap aktivitas pembinaan</p>
@@ -676,104 +599,242 @@
 
     <x-main-footer />
 
+    @section('head-scripts')
+        @parent
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" data-navigate-track></script>
+    @endsection
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const data = {
-            labels: [
-                'SDM',
-                'Produktifitas',
-                'Pemasaran',
-                'Pemasaran Online',
-                'Kelembagaan',
-                'Keuangan'
-            ],
-            datasets: [{
-                label: 'Nilai Kompetensi',
-                data: [80, 71.014492753623, 77.333333333333, 64.444444444444, 64.285714285714, 55.555555555556],
-                fill: true,
-                backgroundColor: 'rgba(5, 122, 85, 0.2)',
-                borderColor: 'rgb(5, 122, 85)',
-                pointBackgroundColor: 'rgb(5, 122, 85)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgb(5, 122, 85)'
-            }]
-        };
+    @section('scripts')
+        @parent
+        {{-- <script>
+            document.addEventListener("livewire:navigated", () => {
+                console.log("Navigated dashboard");
+            }, { once: true });
+        </script> --}}
 
-        const option = {
-            responsive: true,
-            maintainAspectRatio: false,
-            scale: {
-                max: 100,
-                min: 0
-            }
-        };
+        <!-- Script untuk memutar video dan mengontrol perilaku carousel -->
+        <script>
+            document.addEventListener("livewire:navigated", () => {
+                const carousel = document.getElementById("carousel");
+                const videos = document.querySelectorAll("video");
 
-        const config = {
-            type: 'radar',
-            data: data,
-            options: option
-        };
+                let touchStartX = 0;
+                let touchEndX = 0;
 
-        const ctx = document.getElementById('myChart');
+                // Fungsi untuk mendeteksi geseran
+                function handleSwipe() {
+                    if (touchEndX < touchStartX) {
+                        carousel.querySelector('[data-carousel-next]').click(); // Geser ke kanan
+                    }
+                    if (touchEndX > touchStartX) {
+                        carousel.querySelector('[data-carousel-prev]').click(); // Geser ke kiri
+                    }
+                }
 
-        new Chart(ctx, config);
-    </script>
+                // Mendengar event sentuhan pada carousel
+                carousel.addEventListener("touchstart", (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
 
+                carousel.addEventListener("touchend", (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
 
+                // Fungsi untuk memulai video pada slide yang aktif
+                function playVideoOnActiveSlide() {
+                    // Cari slide yang aktif
+                    const activeSlide = document.querySelector('[data-carousel-item].active');
 
+                    // Jika ada video pada slide aktif, putar video tersebut
+                    if (activeSlide) {
+                        const video = activeSlide.querySelector('video');
+                        if (video) {
+                            video.play();
+                            // carousel.setAttribute('data-carousel-interval', 'false'); // Hentikan interval otomatis
+                        }
+                    }
+                }
 
+                // Fungsi untuk menghentikan video pada slide sebelumnya
+                function pauseVideoOnInactiveSlide() {
+                    // Cari semua video dan hentikan jika mereka tidak ada di slide aktif
+                    videos.forEach(video => {
+                        if (!video.closest('[data-carousel-item].active')) {
+                            video.pause();
+                            // video.currentTime = 0; // Reset ke awal
+                        }
+                    });
+                    // carousel.setAttribute('data-carousel-interval', '5000'); // Kembalikan interval otomatis
+                }
 
-    {{-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script> --}}
-    <script>
-        (function() {
-            var total = document.querySelectorAll("[data-tabs]");
-            var getEventTarget = function getEventTarget(e) {
-                e = e || window.event;
-                return e.target || e.srcElement
-            };
-            total.forEach(function(item, i) {
-                var moving_div = document.createElement("div");
-                var first_li = item.querySelector("li:first-child [data-tab-target]");
-                var tab = first_li.cloneNode();
-                tab.innerHTML = "-";
-                tab.classList.remove("bg-inherit", "text-slate-700");
-                tab.classList.add("bg-white", "text-white");
-                tab.style.animation = ".2s ease";
-                moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg", "bg-inherit",
-                    "flex-auto", "text-center", "bg-none", "border-0", "block", "shadow");
-                moving_div.setAttribute("moving-tab", "");
-                moving_div.setAttribute("data-tab-target", "");
-                moving_div.appendChild(tab);
-                item.appendChild(moving_div);
-                var list_length = item.getElementsByTagName("li").length;
-                moving_div.style.padding = "0px";
-                moving_div.style.width = item.querySelector("li:nth-child(1)").offsetWidth + "px";
-                moving_div.style.transform = "translate3d(0px, 0px, 0px)";
-                moving_div.style.transition = ".5s ease";
-                item.onmouseover = function(event) {
-                    var target = getEventTarget(event);
-                    var li = target.closest("li");
-                    if (li) {
-                        var nodes = Array.from(li.closest("ul").children);
-                        var index = nodes.indexOf(li) + 1;
-                        item.querySelector("li:nth-child(" + index + ") [data-tab-target]").onclick =
-                            function() {
-                                item.querySelectorAll("li").forEach(function(list_item) {
-                                    list_item.firstElementChild.removeAttribute("active");
-                                    list_item.firstElementChild.setAttribute("aria-selected",
-                                        "false")
-                                });
-                                li.firstElementChild.setAttribute("active", "");
-                                li.firstElementChild.setAttribute("aria-selected", "true");
-                                moving_div = item.querySelector("[moving-tab]");
+                // Tambahkan event listener untuk mendeteksi saat slide berubah
+                carousel.addEventListener('slid.bs.carousel', function() {
+                    pauseVideoOnInactiveSlide(); // Hentikan video pada slide yang tidak aktif
+                    playVideoOnActiveSlide(); // Putar video pada slide yang aktif
+                });
+
+                // Tambahkan event listener untuk video click (play/pause)
+                videos.forEach(video => {
+                    video.addEventListener("click", () => {
+                        if (video.paused) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
+                });
+
+                // Memulai video ketika halaman dimuat jika slide pertama adalah video
+                document.addEventListener("livewire:navigated", function() {
+                    playVideoOnActiveSlide();
+                }, { once: true });
+            }, { once: true });
+        </script>
+    
+        <!-- Script untuk menampilkan grafik -->
+        <script>
+            document.addEventListener("livewire:navigated", () => {
+                const data = {
+                    labels: [
+                        'SDM',
+                        'Produktifitas',
+                        'Pemasaran',
+                        'Pemasaran Online',
+                        'Kelembagaan',
+                        'Keuangan'
+                    ],
+                    datasets: [{
+                        label: 'Nilai Kompetensi',
+                        data: [80, 71.014492753623, 77.333333333333, 64.444444444444, 64.285714285714, 55.555555555556],
+                        fill: true,
+                        backgroundColor: 'rgba(5, 122, 85, 0.2)',
+                        borderColor: 'rgb(5, 122, 85)',
+                        pointBackgroundColor: 'rgb(5, 122, 85)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(5, 122, 85)'
+                    }]
+                };
+
+                const option = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scale: {
+                        max: 100,
+                        min: 0
+                    }
+                };
+
+                const config = {
+                    type: 'radar',
+                    data: data,
+                    options: option
+                };
+
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, config);
+            }, { once: true });
+        </script>
+
+        <!-- Script componont tab - material tailwind -->
+        {{-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js" data-navigate-track></script> --}}
+        <script>
+            document.addEventListener("livewire:navigated", () => {
+                (function() {
+                    var total = document.querySelectorAll("[data-tabs]");
+                    var getEventTarget = function getEventTarget(e) {
+                        e = e || window.event;
+                        return e.target || e.srcElement
+                    };
+                    total.forEach(function(item, i) {
+                        var moving_div = document.createElement("div");
+                        var first_li = item.querySelector("li:first-child [data-tab-target]");
+                        var tab = first_li.cloneNode();
+                        tab.innerHTML = "-";
+                        tab.classList.remove("bg-inherit", "text-slate-700");
+                        tab.classList.add("bg-white", "text-white");
+                        tab.style.animation = ".2s ease";
+                        moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg", "bg-inherit",
+                            "flex-auto", "text-center", "bg-none", "border-0", "block", "shadow");
+                        moving_div.setAttribute("moving-tab", "");
+                        moving_div.setAttribute("data-tab-target", "");
+                        moving_div.appendChild(tab);
+                        item.appendChild(moving_div);
+                        var list_length = item.getElementsByTagName("li").length;
+                        moving_div.style.padding = "0px";
+                        moving_div.style.width = item.querySelector("li:nth-child(1)").offsetWidth + "px";
+                        moving_div.style.transform = "translate3d(0px, 0px, 0px)";
+                        moving_div.style.transition = ".5s ease";
+                        item.onmouseover = function(event) {
+                            var target = getEventTarget(event);
+                            var li = target.closest("li");
+                            if (li) {
+                                var nodes = Array.from(li.closest("ul").children);
+                                var index = nodes.indexOf(li) + 1;
+                                item.querySelector("li:nth-child(" + index + ") [data-tab-target]").onclick =
+                                    function() {
+                                        item.querySelectorAll("li").forEach(function(list_item) {
+                                            list_item.firstElementChild.removeAttribute("active");
+                                            list_item.firstElementChild.setAttribute("aria-selected",
+                                                "false")
+                                        });
+                                        li.firstElementChild.setAttribute("active", "");
+                                        li.firstElementChild.setAttribute("aria-selected", "true");
+                                        moving_div = item.querySelector("[moving-tab]");
+                                        var sum = 0;
+                                        if (item.classList.contains("flex-col")) {
+                                            for (var j = 1; j <= nodes.indexOf(li); j++) {
+                                                sum += item.querySelector("li:nth-child(" + j + ")").offsetHeight
+                                            }
+                                            moving_div.style.transform = "translate3d(0px," + sum + "px, 0px)";
+                                            moving_div.style.height = item.querySelector("li:nth-child(" + j + ")")
+                                                .offsetHeight
+                                        } else {
+                                            for (var j = 1; j <= nodes.indexOf(li); j++) {
+                                                sum += item.querySelector("li:nth-child(" + j + ")").offsetWidth
+                                            }
+                                            moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
+                                            moving_div.style.width = item.querySelector("li:nth-child(" + index +
+                                                ")").offsetWidth + "px"
+                                        }
+                                    }
+                            }
+                        }
+                    });
+                    window.addEventListener("resize", function(event) {
+                        total.forEach(function(item, i) {
+                            item = item.parentElement.firstElementChild;
+                            item.querySelector("[moving-tab]").remove();
+                            var moving_div = document.createElement("div");
+                            var tab = item.querySelector("[data-tab-target][aria-selected='true']").cloneNode();
+                            tab.innerHTML = "-";
+                            tab.classList.remove("bg-inherit");
+                            tab.classList.add("bg-white", "text-white");
+                            tab.style.animation = ".2s ease";
+                            moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg",
+                                "bg-inherit", "flex-auto", "text-center", "bg-none", "border-0", "block",
+                                "shadow");
+                            moving_div.setAttribute("moving-tab", "");
+                            moving_div.setAttribute("data-tab-target", "");
+                            moving_div.appendChild(tab);
+                            item.appendChild(moving_div);
+                            moving_div.style.padding = "0px";
+                            moving_div.style.transition = ".5s ease";
+                            var li = item.querySelector("[data-tab-target][aria-selected='true']")
+                                .parentElement;
+                            if (li) {
+                                var nodes = Array.from(li.closest("ul").children);
+                                var index = nodes.indexOf(li) + 1;
                                 var sum = 0;
                                 if (item.classList.contains("flex-col")) {
                                     for (var j = 1; j <= nodes.indexOf(li); j++) {
                                         sum += item.querySelector("li:nth-child(" + j + ")").offsetHeight
                                     }
                                     moving_div.style.transform = "translate3d(0px," + sum + "px, 0px)";
+                                    moving_div.style.width = item.querySelector("li:nth-child(" + index + ")")
+                                        .offsetWidth + "px";
                                     moving_div.style.height = item.querySelector("li:nth-child(" + j + ")")
                                         .offsetHeight
                                 } else {
@@ -781,224 +842,183 @@
                                         sum += item.querySelector("li:nth-child(" + j + ")").offsetWidth
                                     }
                                     moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
-                                    moving_div.style.width = item.querySelector("li:nth-child(" + index +
-                                        ")").offsetWidth + "px"
+                                    moving_div.style.width = item.querySelector("li:nth-child(" + index + ")")
+                                        .offsetWidth + "px"
                                 }
                             }
-                    }
-                }
-            });
-            window.addEventListener("resize", function(event) {
-                total.forEach(function(item, i) {
-                    item = item.parentElement.firstElementChild;
-                    item.querySelector("[moving-tab]").remove();
-                    var moving_div = document.createElement("div");
-                    var tab = item.querySelector("[data-tab-target][aria-selected='true']").cloneNode();
-                    tab.innerHTML = "-";
-                    tab.classList.remove("bg-inherit");
-                    tab.classList.add("bg-white", "text-white");
-                    tab.style.animation = ".2s ease";
-                    moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg",
-                        "bg-inherit", "flex-auto", "text-center", "bg-none", "border-0", "block",
-                        "shadow");
-                    moving_div.setAttribute("moving-tab", "");
-                    moving_div.setAttribute("data-tab-target", "");
-                    moving_div.appendChild(tab);
-                    item.appendChild(moving_div);
-                    moving_div.style.padding = "0px";
-                    moving_div.style.transition = ".5s ease";
-                    var li = item.querySelector("[data-tab-target][aria-selected='true']")
-                        .parentElement;
-                    if (li) {
-                        var nodes = Array.from(li.closest("ul").children);
-                        var index = nodes.indexOf(li) + 1;
-                        var sum = 0;
-                        if (item.classList.contains("flex-col")) {
-                            for (var j = 1; j <= nodes.indexOf(li); j++) {
-                                sum += item.querySelector("li:nth-child(" + j + ")").offsetHeight
-                            }
-                            moving_div.style.transform = "translate3d(0px," + sum + "px, 0px)";
-                            moving_div.style.width = item.querySelector("li:nth-child(" + index + ")")
-                                .offsetWidth + "px";
-                            moving_div.style.height = item.querySelector("li:nth-child(" + j + ")")
-                                .offsetHeight
+                        });
+                        if (window.innerWidth < 991) {
+                            total.forEach(function(item, i) {
+                                if (!item.classList.contains("flex-col")) {
+                                    item.classList.add("flex-col", "on-resize")
+                                }
+                            })
                         } else {
-                            for (var j = 1; j <= nodes.indexOf(li); j++) {
-                                sum += item.querySelector("li:nth-child(" + j + ")").offsetWidth
-                            }
-                            moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
-                            moving_div.style.width = item.querySelector("li:nth-child(" + index + ")")
-                                .offsetWidth + "px"
-                        }
-                    }
-                });
-                if (window.innerWidth < 991) {
-                    total.forEach(function(item, i) {
-                        if (!item.classList.contains("flex-col")) {
-                            item.classList.add("flex-col", "on-resize")
-                        }
-                    })
-                } else {
-                    total.forEach(function(item, i) {
-                        if (item.classList.contains("on-resize")) {
-                            item.classList.remove("flex-col", "on-resize")
-                        }
-                    })
-                }
-            });
-            var total = document.querySelectorAll("[data-tab-content]");
-            if (total[0]) {
-                total.forEach(function(nav_pills) {
-                    var links = nav_pills.parentElement.querySelectorAll("li a[data-tab-target]");
-                    links.forEach(function(link) {
-                        link.addEventListener("click", function() {
-                            var clicked_tab = document.querySelector("#" + link.getAttribute(
-                                "aria-controls"));
-                            if (!clicked_tab.classList.contains("block", "opacity-100")) {
-                                var active_link = clicked_tab.closest("[data-tab-content]")
-                                    .parentElement.querySelector(
-                                        "li a[data-tab-target][aria-selected='true']");
-                                var active_panel = document.querySelector("#" + active_link
-                                    .getAttribute("aria-controls"));
-                                active_panel.classList.remove("block", "opacity-100");
-                                active_panel.classList.add("hidden", "opacity-0");
-                                clicked_tab.classList.add("block", "opacity-100");
-                                clicked_tab.classList.remove("hidden", "opacity-0")
-                            }
-                        })
-                    })
-                })
-            }
-        })();
-    </script>
-
-    {{-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js"></script> --}}
-    <script>
-        function _array_like_to_array(arr, len) {
-            if (len == null || len > arr.length) len = arr.length;
-            for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-            return arr2
-        }
-
-        function _array_without_holes(arr) {
-            if (Array.isArray(arr)) return _array_like_to_array(arr)
-        }
-
-        function _iterable_to_array(iter) {
-            if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
-                return Array.from(iter)
-        }
-
-        function _non_iterable_spread() {
-            throw new TypeError(
-                "Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
-            )
-        }
-
-        function _to_consumable_array(arr) {
-            return _array_without_holes(arr) || _iterable_to_array(arr) || _unsupported_iterable_to_array(arr) ||
-                _non_iterable_spread()
-        }
-
-        function _unsupported_iterable_to_array(o, minLen) {
-            if (!o) return;
-            if (typeof o === "string") return _array_like_to_array(o, minLen);
-            var n = Object.prototype.toString.call(o).slice(8, -1);
-            if (n === "Object" && o.constructor) n = o.constructor.name;
-            if (n === "Map" || n === "Set") return Array.from(n);
-            if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array(o,
-                minLen)
-        }(function() {
-            var triggers = document.querySelectorAll("[data-dialog-target]");
-            var dialogs = document.querySelectorAll("[data-dialog]");
-            var backdrops = document.querySelectorAll("[data-dialog-backdrop]");
-            var closeTriggers = document.querySelectorAll("[data-dialog-close]");
-            if (triggers && dialogs && backdrops) {
-                Array.from(triggers).forEach(function(trigger) {
-                    return Array.from(dialogs).forEach(function(dialog) {
-                        return Array.from(backdrops).forEach(function(backdrop) {
-                            if (trigger.dataset.dialogTarget === dialog.dataset.dialog &&
-                                backdrop.dataset.dialogBackdrop === dialog.dataset.dialog) {
-                                var _dialog_classList, _dialog_classList1;
-                                var mountDialog = function mountDialog() {
-                                    var _dialog_classList, _dialog_classList1;
-                                    isDialogOpen = true;
-                                    backdrop.classList.toggle("pointer-events-none");
-                                    backdrop.classList.toggle("opacity-0");
-                                    (_dialog_classList = dialog.classList).remove.apply(
-                                        _dialog_classList, _to_consumable_array(
-                                            unmountClasses));
-                                    (_dialog_classList1 = dialog.classList).add.apply(
-                                        _dialog_classList1, _to_consumable_array(
-                                            mountClasses))
-                                };
-                                var unmountDialog = function unmountDialog() {
-                                    var _dialog_classList, _dialog_classList1;
-                                    isDialogOpen = false;
-                                    backdrop.classList.toggle("pointer-events-none");
-                                    backdrop.classList.toggle("opacity-0");
-                                    (_dialog_classList = dialog.classList).remove.apply(
-                                        _dialog_classList, _to_consumable_array(
-                                            mountClasses));
-                                    (_dialog_classList1 = dialog.classList).add.apply(
-                                        _dialog_classList1, _to_consumable_array(
-                                            unmountClasses))
-                                };
-                                var mountValue = dialog.dataset.dialogMount ||
-                                    "opacity-1 translate-y-0";
-                                var unmountValue = dialog.dataset.dialogUnmount ||
-                                    "opacity-0 -translate-y-14";
-                                var transitionValue = dialog.dataset.dialogTransition ||
-                                    "transition-all duration-300";
-                                var mountClasses = mountValue.split(" ");
-                                var unmountClasses = unmountValue.split(" ");
-                                var transitionClasses = transitionValue.split(" ");
-                                var isDialogOpen = false;
-                                (_dialog_classList = dialog.classList).add.apply(
-                                    _dialog_classList, _to_consumable_array(unmountClasses));
-                                if (!backdrop.hasAttribute("tabindex")) backdrop.setAttribute(
-                                    "tabindex", 0);
-                                if (transitionValue !== "false")(_dialog_classList1 = dialog
-                                    .classList).add.apply(_dialog_classList1,
-                                    _to_consumable_array(transitionClasses));
-                                if (dialog.className.includes(unmountValue) && !backdrop
-                                    .className.includes("pointer-events-none opacity-0")) {
-                                    backdrop.classList.add("pointer-events-none");
-                                    backdrop.classList.add("opacity-0")
+                            total.forEach(function(item, i) {
+                                if (item.classList.contains("on-resize")) {
+                                    item.classList.remove("flex-col", "on-resize")
                                 }
-                                trigger.addEventListener("click", function() {
-                                    return dialog.className.includes(unmountValue) ?
-                                        mountDialog() : unmountDialog()
-                                });
-                                backdrop.addEventListener("click", function(param) {
-                                    var target = param.target;
-                                    var _target_dataset, _target_dataset1;
-                                    if ((target === null || target === void 0 ? void 0 :
-                                            (_target_dataset = target.dataset) ===
-                                            null || _target_dataset === void 0 ?
-                                            void 0 : _target_dataset.dialogBackdrop) &&
-                                        (target === null || target === void 0 ? void 0 :
-                                            (_target_dataset1 = target.dataset) ===
-                                            null || _target_dataset1 === void 0 ?
-                                            void 0 : _target_dataset1
-                                            .dialogBackdropClose)) unmountDialog()
-                                });
-                                document.addEventListener("keyup", function(param) {
-                                    var key = param.key;
-                                    return key === "Escape" && isDialogOpen ?
-                                        unmountDialog() : null
-                                });
-                                Array.from(closeTriggers).forEach(function(close) {
-                                    return close.addEventListener("click", function() {
-                                        return isDialogOpen ? unmountDialog() :
-                                            null
-                                    })
+                            })
+                        }
+                    });
+                    var total = document.querySelectorAll("[data-tab-content]");
+                    if (total[0]) {
+                        total.forEach(function(nav_pills) {
+                            var links = nav_pills.parentElement.querySelectorAll("li a[data-tab-target]");
+                            links.forEach(function(link) {
+                                link.addEventListener("click", function() {
+                                    var clicked_tab = document.querySelector("#" + link.getAttribute(
+                                        "aria-controls"));
+                                    if (!clicked_tab.classList.contains("block", "opacity-100")) {
+                                        var active_link = clicked_tab.closest("[data-tab-content]")
+                                            .parentElement.querySelector(
+                                                "li a[data-tab-target][aria-selected='true']");
+                                        var active_panel = document.querySelector("#" + active_link
+                                            .getAttribute("aria-controls"));
+                                        active_panel.classList.remove("block", "opacity-100");
+                                        active_panel.classList.add("hidden", "opacity-0");
+                                        clicked_tab.classList.add("block", "opacity-100");
+                                        clicked_tab.classList.remove("hidden", "opacity-0")
+                                    }
                                 })
-                            }
+                            })
                         })
-                    })
-                })
-            }
-        })();
-    </script>
+                    }
+                })();
+            }, { once: true });
+        </script>
+
+        <!-- Script component dialog - material tailwind -->
+        {{-- <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js data-navigate-track"></script> --}}
+        <script>
+            document.addEventListener("livewire:navigated", () => {
+                function _array_like_to_array(arr, len) {
+                    if (len == null || len > arr.length) len = arr.length;
+                    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+                    return arr2
+                }
+
+                function _array_without_holes(arr) {
+                    if (Array.isArray(arr)) return _array_like_to_array(arr)
+                }
+
+                function _iterable_to_array(iter) {
+                    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
+                        return Array.from(iter)
+                }
+
+                function _non_iterable_spread() {
+                    throw new TypeError(
+                        "Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+                    )
+                }
+
+                function _to_consumable_array(arr) {
+                    return _array_without_holes(arr) || _iterable_to_array(arr) || _unsupported_iterable_to_array(arr) ||
+                        _non_iterable_spread()
+                }
+
+                function _unsupported_iterable_to_array(o, minLen) {
+                    if (!o) return;
+                    if (typeof o === "string") return _array_like_to_array(o, minLen);
+                    var n = Object.prototype.toString.call(o).slice(8, -1);
+                    if (n === "Object" && o.constructor) n = o.constructor.name;
+                    if (n === "Map" || n === "Set") return Array.from(n);
+                    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _array_like_to_array(o,
+                        minLen)
+                }(function() {
+                    var triggers = document.querySelectorAll("[data-dialog-target]");
+                    var dialogs = document.querySelectorAll("[data-dialog]");
+                    var backdrops = document.querySelectorAll("[data-dialog-backdrop]");
+                    var closeTriggers = document.querySelectorAll("[data-dialog-close]");
+                    if (triggers && dialogs && backdrops) {
+                        Array.from(triggers).forEach(function(trigger) {
+                            return Array.from(dialogs).forEach(function(dialog) {
+                                return Array.from(backdrops).forEach(function(backdrop) {
+                                    if (trigger.dataset.dialogTarget === dialog.dataset.dialog &&
+                                        backdrop.dataset.dialogBackdrop === dialog.dataset.dialog) {
+                                        var _dialog_classList, _dialog_classList1;
+                                        var mountDialog = function mountDialog() {
+                                            var _dialog_classList, _dialog_classList1;
+                                            isDialogOpen = true;
+                                            backdrop.classList.toggle("pointer-events-none");
+                                            backdrop.classList.toggle("opacity-0");
+                                            (_dialog_classList = dialog.classList).remove.apply(
+                                                _dialog_classList, _to_consumable_array(
+                                                    unmountClasses));
+                                            (_dialog_classList1 = dialog.classList).add.apply(
+                                                _dialog_classList1, _to_consumable_array(
+                                                    mountClasses))
+                                        };
+                                        var unmountDialog = function unmountDialog() {
+                                            var _dialog_classList, _dialog_classList1;
+                                            isDialogOpen = false;
+                                            backdrop.classList.toggle("pointer-events-none");
+                                            backdrop.classList.toggle("opacity-0");
+                                            (_dialog_classList = dialog.classList).remove.apply(
+                                                _dialog_classList, _to_consumable_array(
+                                                    mountClasses));
+                                            (_dialog_classList1 = dialog.classList).add.apply(
+                                                _dialog_classList1, _to_consumable_array(
+                                                    unmountClasses))
+                                        };
+                                        var mountValue = dialog.dataset.dialogMount ||
+                                            "opacity-1 translate-y-0";
+                                        var unmountValue = dialog.dataset.dialogUnmount ||
+                                            "opacity-0 -translate-y-14";
+                                        var transitionValue = dialog.dataset.dialogTransition ||
+                                            "transition-all duration-300";
+                                        var mountClasses = mountValue.split(" ");
+                                        var unmountClasses = unmountValue.split(" ");
+                                        var transitionClasses = transitionValue.split(" ");
+                                        var isDialogOpen = false;
+                                        (_dialog_classList = dialog.classList).add.apply(
+                                            _dialog_classList, _to_consumable_array(unmountClasses));
+                                        if (!backdrop.hasAttribute("tabindex")) backdrop.setAttribute(
+                                            "tabindex", 0);
+                                        if (transitionValue !== "false")(_dialog_classList1 = dialog
+                                            .classList).add.apply(_dialog_classList1,
+                                            _to_consumable_array(transitionClasses));
+                                        if (dialog.className.includes(unmountValue) && !backdrop
+                                            .className.includes("pointer-events-none opacity-0")) {
+                                            backdrop.classList.add("pointer-events-none");
+                                            backdrop.classList.add("opacity-0")
+                                        }
+                                        trigger.addEventListener("click", function() {
+                                            return dialog.className.includes(unmountValue) ?
+                                                mountDialog() : unmountDialog()
+                                        });
+                                        backdrop.addEventListener("click", function(param) {
+                                            var target = param.target;
+                                            var _target_dataset, _target_dataset1;
+                                            if ((target === null || target === void 0 ? void 0 :
+                                                    (_target_dataset = target.dataset) ===
+                                                    null || _target_dataset === void 0 ?
+                                                    void 0 : _target_dataset.dialogBackdrop) &&
+                                                (target === null || target === void 0 ? void 0 :
+                                                    (_target_dataset1 = target.dataset) ===
+                                                    null || _target_dataset1 === void 0 ?
+                                                    void 0 : _target_dataset1
+                                                    .dialogBackdropClose)) unmountDialog()
+                                        });
+                                        document.addEventListener("keyup", function(param) {
+                                            var key = param.key;
+                                            return key === "Escape" && isDialogOpen ?
+                                                unmountDialog() : null
+                                        });
+                                        Array.from(closeTriggers).forEach(function(close) {
+                                            return close.addEventListener("click", function() {
+                                                return isDialogOpen ? unmountDialog() :
+                                                    null
+                                            })
+                                        })
+                                    }
+                                })
+                            })
+                        })
+                    }
+                })();
+            }, { once: true });
+        </script>
+    @endsection
 </div>

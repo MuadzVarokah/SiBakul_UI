@@ -34,7 +34,7 @@ class AspekDigitalMarketingForm extends Component
             'penjawab_otomatis_wa_bisnis'   => 'required|numeric',
             'penggunaan_media_sosial'       => 'required|numeric',
             'penggunaan_marketplace'        => 'required|numeric',
-            'respon_google_profil_bisnis' => 'required|numeric',
+            'respon_google_profil_bisnis'   => 'required|numeric',
             'update_web'                    => 'required|numeric',
             'hasil_pencarian_nama_usaha'    => 'required|numeric',
             'menggunakan_iklan_berbayar'    => 'required|numeric',

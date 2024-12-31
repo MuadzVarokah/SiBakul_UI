@@ -7,7 +7,7 @@
 
     <!-- Profile Picture -->
     <div class="flex items-center space-x-2" id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar">
-        <img src="https://via.placeholder.com/40" alt="Profile" class="w-10 h-10 rounded-full">
+        <img src="https://placehold.co/40" alt="Profile" class="w-10 h-10 rounded-full">
     </div>
     <!-- Dropdown menu -->
     <div id="dropdownAvatar"
@@ -44,7 +44,7 @@
             </li>
         </ul>
         <div class="py-2">
-            <a href="#"
+            <a wire:navigate href="{{ route('login') }}"
                 class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">
                 <i class="fa-solid fa-arrow-right-from-bracket w-4 mr-2"></i>
                 Log out
@@ -118,38 +118,43 @@
     </div>
 </div>
 
-<script>
-    // Ambil elemen yang diperlukan untuk drawer
-    const openDrawerButton = document.getElementById('openDrawer');
-    const bottomDrawer = document.getElementById('drawer');
-    const backdrop = document.getElementById('backdrop');
-    const closeDrawerButton = document.getElementById('closeDrawer');
+@section('scripts')
+    @parent
+    <script>
+        document.addEventListener("livewire:navigated", () => {
+            // Ambil elemen yang diperlukan untuk drawer
+            const openDrawerButton = document.getElementById('openDrawer');
+            const bottomDrawer = document.getElementById('drawer');
+            const backdrop = document.getElementById('backdrop');
+            const closeDrawerButton = document.getElementById('closeDrawer');
 
-    // Fungsi untuk membuka drawer
-    openDrawerButton.addEventListener('click', function() {
-        bottomDrawer.classList.remove('hidden'); // Menampilkan drawer
-        setTimeout(() => {
-            bottomDrawer.classList.add('drawer-open'); // Menambahkan transisi membuka
-        }, 10); // Memberikan sedikit delay agar transisi berlaku
+            // Fungsi untuk membuka drawer
+            openDrawerButton.addEventListener('click', function() {
+                bottomDrawer.classList.remove('hidden'); // Menampilkan drawer
+                setTimeout(() => {
+                    bottomDrawer.classList.add('drawer-open'); // Menambahkan transisi membuka
+                }, 10); // Memberikan sedikit delay agar transisi berlaku
 
-        backdrop.classList.remove('backdrop-hidden'); // Menampilkan backdrop
-        backdrop.classList.add('backdrop-visible'); // Memberikan efek tampilan
-    });
+                backdrop.classList.remove('backdrop-hidden'); // Menampilkan backdrop
+                backdrop.classList.add('backdrop-visible'); // Memberikan efek tampilan
+            });
 
-    // Fungsi untuk menutup drawer
-    closeDrawerButton.addEventListener('click', function() {
-        bottomDrawer.classList.remove('drawer-open'); // Menghapus efek buka
+            // Fungsi untuk menutup drawer
+            closeDrawerButton.addEventListener('click', function() {
+                bottomDrawer.classList.remove('drawer-open'); // Menghapus efek buka
 
-        // Menyembunyikan backdrop dan drawer setelah transisi
-        setTimeout(() => {
-            bottomDrawer.classList.add('hidden'); // Menyembunyikan drawer
-            backdrop.classList.add('backdrop-hidden'); // Menyembunyikan backdrop
-            backdrop.classList.remove('backdrop-visible');
-        }, 300); // Waktu yang sama dengan durasi transisi (300ms)
-    });
+                // Menyembunyikan backdrop dan drawer setelah transisi
+                setTimeout(() => {
+                    bottomDrawer.classList.add('hidden'); // Menyembunyikan drawer
+                    backdrop.classList.add('backdrop-hidden'); // Menyembunyikan backdrop
+                    backdrop.classList.remove('backdrop-visible');
+                }, 300); // Waktu yang sama dengan durasi transisi (300ms)
+            });
 
-    // Menutup drawer jika klik pada backdrop
-    backdrop.addEventListener('click', function() {
-        closeDrawerButton.click(); // Memanggil fungsi untuk menutup drawer
-    });
-</script>
+            // Menutup drawer jika klik pada backdrop
+            backdrop.addEventListener('click', function() {
+                closeDrawerButton.click(); // Memanggil fungsi untuk menutup drawer
+            });
+        }, { once: true });
+    </script>
+@endsection
