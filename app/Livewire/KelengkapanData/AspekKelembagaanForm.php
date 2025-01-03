@@ -34,6 +34,6 @@ class AspekKelembagaanForm extends Component
             'iso'                   => 'required|numeric',
         ]);
 
-        dd($validatedData);
+        dump($validatedData);
     }
 }

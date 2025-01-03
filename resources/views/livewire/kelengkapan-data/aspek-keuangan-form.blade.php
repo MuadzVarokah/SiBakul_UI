@@ -1,7 +1,14 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Form Aspek Keuangan</x-sub-navbar>
 
@@ -10,7 +17,6 @@
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
                 <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -115,23 +121,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#peran_usaha").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('peran_usaha', e.target.value);
-                                });
-
-                                if (@this.peran_usaha) {
-                                    // Menyinkronkan Select2 dengan nilai peran_usaha yang sudah ada
-                                    $("#peran_usaha").val(@this.peran_usaha).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Pengelolaan Keuangan -->
                         <div class="relative">
@@ -154,23 +143,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#pengelolaan_keuangan").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('pengelolaan_keuangan', e.target.value);
-                                });
-
-                                if (@this.pengelolaan_keuangan) {
-                                    // Menyinkronkan Select2 dengan nilai pengelolaan_keuangan yang sudah ada
-                                    $("#pengelolaan_keuangan").val(@this.pengelolaan_keuangan).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Dokumentasi Nota -->
                         <div class="relative">
@@ -193,23 +165,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#dokumentasi_nota").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('dokumentasi_nota', e.target.value);
-                                });
-
-                                if (@this.dokumentasi_nota) {
-                                    // Menyinkronkan Select2 dengan nilai dokumentasi_nota yang sudah ada
-                                    $("#dokumentasi_nota").val(@this.dokumentasi_nota).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Catatan Transaksi -->
                         <div class="relative">
@@ -232,23 +187,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#catatan_transaksi").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('catatan_transaksi', e.target.value);
-                                });
-
-                                if (@this.catatan_transaksi) {
-                                    // Menyinkronkan Select2 dengan nilai catatan_transaksi yang sudah ada
-                                    $("#catatan_transaksi").val(@this.catatan_transaksi).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Laporan Keuangan -->
                         <div class="relative">
@@ -271,23 +209,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#laporan_keuangan").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('laporan_keuangan', e.target.value);
-                                });
-
-                                if (@this.laporan_keuangan) {
-                                    // Menyinkronkan Select2 dengan nilai laporan_keuangan yang sudah ada
-                                    $("#laporan_keuangan").val(@this.laporan_keuangan).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Utang Bank -->
                         <div class="relative">
@@ -310,23 +231,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#utang_bank").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('utang_bank', e.target.value);
-                                });
-
-                                if (@this.utang_bank) {
-                                    // Menyinkronkan Select2 dengan nilai utang_bank yang sudah ada
-                                    $("#utang_bank").val(@this.utang_bank).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Pencatatan Aset -->
                         <div class="relative">
@@ -349,23 +253,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#pencatatan_aset").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('pencatatan_aset', e.target.value);
-                                });
-
-                                if (@this.pencatatan_aset) {
-                                    // Menyinkronkan Select2 dengan nilai pencatatan_aset yang sudah ada
-                                    $("#pencatatan_aset").val(@this.pencatatan_aset).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Transaksi Pembayaran -->
                         <div class="relative">
@@ -374,21 +261,21 @@
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
                                         <input wire:model="transaksi_pembayaran" type="checkbox" name="transaksi_pembayaran" value="Tunai" id="tunai"
-                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="tunai" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Tunai</label>
                                 </div>
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
                                         <input wire:model="transaksi_pembayaran" type="checkbox" name="transaksi_pembayaran" value="Non Tunai/Transfer Bank" id="non_tunai"
-                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="non_tunai" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Non Tunai/Transfer Bank</label>
                                 </div>
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
                                         <input wire:model="transaksi_pembayaran" type="checkbox" name="transaksi_pembayaran" value="Uang Digital (QRIS, GoPay, OVO, Dana, dsb)" id="uang_digital"
-                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="uang_digital" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Uang Digital (QRIS, GoPay, OVO, Dana, dsb)</label>
                                 </div>
@@ -407,7 +294,7 @@
                             <span class="text-gray-500 text-sm">Tanda bintang (<span
                                     class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
@@ -424,4 +311,103 @@
         </div>
     </div>
 
+    @section('scripts')
+        @parent
+        @script()
+        <script>
+            $(document).ready(function() {
+                //Select2 - Peran Usaha
+                $("#peran_usaha").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('peran_usaha', e.target.value);
+                });
+
+                if (@this.peran_usaha) {
+                    // Menyinkronkan Select2 dengan nilai peran_usaha yang sudah ada
+                    $("#peran_usaha").val(@this.peran_usaha).trigger('change');
+                }
+            
+                //Select2 - Pengelolaan Keuangan
+                $("#pengelolaan_keuangan").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('pengelolaan_keuangan', e.target.value);
+                });
+
+                if (@this.pengelolaan_keuangan) {
+                    // Menyinkronkan Select2 dengan nilai pengelolaan_keuangan yang sudah ada
+                    $("#pengelolaan_keuangan").val(@this.pengelolaan_keuangan).trigger('change');
+                }
+            
+                //Select2 - Dokumentasi Nota
+                $("#dokumentasi_nota").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('dokumentasi_nota', e.target.value);
+                });
+
+                if (@this.dokumentasi_nota) {
+                    // Menyinkronkan Select2 dengan nilai dokumentasi_nota yang sudah ada
+                    $("#dokumentasi_nota").val(@this.dokumentasi_nota).trigger('change');
+                }
+            
+                //Select2 - Catatan Transaksi
+                $("#catatan_transaksi").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('catatan_transaksi', e.target.value);
+                });
+
+                if (@this.catatan_transaksi) {
+                    // Menyinkronkan Select2 dengan nilai catatan_transaksi yang sudah ada
+                    $("#catatan_transaksi").val(@this.catatan_transaksi).trigger('change');
+                }
+            
+                //Select2 - Laporan Keuangan
+                $("#laporan_keuangan").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('laporan_keuangan', e.target.value);
+                });
+
+                if (@this.laporan_keuangan) {
+                    // Menyinkronkan Select2 dengan nilai laporan_keuangan yang sudah ada
+                    $("#laporan_keuangan").val(@this.laporan_keuangan).trigger('change');
+                }
+            
+                //Select2 - Utang Bank
+                $("#utang_bank").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('utang_bank', e.target.value);
+                });
+
+                if (@this.utang_bank) {
+                    // Menyinkronkan Select2 dengan nilai utang_bank yang sudah ada
+                    $("#utang_bank").val(@this.utang_bank).trigger('change');
+                }
+            
+                //Select2 - Pencatatan Aset
+                $("#pencatatan_aset").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('pencatatan_aset', e.target.value);
+                });
+
+                if (@this.pencatatan_aset) {
+                    // Menyinkronkan Select2 dengan nilai pencatatan_aset yang sudah ada
+                    $("#pencatatan_aset").val(@this.pencatatan_aset).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+    @endsection
 </div>

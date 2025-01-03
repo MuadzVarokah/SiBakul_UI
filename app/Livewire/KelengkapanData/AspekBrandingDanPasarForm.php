@@ -39,11 +39,11 @@ class AspekBrandingDanPasarForm extends Component
             'merek_terdaftar_haki'  => 'required|numeric',
             'mitra_usaha'           => 'required|numeric',
             'cakupan_pemasaran'     => 'required|numeric',
-            'pelanggal_loyal'       => 'required|numeric',
+            'pelanggan_loyal'       => 'required|numeric',
             'pameran_mandiri'       => 'required|numeric',
             'media_pemasaran'       => 'required',
         ]);
 
-        dd($validatedData);
+        dump($validatedData);
     }
 }

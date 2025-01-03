@@ -38,6 +38,6 @@ class AspekProduktivitasForm extends Component
             'menerapkan_sop'            => 'required|numeric',
         ]);
 
-        dd($validatedData);
+        dump($validatedData);
     }
 }

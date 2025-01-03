@@ -1,7 +1,14 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Form Aspek Digital Marketing</x-sub-navbar>
 
@@ -10,7 +17,6 @@
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
                 <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -56,23 +62,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#penggunaan_media_chat").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('penggunaan_media_chat', e.target.value);
-                                });
-
-                                if (@this.penggunaan_media_chat) {
-                                    // Menyinkronkan Select2 dengan nilai penggunaan_media_chat yang sudah ada
-                                    $("#penggunaan_media_chat").val(@this.penggunaan_media_chat).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Pengelolaan WhatsApp -->
                         <div class="relative">
@@ -95,23 +84,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#pengelolaan_wa").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('pengelolaan_wa', e.target.value);
-                                });
-
-                                if (@this.pengelolaan_wa) {
-                                    // Menyinkronkan Select2 dengan nilai pengelolaan_wa yang sudah ada
-                                    $("#pengelolaan_wa").val(@this.pengelolaan_wa).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Katalog di WhatsApp Business -->
                         <div class="relative">
@@ -134,23 +106,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#katalog_wa_bisnis").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('katalog_wa_bisnis', e.target.value);
-                                });
-
-                                if (@this.katalog_wa_bisnis) {
-                                    // Menyinkronkan Select2 dengan nilai katalog_wa_bisnis yang sudah ada
-                                    $("#katalog_wa_bisnis").val(@this.katalog_wa_bisnis).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Penjawab Otomatis di WhatsApp Business -->
                         <div class="relative">
@@ -173,23 +128,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#penjawab_otomatis_wa_bisnis").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('penjawab_otomatis_wa_bisnis', e.target.value);
-                                });
-
-                                if (@this.penjawab_otomatis_wa_bisnis) {
-                                    // Menyinkronkan Select2 dengan nilai penjawab_otomatis_wa_bisnis yang sudah ada
-                                    $("#penjawab_otomatis_wa_bisnis").val(@this.penjawab_otomatis_wa_bisnis).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Penggunaan Media Sosial untuk Bisnis -->
                         <div class="relative">
@@ -221,23 +159,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#penggunaan_media_sosial").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('penggunaan_media_sosial', e.target.value);
-                                });
-
-                                if (@this.penggunaan_media_sosial) {
-                                    // Menyinkronkan Select2 dengan nilai penggunaan_media_sosial yang sudah ada
-                                    $("#penggunaan_media_sosial").val(@this.penggunaan_media_sosial).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Penggunaan Marketplace untuk Bisnis -->
                         <div class="relative">
@@ -269,23 +190,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#penggunaan_marketplace").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('penggunaan_marketplace', e.target.value);
-                                });
-
-                                if (@this.penggunaan_marketplace) {
-                                    // Menyinkronkan Select2 dengan nilai penggunaan_marketplace yang sudah ada
-                                    $("#penggunaan_marketplace").val(@this.penggunaan_marketplace).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Respon pada Google Profil Bisnis -->
                         <div class="relative">
@@ -309,23 +213,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#respon_google_profil_bisnis").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('respon_google_profil_bisnis', e.target.value);
-                                });
-
-                                if (@this.respon_google_profil_bisnis) {
-                                    // Menyinkronkan Select2 dengan nilai respon_google_profil_bisnis yang sudah ada
-                                    $("#respon_google_profil_bisnis").val(@this.respon_google_profil_bisnis).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Update Website/Blog -->
                         <div class="relative">
@@ -348,23 +235,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#update_web").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('update_web', e.target.value);
-                                });
-
-                                if (@this.update_web) {
-                                    // Menyinkronkan Select2 dengan nilai update_web yang sudah ada
-                                    $("#update_web").val(@this.update_web).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Hasil Pencarian Nama Usaha di Google -->
                         <div class="relative">
@@ -396,23 +266,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#hasil_pencarian_nama_usaha").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('hasil_pencarian_nama_usaha', e.target.value);
-                                });
-
-                                if (@this.hasil_pencarian_nama_usaha) {
-                                    // Menyinkronkan Select2 dengan nilai hasil_pencarian_nama_usaha yang sudah ada
-                                    $("#hasil_pencarian_nama_usaha").val(@this.hasil_pencarian_nama_usaha).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Menggunakan Iklan Berbayar  -->
                         <div class="relative">
@@ -435,28 +288,11 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#menggunakan_iklan_berbayar").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('menggunakan_iklan_berbayar', e.target.value);
-                                });
-
-                                if (@this.menggunakan_iklan_berbayar) {
-                                    // Menyinkronkan Select2 dengan nilai menggunakan_iklan_berbayar yang sudah ada
-                                    $("#menggunakan_iklan_berbayar").val(@this.menggunakan_iklan_berbayar).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
@@ -473,4 +309,142 @@
         </div>
     </div>
 
+    @section('scripts')
+        @parent
+        @script()
+        <script>
+            $(document).ready(function() {
+                //Select2 - Penggunaan Media Chat untuk Bisnis
+                $("#penggunaan_media_chat").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('penggunaan_media_chat', e.target.value);
+                });
+
+                if (@this.penggunaan_media_chat) {
+                    // Menyinkronkan Select2 dengan nilai penggunaan_media_chat yang sudah ada
+                    $("#penggunaan_media_chat").val(@this.penggunaan_media_chat).trigger('change');
+                }
+            
+                //Select2 - Pengelolaan WhatsApp
+                $("#pengelolaan_wa").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('pengelolaan_wa', e.target.value);
+                });
+
+                if (@this.pengelolaan_wa) {
+                    // Menyinkronkan Select2 dengan nilai pengelolaan_wa yang sudah ada
+                    $("#pengelolaan_wa").val(@this.pengelolaan_wa).trigger('change');
+                }
+            
+                //Select2 - Katalog di WhatsApp Business
+                $("#katalog_wa_bisnis").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('katalog_wa_bisnis', e.target.value);
+                });
+
+                if (@this.katalog_wa_bisnis) {
+                    // Menyinkronkan Select2 dengan nilai katalog_wa_bisnis yang sudah ada
+                    $("#katalog_wa_bisnis").val(@this.katalog_wa_bisnis).trigger('change');
+                }
+            
+                //Select2 - Penjawab Otomatis di WhatsApp Business
+                $("#penjawab_otomatis_wa_bisnis").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('penjawab_otomatis_wa_bisnis', e.target.value);
+                });
+
+                if (@this.penjawab_otomatis_wa_bisnis) {
+                    // Menyinkronkan Select2 dengan nilai penjawab_otomatis_wa_bisnis yang sudah ada
+                    $("#penjawab_otomatis_wa_bisnis").val(@this.penjawab_otomatis_wa_bisnis).trigger('change');
+                }
+            
+                //Select2 - Penggunaan Media Sosial untuk Bisnis
+                $("#penggunaan_media_sosial").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('penggunaan_media_sosial', e.target.value);
+                });
+
+                if (@this.penggunaan_media_sosial) {
+                    // Menyinkronkan Select2 dengan nilai penggunaan_media_sosial yang sudah ada
+                    $("#penggunaan_media_sosial").val(@this.penggunaan_media_sosial).trigger('change');
+                }
+            
+                //Select2 - Penggunaan Marketplace untuk Bisnis
+                $("#penggunaan_marketplace").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('penggunaan_marketplace', e.target.value);
+                });
+
+                if (@this.penggunaan_marketplace) {
+                    // Menyinkronkan Select2 dengan nilai penggunaan_marketplace yang sudah ada
+                    $("#penggunaan_marketplace").val(@this.penggunaan_marketplace).trigger('change');
+                }
+            
+                //Select2 - Respon pada Google Profil Bisnis
+                $("#respon_google_profil_bisnis").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('respon_google_profil_bisnis', e.target.value);
+                });
+
+                if (@this.respon_google_profil_bisnis) {
+                    // Menyinkronkan Select2 dengan nilai respon_google_profil_bisnis yang sudah ada
+                    $("#respon_google_profil_bisnis").val(@this.respon_google_profil_bisnis).trigger('change');
+                }
+            
+                //Select2 - Update Website/Blog
+                $("#update_web").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('update_web', e.target.value);
+                });
+
+                if (@this.update_web) {
+                    // Menyinkronkan Select2 dengan nilai update_web yang sudah ada
+                    $("#update_web").val(@this.update_web).trigger('change');
+                }
+            
+                //Select2 - Hasil Pencarian Nama Usaha di Google
+                $("#hasil_pencarian_nama_usaha").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('hasil_pencarian_nama_usaha', e.target.value);
+                });
+
+                if (@this.hasil_pencarian_nama_usaha) {
+                    // Menyinkronkan Select2 dengan nilai hasil_pencarian_nama_usaha yang sudah ada
+                    $("#hasil_pencarian_nama_usaha").val(@this.hasil_pencarian_nama_usaha).trigger('change');
+                }
+            
+                //Select2 - Menggunakan Iklan Berbayar
+                $("#menggunakan_iklan_berbayar").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('menggunakan_iklan_berbayar', e.target.value);
+                });
+
+                if (@this.menggunakan_iklan_berbayar) {
+                    // Menyinkronkan Select2 dengan nilai menggunakan_iklan_berbayar yang sudah ada
+                    $("#menggunakan_iklan_berbayar").val(@this.menggunakan_iklan_berbayar).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+    @endsection
 </div>

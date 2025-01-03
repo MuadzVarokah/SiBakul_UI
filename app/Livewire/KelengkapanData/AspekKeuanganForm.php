@@ -40,6 +40,6 @@ class AspekKeuanganForm extends Component
             'transaksi_pembayaran'      => 'required',
         ]);
 
-        dd($validatedData);
+        dump($validatedData);
     }
 }

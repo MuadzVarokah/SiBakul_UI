@@ -36,6 +36,6 @@ class AspekSdmForm extends Component
             'pelatihan'                 => 'required|numeric',
         ]);
 
-        dd($validatedData);
+        dump($validatedData);
     }
 }

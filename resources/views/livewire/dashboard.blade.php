@@ -306,7 +306,7 @@
                                 </button>
                                 <div id="content-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                                     <div class="pb-2">
-                                        <a wire:navigate:hover href="{{ route('detailPelatihan', ['id_pelatihan' => 1]) }}"
+                                        <a wire:navigate href="{{ route('detailPelatihan', ['id_pelatihan' => 1]) }}"
                                             class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 text-sm border-0 rounded-md bg-white shadow">
                                             <div class="w-full flex flex-wrap">
                                                 <div class="w-fit mr-2">
@@ -331,7 +331,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <a wire:navigate:hover href="{{ route('pelatihan', ['tab' => 'riwayat']) }}">
+                                    <a wire:navigate href="{{ route('pelatihan', ['tab' => 'riwayat']) }}">
                                         <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
                                     </a>
                                 </div>
@@ -349,7 +349,7 @@
                                 </button>
                                 <div id="content-2" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                                     <div class="pb-2">
-                                        <a wire:navigate:hover href="{{ route('detailPameran', ['id_pameran' => 3]) }}"
+                                        <a wire:navigate href="{{ route('detailPameran', ['id_pameran' => 3]) }}"
                                             class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 text-sm border-0 rounded-md bg-white shadow">
                 
                                             <div class="w-full flex flex-wrap">
@@ -371,7 +371,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <a wire:navigate:hover href="{{ route('pameran', ['tab' => 'riwayat']) }}">
+                                    <a wire:navigate href="{{ route('pameran', ['tab' => 'riwayat']) }}">
                                         <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
                                     </a>
                                 </div>
@@ -389,7 +389,7 @@
                                 </button>
                                 <div id="content-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                                     <div class="pb-2">
-                                        <a wire:navigate:hover href="{{ route('detailSertifikasiUsaha', ['id_sertifikasi' => 1]) }}"
+                                        <a wire:navigate href="{{ route('detailSertifikasiUsaha', ['id_sertifikasi' => 1]) }}"
                                             class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 text-sm border-0 rounded-md bg-white shadow">
                                             <div class="w-full flex flex-wrap justify-between items-start">
                                                 <p class="w-fit text-xs text-slate-600 font-semibold mb-2">17 Jan 2024</p>
@@ -414,7 +414,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <a wire:navigate:hover href="{{ route('sertifikasi') }}">
+                                    <a wire:navigate href="{{ route('sertifikasi') }}">
                                         <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
                                     </a>
                                 </div>
@@ -432,7 +432,7 @@
                                 </button>
                                 <div id="content-4" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                                     <div class="pb-2">
-                                        <a wire:navigate:hover href="{{ route('detailSertifikasiProduk', ['id_sertifikasi' => 1]) }}"
+                                        <a wire:navigate href="{{ route('detailSertifikasiProduk', ['id_sertifikasi' => 1]) }}"
                                             class="flex flex-wrap items-center justify-center w-full pl-2 pr-4 py-2 text-sm border-0 rounded-md bg-white shadow">
                                             <div class="w-full flex flex-wrap justify-between items-start">
                                                 <p class="w-fit text-xs text-slate-600 font-semibold mb-2">17 Jan 2024</p>
@@ -457,7 +457,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <a wire:navigate:hover href="{{ route('sertifikasi', ['tab' => 'produk']) }}">
+                                    <a wire:navigate href="{{ route('sertifikasi', ['tab' => 'produk']) }}">
                                         <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
                                     </a>
                                 </div>
@@ -475,7 +475,7 @@
                                 </button>
                                 <div id="content-5" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
                                     <div class="pb-2">
-                                        <a wire:navigate:hover href="{{ route('detailFotoProduk', ['id_foto' => 1]) }}"
+                                        <a wire:navigate href="{{ route('detailFotoProduk', ['id_foto' => 1]) }}"
                                             class="flex flex-wrap items-center justify-center w-full p-2 py-2 text-sm border-0 rounded-md bg-white shadow">
                                             <div class="w-full flex flex-wrap">
                                                 <div class="w-fit mr-2">
@@ -499,7 +499,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <a wire:navigate:hover href="{{ route('fotoProduk', ['tab' => 'riwayat']) }}">
+                                    <a wire:navigate href="{{ route('fotoProduk', ['tab' => 'riwayat']) }}">
                                         <p class="w-full text-center text-sm text-green-600 font-bold pb-2">Lihat Selengkapnya</p>
                                     </a>
                                 </div>

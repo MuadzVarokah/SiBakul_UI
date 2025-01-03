@@ -1,7 +1,14 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Form Aspek SDM</x-sub-navbar>
 
@@ -10,7 +17,6 @@
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
                 <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -49,31 +55,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#ketergantungan_pemilik").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    templateResult: formatOption,
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('ketergantungan_pemilik', e.target.value);
-                                });
-
-                                if (@this.ketergantungan_pemilik) {
-                                    // Menyinkronkan Select2 dengan nilai ketergantungan_pemilik yang sudah ada
-                                    $("#ketergantungan_pemilik").val(@this.ketergantungan_pemilik).trigger('change');
-                                }
-
-                                function formatOption(option) {
-                                    var $option = $(
-                                        `<div>` + option.text + `</div><div class="text-xs text-slate-600">` + option.title + `</div>`
-                                    );
-                                    return $option;
-                                };
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Tahapan Pengelolaan Usaha -->
                         <div class="relative">
@@ -98,23 +79,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#tahapan_usaha").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('tahapan_usaha', e.target.value);
-                                });
-
-                                if (@this.tahapan_usaha) {
-                                    // Menyinkronkan Select2 dengan nilai tahapan_usaha yang sudah ada
-                                    $("#tahapan_usaha").val(@this.tahapan_usaha).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Pengelolaan Keuangan -->
                         <div class="relative">
@@ -137,23 +101,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#target_usaha").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('target_usaha', e.target.value);
-                                });
-
-                                if (@this.target_usaha) {
-                                    // Menyinkronkan Select2 dengan nilai target_usaha yang sudah ada
-                                    $("#target_usaha").val(@this.target_usaha).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Jumlah Pegawai -->
                         <div class="relative">
@@ -186,28 +133,6 @@
                                </p>
                            @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                // Select the elements
-                                const amountInput = document.getElementById('amountInput');
-                                const increaseButton = document.getElementById('increaseButton');
-                                const decreaseButton = document.getElementById('decreaseButton');
-                                
-                                // Increase the value
-                                increaseButton.addEventListener('click', () => {
-                                    amountInput.value = parseInt(amountInput.value) + 1;
-                                    @this.set('jumlah_pegawai', amountInput.value);
-                                });
-                                
-                                // Decrease the value and prevent going below 0
-                                decreaseButton.addEventListener('click', () => {
-                                    amountInput.value = Math.max(0, parseInt(amountInput.value) - 1);
-                                    @this.set('jumlah_pegawai', amountInput.value);
-                                });
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Standar Gaji -->
                         <div class="relative">
@@ -230,23 +155,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#standar_gaji").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('standar_gaji', e.target.value);
-                                });
-
-                                if (@this.standar_gaji) {
-                                    // Menyinkronkan Select2 dengan nilai standar_gaji yang sudah ada
-                                    $("#standar_gaji").val(@this.standar_gaji).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Fasilitas Asuransi Pegawai -->
                         <div class="relative">
@@ -327,28 +235,11 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#pelatihan").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('pelatihan', e.target.value);
-                                });
-
-                                if (@this.pelatihan) {
-                                    // Menyinkronkan Select2 dengan nilai pelatihan yang sudah ada
-                                    $("#pelatihan").val(@this.pelatihan).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
@@ -365,4 +256,103 @@
         </div>
     </div>
 
+    @section('scripts')
+        @parent
+        @script()
+        <script>
+            $(document).ready(function() {
+                //Select2 - Ketergantungan Pemilik
+                $("#ketergantungan_pemilik").select2({
+                    placeholder: "Pilih Jawaban",
+                    templateResult: formatOption,
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('ketergantungan_pemilik', e.target.value);
+                });
+
+                if (@this.ketergantungan_pemilik) {
+                    // Menyinkronkan Select2 dengan nilai ketergantungan_pemilik yang sudah ada
+                    $("#ketergantungan_pemilik").val(@this.ketergantungan_pemilik).trigger('change');
+                }
+
+                function formatOption(option) {
+                    var $option = $(
+                        `<div>` + option.text + `</div><div class="text-xs text-slate-600">` + option.title + `</div>`
+                    );
+                    return $option;
+                };
+            
+                //Select2 - Tahapan Usaha
+                $("#tahapan_usaha").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('tahapan_usaha', e.target.value);
+                });
+
+                if (@this.tahapan_usaha) {
+                    // Menyinkronkan Select2 dengan nilai tahapan_usaha yang sudah ada
+                    $("#tahapan_usaha").val(@this.tahapan_usaha).trigger('change');
+                }
+            
+                //Select2 - Target Usaha
+                $("#target_usaha").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('target_usaha', e.target.value);
+                });
+
+                if (@this.target_usaha) {
+                    // Menyinkronkan Select2 dengan nilai target_usaha yang sudah ada
+                    $("#target_usaha").val(@this.target_usaha).trigger('change');
+                }
+            
+                //Increase & Decrease Button
+                // Select the elements
+                const amountInput = document.getElementById('amountInput');
+                const increaseButton = document.getElementById('increaseButton');
+                const decreaseButton = document.getElementById('decreaseButton');
+                
+                // Increase the value
+                increaseButton.addEventListener('click', () => {
+                    amountInput.value = parseInt(amountInput.value) + 1;
+                    @this.set('jumlah_pegawai', amountInput.value);
+                });
+                
+                // Decrease the value and prevent going below 0
+                decreaseButton.addEventListener('click', () => {
+                    amountInput.value = Math.max(0, parseInt(amountInput.value) - 1);
+                    @this.set('jumlah_pegawai', amountInput.value);
+                });
+            
+                //Select2 - Standar Gaji
+                $("#standar_gaji").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('standar_gaji', e.target.value);
+                });
+
+                if (@this.standar_gaji) {
+                    // Menyinkronkan Select2 dengan nilai standar_gaji yang sudah ada
+                    $("#standar_gaji").val(@this.standar_gaji).trigger('change');
+                }
+            
+                //Select2 - Pelatihan
+                $("#pelatihan").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('pelatihan', e.target.value);
+                });
+
+                if (@this.pelatihan) {
+                    // Menyinkronkan Select2 dengan nilai pelatihan yang sudah ada
+                    $("#pelatihan").val(@this.pelatihan).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+    @endsection
 </div>

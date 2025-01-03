@@ -1,7 +1,14 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Form Aspek Branding & Pasar</x-sub-navbar>
 
@@ -10,7 +17,6 @@
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
                 <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -47,23 +53,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#keunggulan_produk").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('keunggulan_produk', e.target.value);
-                                });
-
-                                if (@this.keunggulan_produk) {
-                                    // Menyinkronkan Select2 dengan nilai keunggulan_produk yang sudah ada
-                                    $("#keunggulan_produk").val(@this.keunggulan_produk).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Memahami Target Pasar -->
                         <div class="relative">
@@ -86,23 +75,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#target_pasar").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('target_pasar', e.target.value);
-                                });
-
-                                if (@this.target_pasar) {
-                                    // Menyinkronkan Select2 dengan nilai target_pasar yang sudah ada
-                                    $("#target_pasar").val(@this.target_pasar).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Memahami Konsep Branding -->
                         <div class="relative">
@@ -125,23 +97,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#konsep_branding").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('konsep_branding', e.target.value);
-                                });
-
-                                if (@this.konsep_branding) {
-                                    // Menyinkronkan Select2 dengan nilai konsep_branding yang sudah ada
-                                    $("#konsep_branding").val(@this.konsep_branding).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Melakukan Co Branding -->
                         <div class="relative">
@@ -163,23 +118,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#co_branding").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('co_branding', e.target.value);
-                                });
-
-                                if (@this.co_branding) {
-                                    // Menyinkronkan Select2 dengan nilai co_branding yang sudah ada
-                                    $("#co_branding").val(@this.co_branding).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Ketersediaan Produk -->
                         <div class="relative">
@@ -202,23 +140,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#ketersediaan_produk").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('ketersediaan_produk', e.target.value);
-                                });
-
-                                if (@this.ketersediaan_produk) {
-                                    // Menyinkronkan Select2 dengan nilai ketersediaan_produk yang sudah ada
-                                    $("#ketersediaan_produk").val(@this.ketersediaan_produk).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Etiket Merek (Logo Dagang) -->
                         <div class="relative">
@@ -241,23 +162,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#etiket_merek").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('etiket_merek', e.target.value);
-                                });
-
-                                if (@this.etiket_merek) {
-                                    // Menyinkronkan Select2 dengan nilai etiket_merek yang sudah ada
-                                    $("#etiket_merek").val(@this.etiket_merek).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Merek Terdaftar di HAKI -->
                         <div class="relative">
@@ -280,23 +184,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#merek_terdaftar_haki").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('merek_terdaftar_haki', e.target.value);
-                                });
-
-                                if (@this.merek_terdaftar_haki) {
-                                    // Menyinkronkan Select2 dengan nilai merek_terdaftar_haki yang sudah ada
-                                    $("#merek_terdaftar_haki").val(@this.merek_terdaftar_haki).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Memiliki Mitra Usaha/Reseller -->
                         <div class="relative">
@@ -318,23 +205,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#mitra_usaha").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('mitra_usaha', e.target.value);
-                                });
-
-                                if (@this.mitra_usaha) {
-                                    // Menyinkronkan Select2 dengan nilai mitra_usaha yang sudah ada
-                                    $("#mitra_usaha").val(@this.mitra_usaha).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Cakupan Pemasaran Produk -->
                         <div class="relative">
@@ -358,23 +228,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#cakupan_pemasaran").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('cakupan_pemasaran', e.target.value);
-                                });
-
-                                if (@this.cakupan_pemasaran) {
-                                    // Menyinkronkan Select2 dengan nilai cakupan_pemasaran yang sudah ada
-                                    $("#cakupan_pemasaran").val(@this.cakupan_pemasaran).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Memiliki Pelanggan Loyal -->
                         <div class="relative">
@@ -397,23 +250,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#pelanggan_loyal").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('pelanggan_loyal', e.target.value);
-                                });
-
-                                if (@this.pelanggan_loyal) {
-                                    // Menyinkronkan Select2 dengan nilai pelanggan_loyal yang sudah ada
-                                    $("#pelanggan_loyal").val(@this.pelanggan_loyal).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Pernah Melakukan Pameran Secara Mandiri -->
                         <div class="relative">
@@ -437,23 +273,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#pameran_mandiri").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('pameran_mandiri', e.target.value);
-                                });
-
-                                if (@this.pameran_mandiri) {
-                                    // Menyinkronkan Select2 dengan nilai pameran_mandiri yang sudah ada
-                                    $("#pameran_mandiri").val(@this.pameran_mandiri).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Media Pemasaran yang Digunakan -->
                         <div class="relative">
@@ -468,42 +287,42 @@
                                 </div>
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
-                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="1" id="media_pemasaran-2"
+                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="2" id="media_pemasaran-2"
                                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="media_pemasaran-2" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Banner/Flyer/Kartu Nama</label>
                                 </div>
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
-                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="1" id="media_pemasaran-3"
+                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="3" id="media_pemasaran-3"
                                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="media_pemasaran-3" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">WhatsApp</label>
                                 </div>
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
-                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="1" id="media_pemasaran-4"
+                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="4" id="media_pemasaran-4"
                                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="media_pemasaran-4" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Media Sosial</label>
                                 </div>
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
-                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="1" id="media_pemasaran-5"
+                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="5" id="media_pemasaran-5"
                                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="media_pemasaran-5" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Google Business</label>
                                 </div>
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
-                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="1" id="media_pemasaran-6"
+                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="6" id="media_pemasaran-6"
                                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="media_pemasaran-6" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Marketplace</label>
                                 </div>
                                 <div class="flex flex-wrap items-center w-full">
                                     <div class="flex items-center h-5">
-                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="1" id="media_pemasaran-7"
+                                        <input wire:model="media_pemasaran" type="checkbox" name="media_pemasaran" value="7" id="media_pemasaran-7"
                                             class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:!ring-green-600 dark:bg-gray-700 dark:border-gray-600 dark:focus:!ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="media_pemasaran-7" class="ms-2 text-sm text-slate-600 dark:text-slate-600 leading-none">Website</label>
@@ -523,7 +342,7 @@
                             <span class="text-gray-500 text-sm">Tanda bintang (<span
                                     class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
@@ -540,4 +359,155 @@
         </div>
     </div>
 
+    @section('scripts')
+        @parent
+        @script()
+        <script>
+            $(document).ready(function() {
+                //Select2 - Mengetahui Keunggulan Produk
+                $("#keunggulan_produk").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('keunggulan_produk', e.target.value);
+                });
+
+                if (@this.keunggulan_produk) {
+                    // Menyinkronkan Select2 dengan nilai keunggulan_produk yang sudah ada
+                    $("#keunggulan_produk").val(@this.keunggulan_produk).trigger('change');
+                }
+            
+                //Select2 - Memahami Target Pasar
+                $("#target_pasar").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('target_pasar', e.target.value);
+                });
+
+                if (@this.target_pasar) {
+                    // Menyinkronkan Select2 dengan nilai target_pasar yang sudah ada
+                    $("#target_pasar").val(@this.target_pasar).trigger('change');
+                }
+            
+                //Select2 - Memahami Konsep Branding
+                $("#konsep_branding").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('konsep_branding', e.target.value);
+                });
+
+                if (@this.konsep_branding) {
+                    // Menyinkronkan Select2 dengan nilai konsep_branding yang sudah ada
+                    $("#konsep_branding").val(@this.konsep_branding).trigger('change');
+                }
+            
+                //Select2 - Melakukan Co Branding
+                $("#co_branding").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('co_branding', e.target.value);
+                });
+
+                if (@this.co_branding) {
+                    // Menyinkronkan Select2 dengan nilai co_branding yang sudah ada
+                    $("#co_branding").val(@this.co_branding).trigger('change');
+                }
+            
+                //Select2 - Ketersediaan Produk
+                $("#ketersediaan_produk").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('ketersediaan_produk', e.target.value);
+                });
+
+                if (@this.ketersediaan_produk) {
+                    // Menyinkronkan Select2 dengan nilai ketersediaan_produk yang sudah ada
+                    $("#ketersediaan_produk").val(@this.ketersediaan_produk).trigger('change');
+                }
+            
+                //Select2 - Etiket Merek (Logo Dagang)
+                $("#etiket_merek").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('etiket_merek', e.target.value);
+                });
+
+                if (@this.etiket_merek) {
+                    // Menyinkronkan Select2 dengan nilai etiket_merek yang sudah ada
+                    $("#etiket_merek").val(@this.etiket_merek).trigger('change');
+                }
+            
+                //Select2 - Merek Terdaftar di HAKI
+                $("#merek_terdaftar_haki").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('merek_terdaftar_haki', e.target.value);
+                });
+
+                if (@this.merek_terdaftar_haki) {
+                    // Menyinkronkan Select2 dengan nilai merek_terdaftar_haki yang sudah ada
+                    $("#merek_terdaftar_haki").val(@this.merek_terdaftar_haki).trigger('change');
+                }
+            
+                //Select2 - Memiliki Mitra Usaha/Reseller
+                $("#mitra_usaha").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('mitra_usaha', e.target.value);
+                });
+
+                if (@this.mitra_usaha) {
+                    // Menyinkronkan Select2 dengan nilai mitra_usaha yang sudah ada
+                    $("#mitra_usaha").val(@this.mitra_usaha).trigger('change');
+                }
+            
+                //Select2 - Cakupan Pemasaran Produk
+                $("#cakupan_pemasaran").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('cakupan_pemasaran', e.target.value);
+                });
+
+                if (@this.cakupan_pemasaran) {
+                    // Menyinkronkan Select2 dengan nilai cakupan_pemasaran yang sudah ada
+                    $("#cakupan_pemasaran").val(@this.cakupan_pemasaran).trigger('change');
+                }
+            
+                //Select2 - Memiliki Pelanggan Loyal
+                $("#pelanggan_loyal").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('pelanggan_loyal', e.target.value);
+                });
+
+                if (@this.pelanggan_loyal) {
+                    // Menyinkronkan Select2 dengan nilai pelanggan_loyal yang sudah ada
+                    $("#pelanggan_loyal").val(@this.pelanggan_loyal).trigger('change');
+                }
+            
+                //Select2 - Pernah Melakukan Pameran Secara Mandiri
+                $("#pameran_mandiri").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('pameran_mandiri', e.target.value);
+                });
+
+                if (@this.pameran_mandiri) {
+                    // Menyinkronkan Select2 dengan nilai pameran_mandiri yang sudah ada
+                    $("#pameran_mandiri").val(@this.pameran_mandiri).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+    @endsection
 </div>

@@ -1,7 +1,14 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Form Aspek Kelembagaan</x-sub-navbar>
 
@@ -10,7 +17,6 @@
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
                 <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center">
-                    @csrf
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -48,25 +54,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#badan_usaha").select2({
-                                    placeholder: "Pilih Bentuk Badan Usaha",
-                                    // theme: "bootstrap-5",
-                                    // selectionCssClass: "select2--small",
-                                    //    allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('badan_usaha', e.target.value);
-                                });
-
-                                if (@this.badan_usaha) {
-                                    // Menyinkronkan Select2 dengan nilai badan_usaha yang sudah ada
-                                    $("#badan_usaha").val(@this.badan_usaha).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Izin Usaha (NIB) -->
                         <div class="relative">
@@ -96,25 +83,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#izin_usaha").select2({
-                                    placeholder: "Pilih NIB",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('izin_usaha', e.target.value);
-                                });
-
-                                // Menyinkronkan Select2 dengan nilai NIB jika sudah ada
-                                if (@this.nib || @this.izin_usaha) {
-                                    $("#izin_usaha").val(2).trigger('change');
-                                } else {
-                                    $("#izin_usaha").val(1).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Memiliki NPWP -->
                         <div class="relative">
@@ -146,25 +114,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#memiliki_npwp").select2({
-                                    placeholder: "Pilih NPWP",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('memiliki_npwp', e.target.value);
-                                });
-
-                                if (@this.memiliki_npwp) {
-                                    // Menyinkronkan Select2 dengan nilai memiliki_npwp yang sudah ada
-                                    $("#memiliki_npwp").val(@this.memiliki_npwp).trigger('change');
-                                }  else {
-                                    $("#memiliki_npwp").val(1).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Memiliki Struktur Organisasi -->
                         <div class="relative">
@@ -187,23 +136,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#struktur_organisasi").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('struktur_organisasi', e.target.value);
-                                });
-
-                                if (@this.struktur_organisasi) {
-                                    // Menyinkronkan Select2 dengan nilai struktur_organisasi yang sudah ada
-                                    $("#struktur_organisasi").val(@this.struktur_organisasi).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Malksanakan Job Description -->
                         <div class="relative">
@@ -226,23 +158,6 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#jobdesk").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('jobdesk', e.target.value);
-                                });
-
-                                if (@this.jobdesk) {
-                                    // Menyinkronkan Select2 dengan nilai jobdesk yang sudah ada
-                                    $("#jobdesk").val(@this.jobdesk).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <!-- Input Menerapkan ISO -->
                         <div class="relative">
@@ -273,29 +188,12 @@
                                 </p>
                             @enderror
                         </div>
-                        @script()
-                        <script>
-                            $(document).ready(function() {
-                                $("#iso").select2({
-                                    placeholder: "Pilih Jawaban",
-                                    // allowClear: true
-                                }).on('change', function(e) {
-                                    @this.set('iso', e.target.value);
-                                });
-
-                                if (@this.iso) {
-                                    // Menyinkronkan Select2 dengan nilai iso yang sudah ada
-                                    $("#iso").val(@this.iso).trigger('change');
-                                }
-                            });
-                        </script>
-                        @endscript
 
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span
                                     class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="javascript:history.back()" type="button"
+                                <a href="javascript:history.back()" type="button"
                                     class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
@@ -311,5 +209,98 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+        @parent
+        @script()
+        <script>
+            $(document).ready(function() {
+                //Select2 - Bentuk Badan Usaha
+                $("#badan_usaha").select2({
+                    placeholder: "Pilih Bentuk Badan Usaha",
+                    // theme: "bootstrap-5",
+                    // selectionCssClass: "select2--small",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('badan_usaha', e.target.value);
+                });
+
+                if (@this.badan_usaha) {
+                    // Menyinkronkan Select2 dengan nilai badan_usaha yang sudah ada
+                    $("#badan_usaha").val(@this.badan_usaha).trigger('change');
+                }
+            
+                //Select2 - NIB
+                $("#izin_usaha").select2({
+                    placeholder: "Pilih NIB",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('izin_usaha', e.target.value);
+                });
+
+                // Menyinkronkan Select2 dengan nilai NIB jika sudah ada
+                if (@this.nib || @this.izin_usaha) {
+                    $("#izin_usaha").val(2).trigger('change');
+                } else {
+                    $("#izin_usaha").val(1).trigger('change');
+                }
+            
+                //Select2 - NPWP
+                $("#memiliki_npwp").select2({
+                    placeholder: "Pilih NPWP",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('memiliki_npwp', e.target.value);
+                });
+
+                if (@this.memiliki_npwp) {
+                    // Menyinkronkan Select2 dengan nilai memiliki_npwp yang sudah ada
+                    $("#memiliki_npwp").val(@this.memiliki_npwp).trigger('change');
+                }  else {
+                    $("#memiliki_npwp").val(1).trigger('change');
+                }
+            
+                //Select2 - Struktur Organisasi
+                $("#struktur_organisasi").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('struktur_organisasi', e.target.value);
+                });
+
+                if (@this.struktur_organisasi) {
+                    // Menyinkronkan Select2 dengan nilai struktur_organisasi yang sudah ada
+                    $("#struktur_organisasi").val(@this.struktur_organisasi).trigger('change');
+                }
+            
+                //Select2 - Jobdesk
+                $("#jobdesk").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('jobdesk', e.target.value);
+                });
+
+                if (@this.jobdesk) {
+                    // Menyinkronkan Select2 dengan nilai jobdesk yang sudah ada
+                    $("#jobdesk").val(@this.jobdesk).trigger('change');
+                }
+            
+                //Select2 - ISO
+                $("#iso").select2({
+                    placeholder: "Pilih Jawaban",
+                    // allowClear: true
+                }).on('change', function(e) {
+                    @this.set('iso', e.target.value);
+                });
+
+                if (@this.iso) {
+                    // Menyinkronkan Select2 dengan nilai iso yang sudah ada
+                    $("#iso").val(@this.iso).trigger('change');
+                }
+            });
+        </script>
+        @endscript
+    @endsection
 
 </div>

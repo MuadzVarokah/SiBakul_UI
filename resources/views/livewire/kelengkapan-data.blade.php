@@ -78,7 +78,7 @@
                                 <ol
                                     class="relative text-gray-500 border-s border-gray-200 dark:border-gray-700 dark:text-gray-400">
                                     @foreach ($dataPerkembangan as $keyPerkembangan => $valuePerkembangan)
-                                        <a href="{{ $valuePerkembangan->url }}">
+                                        <a wire:navigate href="{{ $valuePerkembangan->url }}">
                                             @if ($loop->last)
                                                 <li class="ms-6">
                                                 @else

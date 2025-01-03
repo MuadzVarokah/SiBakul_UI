@@ -40,6 +40,6 @@ class AspekDigitalMarketingForm extends Component
             'menggunakan_iklan_berbayar'    => 'required|numeric',
         ]);
 
-        dd($validatedData);
+        dump($validatedData);
     }
 }
