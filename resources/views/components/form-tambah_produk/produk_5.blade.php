@@ -1,5 +1,13 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{{-- @section('head-scripts')
+     @parent
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+@endsection
+
+@section('styles')
+     @parent
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+@endsection --}}
 
 <div class="relative">
      <label class="block mb-1 text-sm text-slate-600">Menggunakan Produk Organik</label>
@@ -25,14 +33,16 @@
      @enderror
 </div>
 
-<div wire:ignore class="relative">
-     <label class="block mb-1 text-sm text-slate-600" for="sertifikat_organik">Sertifikat Organik</label>
-     <select wire:model="sertifikat_organik" id="sertifikat_organik" name="sertifikat_organik"
-          class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-          <option></option>
-          <option value="1">Sertifikat Organik 1</option>
-          <option value="2">Sertifikat Organik 2</option>
-     </select>
+<div class="relative">
+     <div wire:ignore class="relative">
+          <label class="block mb-1 text-sm text-slate-600" for="sertifikat_organik">Sertifikat Organik</label>
+          <select wire:model="sertifikat_organik" id="sertifikat_organik" name="sertifikat_organik"
+               class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+               <option></option>
+               <option value="1">Sertifikat Organik 1</option>
+               <option value="2">Sertifikat Organik 2</option>
+          </select>
+     </div>
      @error('sertifikat_organik')
           <p class="flex items-center mt-2 text-xs text-[red]">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -41,17 +51,23 @@
                {{ $message }}
           </p>
      @enderror
+</div>
+
+@section('scripts')
+     @parent
      @script()
      <script>
           $(document).ready(function() {
-                $("#sertifikat_organik").select2({
+               $("#sertifikat_organik").select2({
                     placeholder: "Pilih Sertifikat Organik",
                     allowClear: true
-                }).on('change', function() {
-                    let data = $(this).val();
-                    $wire.sertifikat_organik = data;
-                });
-            });
+               }).on('change', function(e) {
+                    @this.set('sertifikat_organik', e.target.value);
+               });
+               if (@this.sertifikat_organik) {
+                    $("#sertifikat_organik").val(@this.sertifikat_organik).trigger('change');
+               }
+          });
      </script>
      @endscript
-</div>
+@endsection

@@ -1,6 +1,13 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.min.css" rel="stylesheet">
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.min.css" rel="stylesheet">
+    @endsection
 
     <x-sub-navbar href="javascript:history.back()">Detail Foto Produk</x-sub-navbar>
 
@@ -195,7 +202,7 @@
                             class="w-full rounded-md bg-red-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                             <i class="fa-solid fa-ban"></i>&nbsp;&nbsp;Batalkan
                         </button>
-                        <a wire:navigate:hover href="{{ route('form-fotoProduk-edit', ['id_foto' => $id_foto]) }}" type="button"
+                        <a wire:navigate href="{{ route('form-fotoProduk-edit', ['id_foto' => $id_foto]) }}" type="button"
                             class="w-full rounded-md bg-yellow-300 py-2 px-4 border border-transparent text-center text-sm text-slate-600 transition-all shadow-md hover:shadow-lg focus:bg-yellow-400 focus:shadow-none active:bg-yellow-400 hover:bg-yellow-400 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                             <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;Ubah Data
                         </a>
@@ -204,79 +211,82 @@
             @endswitch
         </div>
     </div>
-
-    @script()
-    <script>
-        Livewire.on('fotoProdukCanceled', () => {
-            Swal.fire({
-                title: 'Dibatalkan!',
-                text: 'Pendaftaran foto produk telah berhasil dibatalkan.',
-                icon: 'success'
+    
+    @section('scripts')
+        @parent
+        @script()
+        <script>
+            Livewire.on('fotoProdukCanceled', () => {
+                Swal.fire({
+                    title: 'Dibatalkan!',
+                    text: 'Pendaftaran foto produk telah berhasil dibatalkan.',
+                    icon: 'success'
+                });
             });
-        });
 
-        Livewire.on('confirmCancel', id_foto => {
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Pendaftaran foto produk ini akan dibatalkan!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#e02424',
-                confirmButtonText: 'Ya, Batalkan!',
-                cancelButtonText: 'Tolak',
-                // cancelButtonColor: '#d33'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $wire.call('cancelFotoProduk', {id_foto: id_foto});
+            Livewire.on('confirmCancel', id_foto => {
+                Swal.fire({
+                    title: 'Apakah anda yakin?',
+                    text: "Pendaftaran foto produk ini akan dibatalkan!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#e02424',
+                    confirmButtonText: 'Ya, Batalkan!',
+                    cancelButtonText: 'Tolak',
+                    // cancelButtonColor: '#d33'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $wire.call('cancelFotoProduk', {id_foto: id_foto});
+                    }
+                })
+            });
+
+            // Fungsi untuk memeriksa apakah teks lebih dari 3 baris
+            function checkTextLength(textElement) {
+                const toggleText = textElement.nextElementSibling; // Tombol toggle setelah elemen teks
+        
+                // Mengukur tinggi elemen dan membandingkan dengan tinggi tiga baris
+                const lineHeight = parseInt(window.getComputedStyle(textElement).lineHeight, 10);
+                const maxHeight = lineHeight * 3; // Untuk 3 baris
+                const currentHeight = textElement.offsetHeight;
+        
+                if (currentHeight > maxHeight) {
+                    textElement.classList.add('line-clamp-3'); // Membatasi hanya 3 baris
+                    toggleText.style.display = 'block'; // Menampilkan tombol "Lihat Selengkapnya"
+                } else {
+                    toggleText.style.display = 'none'; // Menyembunyikan tombol jika teks lebih pendek dari 3 baris
                 }
-            })
-        });
-
-        // Fungsi untuk memeriksa apakah teks lebih dari 3 baris
-        function checkTextLength(textElement) {
-            const toggleText = textElement.nextElementSibling; // Tombol toggle setelah elemen teks
-    
-            // Mengukur tinggi elemen dan membandingkan dengan tinggi tiga baris
-            const lineHeight = parseInt(window.getComputedStyle(textElement).lineHeight, 10);
-            const maxHeight = lineHeight * 3; // Untuk 3 baris
-            const currentHeight = textElement.offsetHeight;
-    
-            if (currentHeight > maxHeight) {
-                textElement.classList.add('line-clamp-3'); // Membatasi hanya 3 baris
-                toggleText.style.display = 'block'; // Menampilkan tombol "Lihat Selengkapnya"
-            } else {
-                toggleText.style.display = 'none'; // Menyembunyikan tombol jika teks lebih pendek dari 3 baris
             }
-        }
+            
+            // Fungsi untuk toggle tampilan teks
+            function toggleText(button) {
+                const textElement = button.previousElementSibling; // Elemen teks sebelumnya
         
-        // Fungsi untuk toggle tampilan teks
-        function toggleText(button) {
-            const textElement = button.previousElementSibling; // Elemen teks sebelumnya
-    
-            if (textElement.classList.contains('line-clamp-3')) {
-                // Tampilkan teks penuh
-                textElement.classList.remove('line-clamp-3');
-                button.textContent = 'Lihat Lebih Sedikit';
-            } else {
-                // Potong teks setelah 3 baris
-                textElement.classList.add('line-clamp-3');
-                button.textContent = 'Lihat Selengkapnya';
+                if (textElement.classList.contains('line-clamp-3')) {
+                    // Tampilkan teks penuh
+                    textElement.classList.remove('line-clamp-3');
+                    button.textContent = 'Lihat Lebih Sedikit';
+                } else {
+                    // Potong teks setelah 3 baris
+                    textElement.classList.add('line-clamp-3');
+                    button.textContent = 'Lihat Selengkapnya';
+                }
             }
-        }
+            
+            // Menambahkan event listener pada seluruh elemen dengan kelas 'content-text'
+            document.addEventListener("livewire:navigated", () => {
+                const contentText = document.querySelectorAll('.content-text');
+                contentText.forEach(checkTextLength); // Memeriksa panjang teks untuk setiap deskripsi
         
-        // Menambahkan event listener pada seluruh elemen dengan kelas 'content-text'
-        $(document).ready(function() {
-            const contentText = document.querySelectorAll('.content-text');
-            contentText.forEach(checkTextLength); // Memeriksa panjang teks untuk setiap deskripsi
-    
-            // Menambahkan event listener pada tombol toggle
-            const toggleButtons = document.querySelectorAll('.toggle-text');
-            toggleButtons.forEach(button => {
-                button.addEventListener('click', () => toggleText(button));
-            });
-        });
-    </script>
-    @endscript
+                // Menambahkan event listener pada tombol toggle
+                const toggleButtons = document.querySelectorAll('.toggle-text');
+                toggleButtons.forEach(button => {
+                    button.addEventListener('click', () => toggleText(button));
+                });
+            }, { once: true });
+        </script>
+        @endscript
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.23/dist/sweetalert2.all.min.js" data-navigate-track></script>
+    @endsection
 </div>

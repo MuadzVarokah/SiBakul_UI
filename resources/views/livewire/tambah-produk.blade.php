@@ -1,5 +1,15 @@
 <div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    @section('head-scripts')
+        @parent
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-track></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-track></script>
+    @endsection
+
+    @section('styles')
+        @parent
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    @endsection
+    {{-- <x-sub-navbar href="javascript:history.back()">Tambah Produk</x-sub-navbar> --}}
     <x-sub-navbar href="{{ route('markethub') }}">Tambah Produk</x-sub-navbar>
 
     <!-- Konten -->
@@ -7,7 +17,6 @@
         <div class="w-full px-2 pt-2 pb-4">
             <div class="relative flex flex-col items-center bg-transparent">
                 <form wire:submit.prevent="simpan" class="mt-2 mb-2 w-11/12 max-w-screen-md justify-items-center" enctype="multipart/form-data">
-                    @csrf
                     <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
 
                         <style>
@@ -105,12 +114,6 @@
                             @enderror
                         
                         </div>
-                        
-                        <script type="text/javascript">
-                            $("#tambah-foto_produk").click(function() {
-                                @this.call('addFoto');
-                            });
-                        </script>
 
                         <div class="relative">
                             <label class="block mb-1 text-sm text-slate-600 required" for="harga_jual">Harga Jual</label>
@@ -132,8 +135,8 @@
                         </div>
 
                         <div class="relative">
-                            <label class="block mb-1 text-sm text-slate-600 required" for="jenis_produk">Jenis Produk</label>
-                            <select id="jenis_produk" class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0" disabled>
+                            <label class="block mb-1 text-sm text-slate-600 required" for="jenis_produk_disable">Jenis Produk</label>
+                            <select id="jenis_produk_disable" class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0" disabled>
                                 @foreach ($listProduk as $keyProduk => $valueProduk)
                                     <option value="{!! $valueProduk->id !!}" {{ $jenis_produk == $valueProduk->id ? 'selected' : '' }}>{!! $valueProduk->produk !!}</option>
                                 @endforeach
@@ -153,19 +156,6 @@
                                 </p>
                             @enderror
                         </div>
-
-                        <script>
-                            function formatNumber(input) {
-                                // Menghapus karakter yang bukan angka
-                                let value = input.value.replace(/[^\d]/g, '');
-                    
-                                // Menambahkan titik setiap 3 digit dari belakang
-                                let formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                    
-                                // Menampilkan nilai yang diformat kembali ke dalam input
-                                input.value = formattedValue;
-                            }
-                        </script>
 
                         @switch($jenis_produk)
                             @case(1) <!-- Makanan/Minuman Kemasan -->
@@ -195,7 +185,7 @@
                         <div class="relative mt-2">
                             <span class="text-gray-500 text-sm">Tanda bintang (<span class="text-[red] font-black">*</span>) berarti <b>wajib diisi</b></span>
                             <div class="grid grid-cols-2 gap-1 mt-2">
-                                <a wire:navigate:hover href="{{ route('markethub') }}" type="button" class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                <a wire:navigate href="{{ route('markethub') }}" type="button" class="rounded-md !bg-slate-200 border border-transparent py-2 px-4 text-center text-sm transition-all text-slate-600 hover:!bg-slate-400 hover:!text-slate-50 focus:!bg-slate-400 focus:!text-slate-50 active:!bg-slate-400 active:!text-slate-50 active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                     Batal
                                 </a>
                                 <button type="submit" class="rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2">
@@ -208,4 +198,24 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+        @parent
+        <script type="text/javascript">
+            $("#tambah-foto_produk").click(function() {
+                @this.call('addFoto');
+            });
+
+            function formatNumber(input) {
+                // Menghapus karakter yang bukan angka
+                let value = input.value.replace(/[^\d]/g, '');
+
+                // Menambahkan titik setiap 3 digit dari belakang
+                let formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+                // Menampilkan nilai yang diformat kembali ke dalam input
+                input.value = formattedValue;
+            }
+        </script>
+    @endsection
 </div>

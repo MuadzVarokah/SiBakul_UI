@@ -236,7 +236,7 @@
                     <div class="flex overflow-x-scroll pb-2 overflow-y-hidden gap-1">
                         @foreach ($listMenu as $key => $value)
                             <div class="w-16 flex-[0_0_auto]">
-                                <a href="{!! $value->url !!}">
+                                <a wire:navigate href="{!! $value->url !!}">
                                     <div class="img-menu">
                                         {!! $value->icon !!}
                                     </div>
@@ -746,104 +746,125 @@
                     var total = document.querySelectorAll("[data-tabs]");
                     var getEventTarget = function getEventTarget(e) {
                         e = e || window.event;
-                        return e.target || e.srcElement
+                        return e.target || e.srcElement;
                     };
+
                     total.forEach(function(item, i) {
-                        var moving_div = document.createElement("div");
-                        var first_li = item.querySelector("li:first-child [data-tab-target]");
-                        var tab = first_li.cloneNode();
-                        tab.innerHTML = "-";
-                        tab.classList.remove("bg-inherit", "text-slate-700");
-                        tab.classList.add("bg-white", "text-white");
-                        tab.style.animation = ".2s ease";
-                        moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg", "bg-inherit",
-                            "flex-auto", "text-center", "bg-none", "border-0", "block", "shadow");
-                        moving_div.setAttribute("moving-tab", "");
-                        moving_div.setAttribute("data-tab-target", "");
-                        moving_div.appendChild(tab);
-                        item.appendChild(moving_div);
-                        var list_length = item.getElementsByTagName("li").length;
-                        moving_div.style.padding = "0px";
-                        moving_div.style.width = item.querySelector("li:nth-child(1)").offsetWidth + "px";
-                        moving_div.style.transform = "translate3d(0px, 0px, 0px)";
-                        moving_div.style.transition = ".5s ease";
+                        // Create the moving tab only if it doesn't already exist
+                        let existingMovingTab = item.querySelector("[moving-tab]");
+                        if (!existingMovingTab) {
+                            var moving_div = document.createElement("div");
+                            var first_li = item.querySelector("li:first-child [data-tab-target]");
+                            var tab = first_li.cloneNode();
+                            tab.innerHTML = "-";
+                            tab.classList.remove("bg-inherit", "text-slate-700");
+                            tab.classList.add("bg-white", "text-white");
+                            tab.style.animation = ".2s ease";
+                            moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg", "bg-inherit", 
+                                "flex-auto", "text-center", "bg-none", "border-0", "block", "shadow");
+                            moving_div.setAttribute("moving-tab", "");
+                            moving_div.setAttribute("data-tab-target", "");
+                            moving_div.appendChild(tab);
+                            item.appendChild(moving_div);
+                            moving_div.style.padding = "0px";
+                            moving_div.style.width = item.querySelector("li:nth-child(1)").offsetWidth + "px";
+                            moving_div.style.transform = "translate3d(0px, 0px, 0px)";
+                            moving_div.style.transition = ".5s ease";
+                        }
+
+                        // Set initial position based on active tab
+                        function updateTabPosition() {
+                            var activeTab = item.querySelector("li [aria-selected='true']");
+                            var nodes = Array.from(item.querySelectorAll("li"));
+                            var index = nodes.indexOf(activeTab.closest('li'));
+                            var sum = 0;
+                            var moving_div = item.querySelector("[moving-tab]");
+                            nodes.slice(0, index).forEach(function(li) {
+                                sum += li.offsetWidth;
+                            });
+                            moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
+                            moving_div.style.width = item.querySelector("li:nth-child(" + (index + 1) + ")").offsetWidth + "px";
+                        }
+
+                        // Call updateTabPosition to align moving_div with the active tab
+                        updateTabPosition();
+
                         item.onmouseover = function(event) {
                             var target = getEventTarget(event);
                             var li = target.closest("li");
                             if (li) {
                                 var nodes = Array.from(li.closest("ul").children);
                                 var index = nodes.indexOf(li) + 1;
-                                item.querySelector("li:nth-child(" + index + ") [data-tab-target]").onclick =
-                                    function() {
-                                        item.querySelectorAll("li").forEach(function(list_item) {
-                                            list_item.firstElementChild.removeAttribute("active");
-                                            list_item.firstElementChild.setAttribute("aria-selected",
-                                                "false")
-                                        });
-                                        li.firstElementChild.setAttribute("active", "");
-                                        li.firstElementChild.setAttribute("aria-selected", "true");
-                                        moving_div = item.querySelector("[moving-tab]");
-                                        var sum = 0;
-                                        if (item.classList.contains("flex-col")) {
-                                            for (var j = 1; j <= nodes.indexOf(li); j++) {
-                                                sum += item.querySelector("li:nth-child(" + j + ")").offsetHeight
-                                            }
-                                            moving_div.style.transform = "translate3d(0px," + sum + "px, 0px)";
-                                            moving_div.style.height = item.querySelector("li:nth-child(" + j + ")")
-                                                .offsetHeight
-                                        } else {
-                                            for (var j = 1; j <= nodes.indexOf(li); j++) {
-                                                sum += item.querySelector("li:nth-child(" + j + ")").offsetWidth
-                                            }
-                                            moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
-                                            moving_div.style.width = item.querySelector("li:nth-child(" + index +
-                                                ")").offsetWidth + "px"
+                                item.querySelector("li:nth-child(" + index + ") [data-tab-target]").onclick = function() {
+                                    item.querySelectorAll("li").forEach(function(list_item) {
+                                        list_item.firstElementChild.removeAttribute("active");
+                                        list_item.firstElementChild.setAttribute("aria-selected", "false");
+                                    });
+                                    li.firstElementChild.setAttribute("active", "");
+                                    li.firstElementChild.setAttribute("aria-selected", "true");
+
+                                    var moving_div = item.querySelector("[moving-tab]");
+                                    var sum = 0;
+                                    if (item.classList.contains("flex-col")) {
+                                        for (var j = 1; j <= nodes.indexOf(li); j++) {
+                                            sum += item.querySelector("li:nth-child(" + j + ")").offsetHeight;
                                         }
+                                        moving_div.style.transform = "translate3d(0px," + sum + "px, 0px)";
+                                        moving_div.style.height = item.querySelector("li:nth-child(" + nodes.indexOf(li) + ")").offsetHeight;
+                                    } else {
+                                        for (var j = 1; j <= nodes.indexOf(li); j++) {
+                                            sum += item.querySelector("li:nth-child(" + j + ")").offsetWidth;
+                                        }
+                                        moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
+                                        moving_div.style.width = item.querySelector("li:nth-child(" + index + ")").offsetWidth + "px";
                                     }
+                                }
                             }
-                        }
+                        };
                     });
+
+                    // Handle window resizing to adjust tab positions
                     window.addEventListener("resize", function(event) {
                         total.forEach(function(item, i) {
                             item = item.parentElement.firstElementChild;
-                            item.querySelector("[moving-tab]").remove();
+                            let existingMovingTab = item.querySelector("[moving-tab]");
+                            if (existingMovingTab) {
+                                existingMovingTab.remove();
+                            }
+
                             var moving_div = document.createElement("div");
-                            var tab = item.querySelector("[data-tab-target][aria-selected='true']").cloneNode();
-                            tab.innerHTML = "-";
-                            tab.classList.remove("bg-inherit");
-                            tab.classList.add("bg-white", "text-white");
-                            tab.style.animation = ".2s ease";
-                            moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg",
-                                "bg-inherit", "flex-auto", "text-center", "bg-none", "border-0", "block",
-                                "shadow");
-                            moving_div.setAttribute("moving-tab", "");
-                            moving_div.setAttribute("data-tab-target", "");
-                            moving_div.appendChild(tab);
-                            item.appendChild(moving_div);
-                            moving_div.style.padding = "0px";
-                            moving_div.style.transition = ".5s ease";
-                            var li = item.querySelector("[data-tab-target][aria-selected='true']")
-                                .parentElement;
-                            if (li) {
-                                var nodes = Array.from(li.closest("ul").children);
-                                var index = nodes.indexOf(li) + 1;
-                                var sum = 0;
-                                if (item.classList.contains("flex-col")) {
-                                    for (var j = 1; j <= nodes.indexOf(li); j++) {
-                                        sum += item.querySelector("li:nth-child(" + j + ")").offsetHeight
+                            var activeTab = item.querySelector("[data-tab-target][aria-selected='true']");
+                            if (activeTab) {
+                                var tab = activeTab.cloneNode();
+                                tab.innerHTML = "-";
+                                tab.classList.remove("bg-inherit");
+                                tab.classList.add("bg-white", "text-white");
+                                tab.style.animation = ".2s ease";
+                                moving_div.classList.add("z-10", "absolute", "text-slate-700", "rounded-lg", "bg-inherit",
+                                    "flex-auto", "text-center", "bg-none", "border-0", "block", "shadow");
+                                moving_div.setAttribute("moving-tab", "");
+                                moving_div.setAttribute("data-tab-target", "");
+                                moving_div.appendChild(tab);
+                                item.appendChild(moving_div);
+
+                                var li = item.querySelector("[data-tab-target][aria-selected='true']").parentElement;
+                                if (li) {
+                                    var nodes = Array.from(li.closest("ul").children);
+                                    var index = nodes.indexOf(li) + 1;
+                                    var sum = 0;
+                                    if (item.classList.contains("flex-col")) {
+                                        for (var j = 1; j <= nodes.indexOf(li); j++) {
+                                            sum += item.querySelector("li:nth-child(" + j + ")").offsetHeight;
+                                        }
+                                        moving_div.style.transform = "translate3d(0px," + sum + "px, 0px)";
+                                        moving_div.style.height = item.querySelector("li:nth-child(" + index + ")").offsetHeight;
+                                    } else {
+                                        for (var j = 1; j <= nodes.indexOf(li); j++) {
+                                            sum += item.querySelector("li:nth-child(" + j + ")").offsetWidth;
+                                        }
+                                        moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
+                                        moving_div.style.width = item.querySelector("li:nth-child(" + index + ")").offsetWidth + "px";
                                     }
-                                    moving_div.style.transform = "translate3d(0px," + sum + "px, 0px)";
-                                    moving_div.style.width = item.querySelector("li:nth-child(" + index + ")")
-                                        .offsetWidth + "px";
-                                    moving_div.style.height = item.querySelector("li:nth-child(" + j + ")")
-                                        .offsetHeight
-                                } else {
-                                    for (var j = 1; j <= nodes.indexOf(li); j++) {
-                                        sum += item.querySelector("li:nth-child(" + j + ")").offsetWidth
-                                    }
-                                    moving_div.style.transform = "translate3d(" + sum + "px, 0px, 0px)";
-                                    moving_div.style.width = item.querySelector("li:nth-child(" + index + ")")
-                                        .offsetWidth + "px"
                                 }
                             }
                         });

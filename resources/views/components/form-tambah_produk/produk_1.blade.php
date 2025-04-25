@@ -1,5 +1,13 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{{-- @section('head-scripts')
+     @parent
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
+     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+@endsection
+
+@section('styles')
+     @parent
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+@endsection --}}
 
 <div class="relative">
      <label class="block mb-1 text-sm text-slate-600">Menggunakan Pengawet Buatan</label>
@@ -29,21 +37,31 @@
      <label class="block mb-1 text-sm text-slate-600" for="bahan_baku_utama">Bahan Baku Utama</label>
      <input wire:model="bahan_baku_utama" type="text" name="bahan_baku_utama" id="bahan_baku_utama" placeholder="cth. Sagu" autocomplete="on"
           class="block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+     @error('bahan_baku_utama')
+          <p class="flex items-center mt-2 text-xs text-[red]">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
+               <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+               </svg>
+               {{ $message }}
+          </p>
+     @enderror
 </div>
 
-<div wire:ignore class="relative">
-     <label class="block mb-1 text-sm text-slate-600" for="kemasan_produk">Kemasan Produk</label>
-     <select wire:model="kemasan_produk" id="kemasan_produk" name="kemasan_produk"
-          class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-          <option></option>
-          <option value="1">Pouch</option>
-          <option value="2">Botol Plastik</option>
-          <option value="3">Botol Kaca</option>
-          <option value="4">Kemasan Kertas</option>
-          <option value="5">Kemasan Plastik</option>
-          <option value="6">Box Karton</option>
-          <option value="7">Box Plastik</option>
-     </select>
+<div class="relative">
+     <div wire:ignore class="relative">
+          <label class="block mb-1 text-sm text-slate-600" for="kemasan_produk">Kemasan Produk</label>
+          <select wire:model="kemasan_produk" id="kemasan_produk" name="kemasan_produk"
+               class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+               <option></option>
+               <option value="1">Pouch</option>
+               <option value="2">Botol Plastik</option>
+               <option value="3">Botol Kaca</option>
+               <option value="4">Kemasan Kertas</option>
+               <option value="5">Kemasan Plastik</option>
+               <option value="6">Box Karton</option>
+               <option value="7">Box Plastik</option>
+          </select>
+     </div>
      @error('kemasan_produk')
           <p class="flex items-center mt-2 text-xs text-[red]">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -52,19 +70,6 @@
                {{ $message }}
           </p>
      @enderror
-     @script()
-     <script>
-          $(document).ready(function() {
-               $("#kemasan_produk").select2({
-                    placeholder: "Pilih Kemasan Produk",
-                    allowClear: true
-               }).on('change', function() {
-                    let data = $(this).val();
-                    $wire.kemasan_produk = data;
-               });
-          });
-     </script>
-     @endscript
 </div>
 
 <div class="relative">
@@ -187,6 +192,12 @@
                <option value="tahun">Tahun</option>
           </select>
      </div>
+     <p class="flex items-center mt-2 text-xs text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
+              <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+          </svg>
+          Lama produk bertahan setelah produksi.
+      </p>
      @error('lama_kadaluarsa')
           <p class="flex items-center mt-2 text-xs text-[red]">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -197,14 +208,22 @@
      @enderror
 </div>
 
-<div wire:ignore class="relative">
-     <label class="block mb-1 text-sm text-slate-600" for="sertifikat_halal">Sertifikat Halal</label>
-     <select wire:model="sertifikat_halal" id="sertifikat_halal" name="sertifikat_halal"
-          class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-          <option></option>
-          <option value="1">Sertifikat Halal 1</option>
-          <option value="2">Sertifikat Halal 2</option>
-     </select>
+<div class="relative">
+     <div wire:ignore class="relative">
+          <label class="block mb-1 text-sm text-slate-600 required" for="sertifikat_halal">Sertifikat Halal</label>
+          <select wire:model="sertifikat_halal" id="sertifikat_halal" name="sertifikat_halal" required
+               class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+               <option></option>
+               <option value="1">Sertifikat Halal 1</option>
+               <option value="2">Sertifikat Halal 2</option>
+          </select>
+     </div>
+     <p class="flex items-center mt-2 text-xs text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
+              <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+          </svg>
+          Dokumen ini wajib diisi.
+      </p>
      @error('sertifikat_halal')
           <p class="flex items-center mt-2 text-xs text-[red]">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -213,29 +232,24 @@
                {{ $message }}
           </p>
      @enderror
-     @script()
-     <script>
-          $(document).ready(function() {
-                $("#sertifikat_halal").select2({
-                    placeholder: "Pilih Sertifikat Halal",
-                    allowClear: true
-                }).on('change', function() {
-                    let data = $(this).val();
-                    $wire.sertifikat_halal = data;
-                });
-            });
-     </script>
-     @endscript
 </div>
 
-<div wire:ignore class="relative">
-     <label class="block mb-1 text-sm text-slate-600" for="sertifikat_pirt">Sertifikat PIRT</label>
-     <select wire:model="sertifikat_pirt" id="sertifikat_pirt" name="sertifikat_pirt"
-          class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
-          <option></option>
-          <option value="1">Sertifikat PIRT 1</option>
-          <option value="2">Sertifikat PIRT 2</option>
-     </select>
+<div class="relative">
+     <div wire:ignore class="relative">
+          <label class="block mb-1 text-sm text-slate-600" for="sertifikat_pirt">Sertifikat PIRT</label>
+          <select wire:model="sertifikat_pirt" id="sertifikat_pirt" name="sertifikat_pirt"
+               class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
+               <option></option>
+               <option value="1">Sertifikat PIRT 1</option>
+               <option value="2">Sertifikat PIRT 2</option>
+          </select>
+     </div>
+     <p class="flex items-center mt-2 text-xs text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
+              <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+          </svg>
+          Dokumen ini diwajibkan untuk PKG YIA.
+      </p>
      @error('sertifikat_pirt')
           <p class="flex items-center mt-2 text-xs text-[red]">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -244,19 +258,6 @@
                {{ $message }}
           </p>
      @enderror
-     @script()
-     <script>
-          $(document).ready(function() {
-                $("#sertifikat_pirt").select2({
-                    placeholder: "Pilih Sertifikat PIRT",
-                    allowClear: true
-                }).on('change', function() {
-                    let data = $(this).val();
-                    $wire.sertifikat_pirt = data;
-                });
-            });
-     </script>
-     @endscript
 </div>
 
 <div class="relative">
@@ -272,6 +273,12 @@
                <option value="tahun">per Tahun</option>
           </select>
      </div>
+     <p class="flex items-center mt-2 text-xs text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
+              <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+          </svg>
+          Total produksi dalam kurun waktu tertentu.
+      </p>
      @error('kapasitas_produksi')
           <p class="flex items-center mt-2 text-xs text-[red]">
                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1.5">
@@ -281,3 +288,46 @@
           </p>
      @enderror
 </div>
+
+@section('scripts')
+     @parent
+     @script()
+     <script>
+          $(document).ready(function() {
+               $("#kemasan_produk").select2({
+                    placeholder: "Pilih Kemasan Produk",
+                    allowClear: true
+               }).on('change', function(e) {
+                    @this.set('kemasan_produk', e.target.value);
+               });
+               if (@this.kemasan_produk) {
+                    $("#kemasan_produk").val(@this.kemasan_produk).trigger('change');
+               }
+          
+               
+               $("#sertifikat_halal").select2({
+                    placeholder: "Pilih Sertifikat Halal",
+                    allowClear: true
+               }).on('change', function(e) {
+                    @this.set('sertifikat_halal', e.target.value);
+               });
+               if (@this.sertifikat_halal) {
+                    $("#sertifikat_halal").val(@this.sertifikat_halal).trigger('change');
+               }
+          
+               
+               $("#sertifikat_pirt").select2({
+                    placeholder: "Pilih Sertifikat PIRT",
+                    allowClear: true
+               }).on('change', function(e) {
+                    @this.set('sertifikat_pirt', e.target.value);
+               });
+               if (@this.sertifikat_pirt) {
+                    $("#sertifikat_pirt").val(@this.sertifikat_pirt).trigger('change');
+               }
+          });
+     </script>
+     @endscript
+
+     
+@endsection

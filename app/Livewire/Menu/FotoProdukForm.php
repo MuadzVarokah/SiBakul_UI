@@ -77,4 +77,9 @@ class FotoProdukForm extends Component
     {
         return view('livewire.menu.foto-produk-form');
     }
+
+    public function simpan()
+    {
+        dump($this);
+    }
 }

@@ -1,8 +1,8 @@
 <div class="flex justify-center w-full max-w-screen-md">
     @section('head-scripts')
         @parent
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-once></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-once></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" data-navigate-track></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" data-navigate-track></script>
     @endsection
 
     @section('styles')
@@ -63,7 +63,7 @@
 
                     </div>
                 </div>
-                <a wire:navigate:hover href="{{ route('kelengkapanData') }}">
+                <a wire:navigate href="{{ route('kelengkapanData') }}">
                     <p class="w-full text-center text-sm text-green-600 font-bold pt-4 pb-2">Lihat Kelengkapan Data</p>
                 </a>
 
@@ -148,7 +148,7 @@
         <div class="w-full h-[calc(100vh-(69.6px+3.5rem+4rem))] overflow-y-scroll">
             <div class="w-11/12 m-auto">
                 @foreach ($listBarang as $keyBarang => $valueBarang)
-                    <a wire:navigate:hover href="{{ route('detailProduk', ['id_produk' => 1]) }}"
+                    <a wire:navigate href="{{ route('detailProduk', ['id_produk' => 1]) }}"
                         class="flex flex-wrap items-center justify-center w-full px-4 pt-2 pb-4 mb-4 text-sm border-0 rounded-md bg-white shadow">
                         <div class="w-full flex flex-wrap justify-between items-start">
                             <p class="w-fit text-xs text-slate-600 font-semibold mb-2">{{ $valueBarang->created_at }}
@@ -223,7 +223,7 @@
                     class="px-4 py-3 text-white bg-green-700 rounded-xl border border-green-700 hover:bg-green-600 active:scale-90 transition-transform dark:bg-green-600 dark:hover:bg-green-700 shadow">
                     <i class="fa-solid fa-cart-plus text-xl w-6 h-6"></i>
                 </button>
-                {{-- <a wire:navigate:hover href="{{ route('tambahProduk') }}" type="button"
+                {{-- <a wire:navigate href="{{ route('tambahProduk') }}" type="button"
                     class="px-4 py-3 text-white bg-green-700 rounded-xl border border-green-700 hover:bg-green-600 active:scale-90 transition-transform dark:bg-green-600 dark:hover:bg-green-700 shadow">
                     <i class="fa-solid fa-cart-plus text-xl w-6 h-6"></i>
                 </a> --}}
@@ -257,6 +257,18 @@
 
             <!-- Form -->
             <form wire:submit.prevent="tambahProduk">
+                <style>
+                    .required:after {
+                        content: "*";
+                        color: red;
+                        font-weight: 900;
+                    }
+
+                    .select2-hidden-accessible {
+                        height: 37.6px !important;
+                        width: 100% !important;
+                    }
+                </style>
                 <!-- Content modal -->
                 <div class="relative border-y border-slate-200 pt-4 pb-2 leading-normal text-slate-600 font-light">
                     <p class="flex -mt-2 text-xs text-slate-400 items-center text-justify">
@@ -266,7 +278,7 @@
                     <div class="w-full mt-4">
                         <div class="mt-2 mb-2 w-full max-w-screen-md justify-items-center">
                             <div class="flex flex-col gap-4 w-full max-w-md min-w-[200px]">
-                                <div wire:ignore class="relative">
+                                <div wire:ignore.self class="relative">
                                     <label class="block mb-1 text-sm text-slate-600 required" for="jenis_produk">Jenis Produk</label>
                                     <select id="jenis_produk" name="jenis_produk" wire:model="jenis_produk" onchange="checkSelection()" class="form-select block w-full !bg-white placeholder:!text-slate-400 !text-sm !text-slate-700 !border !border-slate-200 !rounded-md !cursor-pointer !transition !duration-300 !ease focus:!outline-none focus:!border-slate-400 !shadow-sm focus:!shadow focus:!ring-0">
                                         <option></option>
@@ -387,7 +399,7 @@
         @script
         <script>
             document.addEventListener("livewire:navigated", () => {
-                $(document).ready(function() {
+                // $(document).ready(function() {
                     $("#jenis_produk").select2({
                         placeholder: "Pilih Jenis Produk",
                         allowClear: true
@@ -399,7 +411,7 @@
                         // Menyinkronkan Select2 dengan nilai jenis_produk yang sudah ada
                         $("#jenis_produk").val(@this.jenis_produk).trigger('change');
                     }
-                })
+                // })
             }, { once: true });
         </script>
         @endscript

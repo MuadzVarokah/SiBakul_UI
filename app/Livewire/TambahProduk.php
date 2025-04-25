@@ -6,6 +6,8 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+use Illuminate\Support\Facades\Route;
+
 #[Title('Tambah Produk')]
 
 class TambahProduk extends Component
@@ -45,10 +47,11 @@ class TambahProduk extends Component
 
     public $sertifikat_bpom;
 
-    public function mount($jenis_produk)
+    public function mount()
     {
         // Parameter jenis_produk akan diterima langsung dari URL
-        $this->jenis_produk = $jenis_produk;
+        $this->jenis_produk = Route::current()->parameter('jenis_produk'); // Mendapatkan id dari URL
+        // $this->jenis_produk = $jenis_produk;
     }
 
     public function render()
@@ -113,7 +116,7 @@ class TambahProduk extends Component
                 'panjang_produk'        => 'nullable|numeric',
                 'lebar_produk'          => 'nullable|numeric',
                 'tinggi_produk'         => 'nullable|numeric',
-                'saran_penyajian'       => 'required|string',
+                'saran_penyajian'       => 'nullable|string',
                 'lama_kadaluarsa'       => 'nullable|numeric',
                 'satuan_kadaluarsa'     => 'nullable',
                 'sertifikat_halal'      => 'nullable',
@@ -126,7 +129,7 @@ class TambahProduk extends Component
         } elseif($this->jenis_produk == 3 || $this->jenis_produk == 4) {
             // Validasi nilai tambahan form jika jenis produk 3 atau 4
             $validatedAdditionalData = $this->validate([
-                'saran_penggunaan'      => 'required|string',
+                'saran_penggunaan'      => 'nullable|string',
                 'sertifikat_sni'        => 'nullable',
                 'sertifikat_halal'      => 'nullable',
                 'kapasitas_produksi'    => 'nullable|numeric',
@@ -143,7 +146,7 @@ class TambahProduk extends Component
             $validatedData = array_merge($validatedData, $validatedAdditionalData);
         } elseif($this->jenis_produk == 6) {
             $validatedAdditionalData = $this->validate([
-                'saran_penggunaan'      => 'required|string',
+                'saran_penggunaan'      => 'nullable|string',
                 'sertifikat_halal'      => 'nullable',
                 'sertifikat_bpom'       => 'nullable',
                 'kapasitas_produksi'    => 'nullable|numeric',

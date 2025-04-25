@@ -64,7 +64,7 @@
             <div class="w-full flex flex-wrap justify-between items-center">
                 <div class="w-full flex flex-wrap justify-between items-center">
                     <p class="w-fit font-semibold text-justify text-lg">Tempat</p>
-                    <a wire:navigate:hover href="javascript:void(0)">
+                    <a href="javascript:void(0)">
                         <p class="w-fit font-semibold text-justify text-base text-green-600">Lihat <i class="fa-solid fa-chevron-right"></i></p>
                     </a>
                 </div>
@@ -147,50 +147,53 @@
             @endswitch
         </div>
 
-        <script>
-            // Fungsi untuk memeriksa apakah teks lebih dari 3 baris
-            function checkTextLength(textElement) {
-                const toggleText = textElement.nextElementSibling; // Tombol toggle setelah elemen teks
-        
-                // Mengukur tinggi elemen dan membandingkan dengan tinggi tiga baris
-                const lineHeight = parseInt(window.getComputedStyle(textElement).lineHeight, 10);
-                const maxHeight = lineHeight * 3; // Untuk 3 baris
-                const currentHeight = textElement.offsetHeight;
-        
-                if (currentHeight > maxHeight) {
-                    textElement.classList.add('line-clamp-3'); // Membatasi hanya 3 baris
-                    toggleText.style.display = 'block'; // Menampilkan tombol "Lihat Selengkapnya"
-                } else {
-                    toggleText.style.display = 'none'; // Menyembunyikan tombol jika teks lebih pendek dari 3 baris
+        @section('scripts')
+            @parent
+            <script>
+                // Fungsi untuk memeriksa apakah teks lebih dari 3 baris
+                function checkTextLength(textElement) {
+                    const toggleText = textElement.nextElementSibling; // Tombol toggle setelah elemen teks
+            
+                    // Mengukur tinggi elemen dan membandingkan dengan tinggi tiga baris
+                    const lineHeight = parseInt(window.getComputedStyle(textElement).lineHeight, 10);
+                    const maxHeight = lineHeight * 3; // Untuk 3 baris
+                    const currentHeight = textElement.offsetHeight;
+            
+                    if (currentHeight > maxHeight) {
+                        textElement.classList.add('line-clamp-3'); // Membatasi hanya 3 baris
+                        toggleText.style.display = 'block'; // Menampilkan tombol "Lihat Selengkapnya"
+                    } else {
+                        toggleText.style.display = 'none'; // Menyembunyikan tombol jika teks lebih pendek dari 3 baris
+                    }
                 }
-            }
-        
-            // Fungsi untuk toggle tampilan teks
-            function toggleText(button) {
-                const textElement = button.previousElementSibling; // Elemen teks sebelumnya
-        
-                if (textElement.classList.contains('line-clamp-3')) {
-                    // Tampilkan teks penuh
-                    textElement.classList.remove('line-clamp-3');
-                    button.textContent = 'Lihat Lebih Sedikit';
-                } else {
-                    // Potong teks setelah 3 baris
-                    textElement.classList.add('line-clamp-3');
-                    button.textContent = 'Lihat Selengkapnya';
+            
+                // Fungsi untuk toggle tampilan teks
+                function toggleText(button) {
+                    const textElement = button.previousElementSibling; // Elemen teks sebelumnya
+            
+                    if (textElement.classList.contains('line-clamp-3')) {
+                        // Tampilkan teks penuh
+                        textElement.classList.remove('line-clamp-3');
+                        button.textContent = 'Lihat Lebih Sedikit';
+                    } else {
+                        // Potong teks setelah 3 baris
+                        textElement.classList.add('line-clamp-3');
+                        button.textContent = 'Lihat Selengkapnya';
+                    }
                 }
-            }
-        
-            // Menambahkan event listener pada seluruh elemen dengan kelas 'content-text'
-            document.addEventListener('DOMContentLoaded', () => {
-                const contentText = document.querySelectorAll('.content-text');
-                contentText.forEach(checkTextLength); // Memeriksa panjang teks untuk setiap deskripsi
-        
-                // Menambahkan event listener pada tombol toggle
-                const toggleButtons = document.querySelectorAll('.toggle-text');
-                toggleButtons.forEach(button => {
-                    button.addEventListener('click', () => toggleText(button));
-                });
-            });
-        </script>
+            
+                // Menambahkan event listener pada seluruh elemen dengan kelas 'content-text'
+                document.addEventListener("livewire:navigated", () => {
+                    const contentText = document.querySelectorAll('.content-text');
+                    contentText.forEach(checkTextLength); // Memeriksa panjang teks untuk setiap deskripsi
+            
+                    // Menambahkan event listener pada tombol toggle
+                    const toggleButtons = document.querySelectorAll('.toggle-text');
+                    toggleButtons.forEach(button => {
+                        button.addEventListener('click', () => toggleText(button));
+                    });
+                }, { once: true });
+            </script>
+        @endsection
     </div>
 </div>

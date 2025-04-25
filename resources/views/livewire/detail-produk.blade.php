@@ -86,6 +86,38 @@
         <!-- Section Penjelasan -->
         <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
             <div class="w-full flex flex-wrap justify-between items-center">
+                <p class="w-fit font-semibold text-justify text-lg">MarketHUB</p>
+                <div class="w-fit">
+                    <span class="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-blue-900 dark:text-blue-300">
+                        <span class="w-2 h-2 me-1 bg-blue-500 rounded-full"></span>
+                        Aktif
+                    </span>
+                    <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-green-900 dark:text-green-300">
+                        <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                        Lolos Kurasi
+                    </span>
+                </div>
+            </div>
+
+            <hr style="border-top: 2px solid #cbd5e1">
+
+            <div class="w-full flex flex-wrap justify-between items-center">
+                <p class="w-fit font-semibold text-justify text-lg">PKG YIA</p>
+                <div class="w-fit">
+                    <span class="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 h-fit rounded-full dark:bg-blue-900 dark:text-blue-300">
+                        <span class="w-2 h-2 me-1 bg-blue-500 rounded-full"></span>
+                        Verifikasi Administrasi
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- divider -->
+        <div class="w-full h-4 bg-transparent"></div>
+
+        <!-- Section Penjelasan -->
+        <div class="w-full p-4 grid grid-cols-1 gap-2 bg-white">
+            <div class="w-full flex flex-wrap justify-between items-center">
                 <p class="w-fit font-semibold text-justify text-lg">Jenis Produk</p>
                 <p class="w-fit font-normal text-justify text-base text-slate-600">{{ $data->jenis_produk }}</p>
             </div>
@@ -121,6 +153,16 @@
             @default
                 
         @endswitch
+
+        <!-- Section Penjelasan -->
+        <div class="w-full p-4 grid grid-cols-2 gap-2 bg-white">
+            <a wire:navigate href="#" type="button" class="w-full rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                <i class="fa-solid fa-file-arrow-up"></i>&nbsp;&nbsp;Ajukan PKG YIA
+            </a>
+            <a wire:navigate href="#" type="button" class="w-full rounded-md bg-green-600 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-green-700 focus:shadow-none active:bg-green-700 hover:bg-green-700 active:shadow-none active:scale-90 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                <i class="fa-solid fa-file-arrow-up"></i>&nbsp;&nbsp;Ajukan Ekspor
+            </a>
+        </div>
 
         <script>
             // Fungsi untuk memeriksa apakah teks lebih dari 3 baris

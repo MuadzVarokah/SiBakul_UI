@@ -24,7 +24,7 @@ class Markethub extends Component
         //Membuat barang
         $listBarang = collect([
             [
-                "gambar" => "https://via.placeholder.com/80",
+                "gambar" => "https://placehold.co/80",
                 "nama" => "Kue Lebaran Premium Choco Stick 400 Gram",
                 "harga" => 69000,
                 "kurasi" => 1,
@@ -32,7 +32,7 @@ class Markethub extends Component
                 "created_at" => Carbon::createFromFormat('Y-m-d H:i:s', '2024-10-26 11:53:20')
             ],
             [
-                "gambar" => "https://via.placeholder.com/80",
+                "gambar" => "https://placehold.co/80",
                 "nama" => "Lorem ipsum dolor sit amet consectetur.",
                 "harga" => 420000,
                 "kurasi" => 2,
@@ -40,7 +40,7 @@ class Markethub extends Component
                 "created_at" => Carbon::createFromFormat('Y-m-d H:i:s', '2024-11-25 11:53:20')
             ],
             [
-                "gambar" => "https://via.placeholder.com/80",
+                "gambar" => "https://placehold.co/80",
                 "nama" => "Lorem ipsum dolor sit.",
                 "harga" => 6000,
                 "kurasi" => 2,
@@ -48,7 +48,7 @@ class Markethub extends Component
                 "created_at" => Carbon::createFromFormat('Y-m-d H:i:s', '2024-11-24 11:53:20')
             ],
             [
-                "gambar" => "https://via.placeholder.com/80",
+                "gambar" => "https://placehold.co/80",
                 "nama" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, dolorum.",
                 "harga" => 6942000,
                 "kurasi" => 3,
